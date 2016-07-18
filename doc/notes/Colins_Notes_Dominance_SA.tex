@@ -1,0 +1,307 @@
+% Test change for git
+%===========================================
+% Preamble
+\documentclass[11pt]{article}
+
+%**********
+%Dependencies
+\usepackage[left]{lineno}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage[utf8]{inputenc}
+\usepackage{color,soul}
+%\usepackage{setspace}
+%\usepackage{times}
+\usepackage{ogonek}
+
+
+% Packages from Am. Nat. Template
+\usepackage[sc]{mathpazo} %Like Palatino with extensive math support
+\usepackage{fullpage}
+\usepackage[authoryear,sectionbib,sort]{natbib}
+\linespread{1.7}
+\usepackage[utf8]{inputenc}
+\usepackage{lineno}
+
+% Change default margins
+\usepackage{fullpage}
+
+
+% Change subsection numbering
+\renewcommand\thesubsection{\arabic{subsection})}
+\renewcommand\thesubsubsection{}
+
+% Subsubsection Title Formatting
+
+\titleformat{\subsubsection}    
+{\normalfont\fontsize{12pt}{17}\itshape}{\thesubsubsection}{12pt}{}
+
+
+% Definitions
+\def\mathbi#1{\textbf{\em #1}}
+
+
+%===========================================
+
+\begin{document}
+\title{Two-locus model of sexual antagonism in simultaneous hermaphrodites}
+\author{Colin Olito, Justin Cally \& Tim Connallon}
+\date{18 July 2016}
+\maketitle
+
+update \date{\today}
+
+\section*{Notes}
+
+This project was originally an idea Tim and Crispin Jordan had and which they proposed to collaborate with Jessica K. Abbott on. I have attached their email exchange below for context. Since originally proposing the idea, it was put on the back burner as both Tim and Jordan were quite busy with teaching and other duties (they are both relatively new faculty). In the meantime, Tim and I collaborated on my single-locus model for mutation load and inbreeding depression in simulataneous hermaphrodites, which is currently waiting (to my shame) to be written up as an MS. This set the stage pretty well to follow up with their two-locus idea. Justin Cally is an Honor's student who is working with Tim for a short project (~4wks), and who is providing much needed impetus to the project. \bigskip
+
+\subsection*{Tim's email to Jessica}
+	Hi Jessica,
+	Sorry for my slowness in getting back in touch ... I talked to Crispin over a week ago, but have been completely distracted by other things since. After chatting, I think he and I are on the same page that we'd both be very interested in following up on a two locus model (i.e., two SA loci) with partial selfing, along the lines of a Patten/Ubeda extension. The motivation is that the effective recombination rate between the loci will decline with the selfing rate (promoting selection on linked allelic combinations), as will the parameter space conducive to maintaining polymorphism at a single locus. The interesting thing is that we don't know which factor should win out, except in the case of strictly additive fitness effects: in that case, we expect that linkage should greatly promote invasion of SA alleles at a locus linked to a segregating SA locus (because the single-locus criteria for balancing selection are not affected by selfing). Under dominance reversal conditions (partially recessive SA costs), it is unclear whether linkage compensates for the otherwise reduced parameter space for balancing selection. So, it would be fun to work this out, and it can probably result in a short manuscript. If this was similar to your thinking, I think it would be a lot of fun for us all to collaborate on it. The only issue for us may be one of timing ... Crispin's time is currently at a premium, but he anticipates an ideal time to move onto this would be in early 2015. (Crispin, please shout out if I got something wrong here). Having played around with some of the dioecious two-locus models, I'm pretty sure analytical results will be possible, assuming we adopt a simple selfing model involving fixed selfing rates per genotype. 
+
+	On the other hand, Jessica, this might not mesh well with your plans or timetable, but please let us know what you think, and we can all make further plans accordingly.
+
+	All the best,
+	Tim
+
+
+\section*{Questions}
+\noindent 1) What parameter conditions are necessary for balancing selection on SA alleles at a second locus that is linked to a segregating SA locus? \bigskip
+
+\noindent 2) How does the selfing rate, which reduces effective recombination rate, alter the conditions necessary for balancing selection? This is particularly interesting for conditions other than strictly additive fitness effects ($h_f=h_m=0.5$). \bigskip
+
+\noindent 3) Order of invasion? 
+\begin{itemize}
+  \item Invasion of second locus linked with first locus at equilibrium?
+  \item Invasion at both loci simultaneously?
+\end{itemize}
+
+\newpage{}
+
+
+
+
+
+
+\renewcommand\thesubsection{\arabic{subsection})}
+\renewcommand\thesubsubsection{}
+\setcounter{subsection}{0}  % reset counter 
+\section{Single-locus model of sexually antagonistic selection}
+
+A diploid, one-locus two allele model. \\
+-- Allele $A_m$ ($a$) is a male beneficial allele. \\
+-- There is recurrent forward-mutation (but no back-mutation)
+-- Other general assumptions: discrete generations, other life-cycle features, etc. \bigskip
+
+\subsection{Offspring genotypic frequencies}
+Among offspring, the female beneficial allele $A$ ($A_f$) is at frequency $p$, and the male-beneficial allele $a$ ($A_m$) is at frequency q ($[A_m] = q = 1 - [A_f]$). Thus the offspring genotypic frequencies follow 
+
+\begin{align*}
+&f_{AA} = (1-q)^{2} \\
+&f_{Aa} = 2q(1-q) \\
+&f_{aa} = q^{2} \\
+\end{align*}
+
+
+\subsection{Viability Selection}
+Let the relative viability of the three genotypes for males and females follow
+
+\begin{table}[h]
+\caption{Genotypic fitnesses under sexual antagonism}
+\label{Table:Fitness}
+\centering
+\begin{tabular}{l  p{3cm} p{3cm} p{3cm}} \hline
+Genotype & $AA$, $A_f A_f$, $A_f$ & $Aa$, $A_f A_m$ & $aa$, $A_m A_m$, $A_m$ \\
+\hline
+Female Fitness & 1 & $1 - s_f h_f$ & $1 - s_f$ \\
+Male Fitness & $1 - s_m$ & $1 - s_m h_m$ & 1  \\
+Male Fitness (X-linked)  & $1 - s_m$ & -- & 1  \\
+\hline
+\end{tabular}
+\bigskip{}
+\\
+{\footnotesize}
+\end{table}
+
+The frequency of $a$ in each sex after selection will be
+
+\subsubsection{Females}
+\begin{align*}
+&f^F_{AA} = \frac{(1-q)^{2}}{\overline{w_f}} \\
+&f^F_{Aa} = \frac{2q(1-q)(1-s_f h_f)}{\overline{w_f}} \\
+&f^F_{aa} = \frac{q^{2}(1-s_f)}{\overline{w_f}} \\
+\end{align*}
+where $\overline{w_f} = (1-q)^{2} + 2q(1-q)(1-s_f h_f) + q^{2}(1-s_f)$
+\bigskip
+
+\subsubsection{Males}
+\begin{align*}
+&f^M_{AA} = \frac{(1-q)^{2}(1-s_m)}{\overline{w_m}} \\
+&f^M_{Aa} = \frac{2q(1-q)(1-s_m h_m)}{\overline{w_m}} \\
+&f^M_{aa} = \frac{q^{2}}{\overline{w_m}} \\
+\end{align*}
+where $\overline{w_m} = (1-q)^{2}(1-s_m) + 2q(1-q)(1-s_m h_m) + q^{2}$
+
+
+
+\subsection{Mutation}
+Assume that the mutation rate from the good to the bad allele is $\mu$. There is no backward mutation. The allele frequency change in each sex due to selection \& mutation will be:
+
+\subsubsection{Females}
+\begin{align*}
+\delta q_f &= f^F_{aa} + \frac{f^F_{Aa}}{2} - q = \frac{q^{2}(1-s_f) + 2q(1-q)(1-s_f h_f)}{2 \overline{w_f}} \\
+q^{mut}_{f} &= q + (1-q) \mu = \Big( f^F_{aa} + \frac{f^F_{Aa}}{2} \Big) +  \Big( f^F_{AA} + \frac{f^F_{Aa}}{2} \Big) \mu \\
+\Delta q_f &= q^{mut}_{f} + \delta q_f \\
+            &= q + (1-q) \mu + \delta q_f \\
+            &= (q + \delta q_f) + (1 - q - \delta q_f) \mu \\
+            &\approx q + (1-q) \mu + \delta q_f + \mathbi{O} (\delta q_f \cdot \mu) \\
+\end{align*}
+
+\subsubsection{Males}
+\begin{align*}
+\delta q_m &= f^M_{aa} + \frac{f^M_{Aa}}{2} - q = \frac{q^{2}(1-s_M) + 2q(1-q)(1-s_m h_m)}{2 \overline{w_m}} \\
+q^{mut}_{m} &= q + (1-q) \mu = \Big( f^M_{aa} + \frac{f^M_{Aa}}{2} \Big) +  \Big( f^M_{AA} + \frac{f^M_{Aa}}{2} \Big) \mu \\
+\Delta q_m &= q^{mut}_{m} + \delta q_m \\
+            &= q + (1-q) \mu + \delta q_m \\
+            &= (q + \delta q_m) + (1 - q - \delta q_m) \mu \\
+            &\approx q + (1-q) \mu + \delta q_m + \mathbi{O} (\delta q_m \cdot \mu) \\
+\end{align*}
+
+
+\subsection*{Total allele frequency change per generation}
+
+The difference equation will then be
+\begin{equation*}
+\Delta q = \frac{(\Delta q_f - q) + (\Delta q_ym - q)}{2} \\
+\end{equation*}
+
+which is approximately equal to 
+\begin{equation*}
+\Delta q \approx \frac{(\delta q_f) + (\delta q_m )}{2} \mu (1 - 2 q).  \\
+\end{equation*}
+
+
+The recursion equation will then be
+\begin{align*}
+q_{t + 1} &= \frac{(\Delta q_f) + (\Delta q_m)}{2} \\
+\end{align*}
+
+\newpage{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\renewcommand\thesubsection{\arabic{subsection})}
+\renewcommand\thesubsubsection{}
+\setcounter{subsection}{0}  % reset counter 
+\setcounter{equation}{0}  % reset counter 
+\section{2-locus model: modifier allele influencing dominance}
+
+We now introduce a second gene $M$, with alleles $M$ and $m$, which modifies the dominance of the primary SA alleles in each sex: \bigskip
+
+There are four possible combinations of these alleles that can be found on any chromosome: $A M$, $a M$, $A m$, and $a m$, with frequencies $x_1$, $x_2$, $x_3$, $x_4$. We census the population at the gamete stage where there are only four types of chromosomes. In the gamete pool, there are male gametes and female gametes, each of which contains one of the four possible chromosome types. Consequently, there are 16 different unions that can produce diploid individuals. For clarity we re-write the genotypic fitnesses as
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+\caption{Genotypic fitnesses under sexual antagonism}
+\label{Table:Fitness}
+\centering
+\begin{tabular}{l  p{3cm} p{3cm} p{3cm}} \hline
+Genotype & $AA$, $A_f A_f$, $A_f$ & $Aa$, $A_f A_m$ & $aa$, $A_m A_m$, $A_m$ \\
+\hline
+Female Fitness           & 1 & $1 - s_f h$ & $1 - s_f$ \\
+Male Fitness              & $1 - s_m$ & $1 - s_m k$ & 1  \\
+Male Fitness (X-linked)  & $1 - s_m$ & -- & 1  \\
+\hline
+\end{tabular}
+\bigskip{}
+\\
+{\footnotesize}
+\end{table}
+
+
+Since mothers and fathers each contribute half of their offsprings' genome, genotypic frequencies are averaged over both sexes, which simplifies the fitnesses from up to 16 independent fitness equations, to just 9.
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+\caption{Genotypic fitnesses averaged over both sexes}
+\label{Table:2-locus fitnesses}
+\centering
+\begin{tabular}{l  p{3cm} p{6cm} p{3cm}} \hline
+Genotype & $AA$ & $Aa$ & $aa$ \\
+\hline
+$MM$ & $W_1 = \frac{1 + 1-s_m}{2}$ & $W_{2 D} = \frac{(1-s_f h_{MM}) - (1-s_m k_{MM})}{2}$ & $W_3 = \frac{1-s_f + 1}{2}$ \\
+$Mm$ & $W_1 = \frac{1 + 1-s_m}{2}$ & $W_{2 H} = \frac{(1-s_f h_{Mm}) - (1-s_m k_{Mm})}{2}$ & $W_3 = \frac{1-s_f + 1}{2}$ \\
+$mm$ & $W_1 = \frac{1 + 1-s_m}{2}$ & $W_{2 R} = \frac{(1-s_f h_{mm}) - (1-s_m k_{mm})}{2}$ & $W_3 = \frac{1-s_f + 1}{2}$ \\
+\hline
+\end{tabular}
+\bigskip{}
+{\footnotesize }
+\end{table}
+
+
+
+Following the life-cycle table along, the chromosome frequencies among the next generation of juveniles should be:
+
+\begin{align}
+\bar{W}x^{'}_{1} &= x_1(x_1 W_1    + x_2 W_{2D} + x_3 W_1    + x_4 W_{2H}) - r D W_{2H} \\
+\bar{W}x^{'}_{2} &= x_2(x_1 W_{2D} + x_2 W_{3}  + x_3 W_{2H} + x_4 W_{3})   - r D W_{2H} \\
+\bar{W}x^{'}_{3} &= x_3(x_1 W_1    + x_2 W_{2H} + x_3 W_1    + x_4 W_{2R}) - r D W_{2H} \\
+\bar{W}x^{'}_{4} &= x_4(x_1 W_{2H} + x_2 W_{3}  + x_3 W_{2R} + x_4 W_{3})  - r D W_{2H}   \end{align}
+
+Where $D = x_{1} x_{4} - x_{2} x_{3}$ is the linkage disequilibrium wikthin the population, $W_{i}$ is the relative fitness of genotype $i$, and $\bar{W}$ is the mean relative fitness -- the sum of the right hand sides of the above equations. Each of these equations can be reconstructed from the life-cycle table below:
+
+
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+\caption{Life cycle table for 2-locus modifier model}
+\label{Table:Life Cycle}
+\centering
+%\begin{tabular}{l  p{2cm} p{2.7cm} p{2cm} p{2cm} p{2cm} p{2cm}} 
+\begin{tabular}{l c c c c c c} 
+\hline
+\multicolumn{7}{r}{Gamete Frequencies} \\
+\cline{4-7}
+Female $\times$ Male & Frequency of union & Frequency after selection & $A M$ & $a M$ & $A m$ & $a m$\\
+\hline
+$A M \times A M$ & $x_1 x_1$ & $x_1 x_1 \frac{w_{11}}{\bar{w}}$ & 1  & 0  & 0  & 0 \\
+$A M \times a M$ & $x_1 x_2$ &  $x_1 x_2 \frac{w_{12}}{\bar{w}}$ & $\frac{1}{2}$ & $\frac{1}{2}$ & 0 & 0 \\
+$A M \times A m$ & $x_1 x_3$  & $x_1 x_3 \frac{w_{13}}{\bar{w}}$ & $\frac{1}{2}$ & 0 & $\frac{1}{2}$ & 0 \\
+$A M \times a m$ & $x_1 x_4$  & $x_1 x_4 \frac{w_{14}}{\bar{w}}$ & $\frac{(1-r)}{2}$ & $\frac{r}{2}$ & $\frac{r}{2}$ & $\frac{(1-r)}{2}$ \\
+$a M \times A M$ & $x_2 x_1$  & $x_2 x_1 \frac{w_{21}}{\bar{w}}$ & $\frac{1}{2}$ & $\frac{1}{2}$ & 0 & 0 \\
+$a M \times a M$ & $x_2 x_2$  & $x_2 x_2 \frac{w_{22}}{\bar{w}}$ & 0 & 1 & 0 & 0 \\
+$a M \times A m$ & $x_2 x_3$  & $x_2 x_3 \frac{w_{23}}{\bar{w}}$ & $\frac{r}{2}$ & $\frac{(1-r)}{2}$ & $\frac{(1-r)}{2}$ & $\frac{r}{2}$ \\
+$a M \times a m$ & $x_2 x_4$  & $x_2 x_4 \frac{w_{24}}{\bar{w}}$ & 0 & $\frac{1}{2}$ & 0 & $\frac{1}{2}$ \\
+$A m \times A M$ & $x_3 x_1$  & $x_3 x_1 \frac{w_{31}}{\bar{w}}$ & $\frac{1}{2}$ & 0 & $\frac{1}{2}$ & 0 \\
+$A m \times a M$ & $x_3 x_2$  & $x_3 x_2 \frac{w_{32}}{\bar{w}}$ & $\frac{r}{2}$ & $\frac{(1-r)}{2}$ & $\frac{(1-r)}{2}$ & $\frac{r}{2}$\\
+$A m \times A m$ & $x_3 x_3$  & $x_3 x_3 \frac{w_{33}}{\bar{w}}$ & 0 & 0 & 1 & 0 \\
+$A m \times a m$ & $x_3 x_4$  & $x_3 x_4 \frac{w_{34}}{\bar{w}}$ & 0 & 0 & $\frac{1}{2}$ & $\frac{1}{2}$ \\
+$a m \times A M$ & $x_4 x_1$  & $x_4 x_1 \frac{w_{41}}{\bar{w}}$ & $\frac{(1-r)}{2}$ & $\frac{r}{2}$ & $\frac{r}{2}$ & $\frac{(1-r)}{2}$ \\
+$a m \times a M$ & $x_4 x_2$  & $x_4 x_2 \frac{w_{42}}{\bar{w}}$ & 0 & $\frac{1}{2}$ & 0 & $\frac{1}{2}$ \\
+$a m \times A m$ & $x_4 x_3$  & $x_4 x_3 \frac{w_{43}}{\bar{w}}$ & 0 & 0 & $\frac{1}{2}$ & $\frac{1}{2}$ \\
+$a m \times a m$ & $x_4 x_4$  & $x_4 x_4 \frac{w_{44}}{\bar{w}}$ & 0 & 0 & 0 & 1 \\
+\hline
+\end{tabular}
+\bigskip{}
+\\
+%{\footnotesize Note: Table titles should be short. Further details should go in a `notes' area after the tabular environment.}
+\end{table}
+
+\newpage{}
+
+The fate of a newly arisen mutant modifier allele, $m$, can be determined by linearizing equations (1--4) under the assumption that the population is initially fixed for $M$, and the system is very near a globally stable equilibrium $\hat{q_a}$ .
+
+\end{document}
