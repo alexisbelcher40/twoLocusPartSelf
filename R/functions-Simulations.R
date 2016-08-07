@@ -21,11 +21,11 @@
 #########################################
 ## Average fitness through each sex role
 
-Wf.av  <-  function(Fii.list, Wf.list, ...){
-   (F11*wf11) + (F12*wf12) + (F13*wf13) + (F14*wf14) + (F22*wf22) + (F23*wf23) + (F24*wf24) + (F33*wf33) + (F34*wf34) + (F44*wf44)
+Wf.av  <-  function(Fii, Wf.mat, ...){
+   (Fii[1]*Wf.mat[1,1]) + (Fii[2]*Wf.mat[1,2]) + (Fii[3]*Wf.mat[1,3]) + (Fii[4]*Wf.mat[1,4]) + (Fii[5]*Wf.mat[2,2]) + (Fii[6]*Wf.mat[2,3]) + (Fii[7]*Wf.mat[2,4]) + (Fii[8]*Wf.mat[3,3]) + (Fii[9]*Wf.mat[3,4]) + (Fii[10]*Wf.mat[4,4])
 }
-Wm.av  <-  function(Fii.list, Wm.list, ...){
-   (F11*wm11) + (F12*wm12) + (F13*wm13) + (F14*wm14) + (F22*wm22) + (F23*wm23) + (F24*wm24) + (F33*wm33) + (F34*wm34) + (F44*wm44)
+Wm.av  <-  function(Fii, Wm.mat, ...){
+   (Fii[1]*Wm.mat[1,1]) + (Fii[2]*Wm.mat[1,2]) + (Fii[3]*Wm.mat[1,3]) + (Fii[4]*Wm.mat[1,4]) + (Fii[5]*Wm.mat[2,2]) + (Fii[6]*Wm.mat[2,3]) + (Fii[7]*Wm.mat[2,4]) + (Fii[8]*Wm.mat[3,3]) + (Fii[9]*Wm.mat[3,4]) + (Fii[10]*Wm.mat[4,4])
 }
 
 
@@ -33,45 +33,45 @@ Wm.av  <-  function(Fii.list, Wm.list, ...){
 ## Haplotype frequency change in gametes
 
 #  Ovules
-x1p  <-  function(Fii.list, Wf.list, Wm.list, par.list,...) {
-	((2*F11*wf11) + (F12*wf12) + (F13*wf13) + (F14*wf14)) / (2*Wf.av(Fii.list, Wf.list)) - 
-		rf*(((F14*wf14) - (F23*wf23))/(2*Wf.av(Fii.list, Wf.list)))
+x1p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[1]*Wf.mat[1,1]) + (Fii[2]*Wf.mat[1,2]) + (Fii[3]*Wf.mat[1,3]) + (Fii[4]*Wf.mat[1,4])) / (2*Wf.av(Fii, Wf.mat)) - 
+		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
-x2p  <-  function(Fii.list, Wf.list, Wm.list, par.list,...){
-	((2*F22*wf22) + (F12*wf12) + (F23*wf23) + (F24*wf24))/(2*Wf.av(Fii.list, Wf.list)) + 
-		rf*(((F14*wf14) - (F23*wf23))/(2*Wf.av()))
+x2p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	((2*Fii[5]*Wf.mat[2,2]) + (Fii[2]*Wf.mat[1,2]) + (Fii[6]*Wf.mat[2,3]) + (Fii[7]*Wf.mat[2,4]))/(2*Wf.av(Fii, Wf.mat)) + 
+		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
-x3p  <-  function(Fii.list, Wf.list, Wm.list, par.list,...) {
-	 ((2*F33*wf33) + (F34*wf34) + (F13*wf13) + (F23*wf23))/(2*Wf.av()) + 
- 		rf*(((F14*wf14) - (F23*wf23))/(2*Wfav))
+x3p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	 ((2*Fii[8]*Wf.mat[3,3]) + (Fii[9]*Wf.mat[3,4]) + (Fii[3]*Wf.mat[1,3]) + (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)) + 
+ 		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wfav))
 }
 
-x4p  <-  function(Fii.list, Wf.list, Wm.list, par.list,...) {
-	((2*F44*wf44) + (F34*wf34) + (F14*wf14) + (F24*wf24))/(2*Wf.av()) - 
-		rf*(((F14*wf14) - (F23*wf23))/(2*Wf.av()))
+x4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[10]*Wf.mat[4,4]) + (Fii[9]*Wf.mat[3,4]) + (Fii[4]*Wf.mat[1,4]) + (Fii[7]*Wf.mat[2,4]))/(2*Wf.av(Fii, Wf.mat)) - 
+		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
 #  Pollen/Sperm
-y1p  <-  function(Fii.list, Wf.list, Wm.list, par.list,...) {
-	((2*F11*wm11) + (F12*wm12) + (F13*wm13) + (F14*wm14)) / (2*Wm.av(Fii.list, Wm.list)) - 
-		rf*(((F14*wm14) - (F23*wm23))/(2*Wm.av(Fii.list, Wm.list)))
+y1p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[1]*Wm.mat[1,1]) + (Fii[2]*Wm.mat[1,2]) + (Fii[3]*Wm.mat[1,3]) + (Fii[4]*Wm.mat[1,4])) / (2*Wm.av(Fii, Wm.mat)) - 
+		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
-y2p  <-  function(Fii.list, Wm.list, Wm.list, par.list,...){
-	((2*F22*wm22) + (F12*wm12) + (F23*wm23) + (F24*wm24))/(2*Wm.av(Fii.list, Wm.list)) + 
-		rf*(((F14*wm14) - (F23*wm23))/(2*Wm.av()))
+y2p  <-  function(Fii, Wm.mat, Wm.mat, par.list,...){
+	((2*Fii[5]*Wm.mat[2,2]) + (Fii[2]*Wm.mat[1,2]) + (Fii[6]*Wm.mat[2,3]) + (Fii[7]*Wm.mat[2,4]))/(2*Wm.av(Fii, Wm.mat)) + 
+		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
-y3p  <-  function(Fii.list, Wm.list, Wm.list, par.list,...) {
-	 ((2*F33*wm33) + (F34*wm34) + (F13*wm13) + (F23*wm23))/(2*Wm.av()) + 
- 		rf*(((F14*wm14) - (F23*wm23))/(2*Wmav))
+y3p  <-  function(Fii, Wm.mat, Wm.mat, par.list,...) {
+	 ((2*Fii[8]*Wm.mat[3,3]) + (Fii[9]*Wm.mat[3,4]) + (Fii[3]*Wm.mat[1,3]) + (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)) + 
+ 		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wmav))
 }
 
-y4p  <-  function(Fii.list, Wm.list, Wm.list, par.list,...) {
-	((2*F44*wm44) + (F34*wm34) + (F14*wm14) + (F24*wm24))/(2*Wm.av()) - 
-		rf*(((F14*wm14) - (F23*wm23))/(2*Wm.av()))
+y4p  <-  function(Fii, Wm.mat, Wm.mat, par.list,...) {
+	((2*Fii[10]*Wm.mat[4,4]) + (Fii[9]*Wm.mat[3,4]) + (Fii[4]*Wm.mat[1,4]) + (Fii[7]*Wm.mat[2,4]))/(2*Wm.av(Fii, Wm.mat)) - 
+		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
 
@@ -79,13 +79,42 @@ y4p  <-  function(Fii.list, Wm.list, Wm.list, par.list,...) {
 ## Genotypic frequency recursions
 
 
-F11.pr = (1 – C)*x1*y1 + C*(F11 + F12/4 + F13/4 + F14*((1 – r)^2)/4 + F23*(r^2)/4)
-F12.pr = (1 – C)*(x1*y2 + x2*y1) + C*(F12/2 + F14*r*(1 – r)/2 + F23*r*(1 – r)/2
-F13.pr = (1 – C)*(x1*y3 + x3*y1) + C*(F13/2 + F14*r*(1 – r)/2 + F23*r*(1 – r)/2
-F14.pr = (1 – C)*(x1*y4 + x4*y1) + C*(F14*((1 – r)^2)/2 + F23*(r^2)/2
-F22.pr = (1 – C)*x2*y2 + C*(F22 + F12/4 + F14*(r^2)/4 + F23*((1 – r)^2)/4 + F24/4)
-F23.pr = (1 – C)*(x2*y3 + x3*y2) + C*(F14*(r^2)/2 + F23*((1 – r)^2)/2)
-F24.pr = (1 – C)*(x2*y4 + x4*y2) + C*(F24/2 + F14*r*(1 – r)/2 + F23*r*(1 – r)/2)
-F34.pr = (1 – C)*(x3*y4 + x4*y3) + C*(F14*r*(1 – r)/2 + F23*r*(1 – r)/2 + F34/2)
-F33.pr = (1 – C)*x3*y3 + C(F33 + F13/4 + F14*(r^2)/4 + F23*(1 – r)2/4 + F34/4)
-F44.pr = (1 – C)*x4*y4 + C(F44 + F14*((1 – r)^2)/4 + F23*(r^2)/4 + F24/4 + F34/4)
+Fii[1].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*x1*y1 + C*(Fii[1] + Fii[2]/4 + Fii[3]/4 + Fii[4]*((1 – r)^2)/4 + Fii[6]*(r^2)/4)	
+} 
+
+Fii[2].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*(x1*y2 + x2*y1) + C*(Fii[2]/2 + Fii[4]*r*(1 – r)/2 + Fii[6]*r*(1 – r)/2
+}
+
+Fii[3].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*(x1*y3 + x3*y1) + C*(Fii[3]/2 + Fii[4]*r*(1 – r)/2 + Fii[6]*r*(1 – r)/2
+}
+
+Fii[4].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*(x1*y4 + x4*y1) + C*(Fii[4]*((1 – r)^2)/2 + Fii[6]*(r^2)/2
+}
+
+Fii[5].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*x2*y2 + C*(Fii[5] + Fii[2]/4 + Fii[4]*(r^2)/4 + Fii[6]*((1 – r)^2)/4 + Fii[7]/4)
+}
+
+Fii[6].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){(
+	1 – C)*(x2*y3 + x3*y2) + C*(Fii[4]*(r^2)/2 + Fii[6]*((1 – r)^2)/2)
+}
+
+Fii[7].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*(x2*y4 + x4*y2) + C*(Fii[7]/2 + Fii[4]*r*(1 – r)/2 + Fii[6]*r*(1 – r)/2)
+}
+
+Fii[9].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*(x3*y4 + x4*y3) + C*(Fii[4]*r*(1 – r)/2 + Fii[6]*r*(1 – r)/2 + Fii[9]/2)
+}
+
+Fii[8].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*x3*y3 + C(Fii[8] + Fii[3]/4 + Fii[4]*(r^2)/4 + Fii[6]*(1 – r)2/4 + Fii[9]/4)
+}
+
+Fii[10].pr  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	(1 – C)*x4*y4 + C(Fii[10] + Fii[4]*((1 – r)^2)/4 + Fii[6]*(r^2)/4 + Fii[7]/4 + Fii[9]/4)
+}
