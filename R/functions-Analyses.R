@@ -1,0 +1,457 @@
+#####################################################
+#  2-locus SA with partial selfing
+#
+#  Necessary functions for deterministic simulations
+#  of the genotypic frequency recursions
+#
+#  Appendix XXX:
+
+#  
+#  Article title goes here...
+#  
+#  
+#  Authors: Colin Olito, Crispin Jordan, Tim Connallon
+
+#  NOTES:  
+#          
+
+
+##########################
+##  Key to Fii subscripts
+#  F11  =  Fii[1]
+#  F12  =  Fii[2]
+#  F13  =  Fii[3]
+#  F14  =  Fii[4]
+#  F22  =  Fii[5]
+#  F23  =  Fii[6]
+#  F24  =  Fii[7]
+#  F33  =  Fii[8]
+#  F34  =  Fii[9]
+#  F44  =  Fii[10]
+
+#########################################
+## Average fitness through each sex role
+
+Wf.av  <-  function(Fii, Wf.mat, ...){
+   (Fii[1]*Wf.mat[1,1]) + (Fii[2]*Wf.mat[1,2]) + (Fii[3]*Wf.mat[1,3]) + (Fii[4]*Wf.mat[1,4]) + (Fii[5]*Wf.mat[2,2]) + (Fii[6]*Wf.mat[2,3]) + (Fii[7]*Wf.mat[2,4]) + (Fii[8]*Wf.mat[3,3]) + (Fii[9]*Wf.mat[3,4]) + (Fii[10]*Wf.mat[4,4])
+}
+Wm.av  <-  function(Fii, Wm.mat, ...){
+   (Fii[1]*Wm.mat[1,1]) + (Fii[2]*Wm.mat[1,2]) + (Fii[3]*Wm.mat[1,3]) + (Fii[4]*Wm.mat[1,4]) + (Fii[5]*Wm.mat[2,2]) + (Fii[6]*Wm.mat[2,3]) + (Fii[7]*Wm.mat[2,4]) + (Fii[8]*Wm.mat[3,3]) + (Fii[9]*Wm.mat[3,4]) + (Fii[10]*Wm.mat[4,4])
+}
+
+
+#########################################
+## Haplotype frequency change in gametes
+
+#  Ovules
+x1p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[1]*Wf.mat[1,1]) + (Fii[2]*Wf.mat[1,2]) + (Fii[3]*Wf.mat[1,3]) + (Fii[4]*Wf.mat[1,4])) / (2*Wf.av(Fii, Wf.mat)) - 
+		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+}
+
+x2p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	((2*Fii[5]*Wf.mat[2,2]) + (Fii[2]*Wf.mat[1,2]) + (Fii[6]*Wf.mat[2,3]) + (Fii[7]*Wf.mat[2,4]))/(2*Wf.av(Fii, Wf.mat)) + 
+		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+}
+
+x3p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	 ((2*Fii[8]*Wf.mat[3,3]) + (Fii[9]*Wf.mat[3,4]) + (Fii[3]*Wf.mat[1,3]) + (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)) + 
+ 		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+}
+
+x4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[10]*Wf.mat[4,4]) + (Fii[9]*Wf.mat[3,4]) + (Fii[4]*Wf.mat[1,4]) + (Fii[7]*Wf.mat[2,4]))/(2*Wf.av(Fii, Wf.mat)) - 
+		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+}
+
+#  Pollen/Sperm
+y1p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[1]*Wm.mat[1,1]) + (Fii[2]*Wm.mat[1,2]) + (Fii[3]*Wm.mat[1,3]) + (Fii[4]*Wm.mat[1,4])) / (2*Wm.av(Fii, Wm.mat)) - 
+		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+}
+
+y2p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
+	((2*Fii[5]*Wm.mat[2,2]) + (Fii[2]*Wm.mat[1,2]) + (Fii[6]*Wm.mat[2,3]) + (Fii[7]*Wm.mat[2,4]))/(2*Wm.av(Fii, Wm.mat)) + 
+		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+}
+
+y3p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	 ((2*Fii[8]*Wm.mat[3,3]) + (Fii[9]*Wm.mat[3,4]) + (Fii[3]*Wm.mat[1,3]) + (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)) + 
+ 		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+}
+
+y4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
+	((2*Fii[10]*Wm.mat[4,4]) + (Fii[9]*Wm.mat[3,4]) + (Fii[4]*Wm.mat[1,4]) + (Fii[7]*Wm.mat[2,4]))/(2*Wm.av(Fii, Wm.mat)) - 
+		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+}
+
+
+#########################################
+## Genotypic frequency recursions
+
+
+F11.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+	(1 - par.list$C)*x1*y1 + par.list$C*(Fii[1] + Fii[2]/4 + Fii[3]/4 + Fii[4]*((1 - par.list$rf)^2)/4 + Fii[6]*(par.list$rf^2)/4)
+}
+
+F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*(x1*y2 + x2*y1) + par.list$C*(Fii[2]/2 + Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2)
+}
+
+F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*(Fii[3]/2 + Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2)
+}
+
+F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*(x1*y4 + x4*y1) + par.list$C*(Fii[4]*((1 - par.list$rf)^2)/2 + Fii[6]*(par.list$rf^2)/2)
+}
+
+F22.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*x2*y2 + par.list$C*(Fii[5] + Fii[2]/4 + Fii[4]*(par.list$rf^2)/4 + Fii[6]*((1 - par.list$rf)^2)/4 + Fii[7]/4)
+}
+
+F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*(x2*y3 + x3*y2) + par.list$C*(Fii[4]*(par.list$rf^2)/2 + Fii[6]*((1 - par.list$rf)^2)/2)
+}
+
+F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*(x2*y4 + x4*y2) + par.list$C*(Fii[7]/2 + Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2)
+}
+
+F33.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*x3*y3 + par.list$C*(Fii[8] + Fii[3]/4 + Fii[4]*(par.list$rf^2)/4 + Fii[6]*((1 - par.list$rf)^2)/4 + Fii[9]/4)
+}
+
+F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*(x3*y4 + x4*y3) + par.list$C*(Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2 + Fii[9]/2)
+}
+
+F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	(1 - par.list$C)*x4*y4 + par.list$C*(Fii[10] + Fii[4]*((1 - par.list$rf)^2)/4 + Fii[6]*(par.list$rf^2)/4 + Fii[7]/4 + Fii[9]/4)
+}
+
+
+
+###########################################
+##  Eigenvalues from Mathematica solutions
+##  using quasi-equibirium expressions for
+##  genotypic frequencies
+
+lambda.AB1  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+	hm  <-  par.list$hm
+	hf  <-  par.list$hf
+	rm  <-  par.list$rm
+	rf  <-  par.list$rf
+
+	(4 - 2*C - 2*sf + 3*C*sf - (C^2)*sf - 2*hf*sf + 2*(C^2)*hf*sf + (C - 1)*( 2*(C - 1)*hm - C)*(sf - 1)*sm)/(2*(C - 2)* (sf - 1))	
+}
+
+lambda.AB2  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+	hm  <-  par.list$hm
+	hf  <-  par.list$hf
+	rm  <-  par.list$rm
+	rf  <-  par.list$rf
+
+	(1/(2*(C - 2)*(sf - 1)^2))*
+	(2*C - 2*(C^2)*rm - 6*C*sf + 2*(C^2)*sf - 4* (C^2)*hf*sf + 8*C*rm*sf - 4*(C^2)*rm*sf - 8*C*hf*rm*sf + 
+	 8*(C^2)*hf*rm*sf + 3*C*(sf^2) - (C^2)*(sf^2) + 2*(C^2)*(hf^2)*(sf^2) - 
+	 4*C*rm*(sf^2) + 2*(C^2)*rm*(sf^2) + 4*C*(hf^2)*rm*(sf^2) - 
+	 4*(C^2)*(hf^2)*rm*(sf^2) + 2*(rf + rm + 2*sf - 2) - 2*(C^2)*rf*((hf*sf - 1)^2) + 
+	 2*sf*((-2)*(hf*(rf - 1) + rm) + ((hf^2)*(rf - 1) + rm - 1)*sf) - 
+	 2*(C - 1)*(C + 2*hm - 2*C*hm + 2*(C - 1)*hm*rm)*((sf - 1)^2)*sm + 
+	 (C - 1)*(C*(1 + 2*(hm^2)*(rm - 1)) - 2*(hm^2)*(rm - 1))*((sf - 1)^2)*(sm^2))
+}
+
+lambda.ab1  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+	hm  <-  par.list$hm
+	hf  <-  par.list$hf
+	rm  <-  par.list$rm
+	rf  <-  par.list$rf
+
+	(2*hf*sf*(sm - 1) - 2*(sm + hm*sm - 2) + C*(sf*(sm - 1) - sm + 4*hm*sm - 2) + (C^2)*(sm - 2*hm*sm + sf*(2*hf + sm - 2*hf*sm - 1)))/(2*(C - 2)*(sm - 1))
+}
+
+lambda.ab2  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+	hm  <-  par.list$hm
+	hf  <-  par.list$hf
+	rm  <-  par.list$rm
+	rf  <-  par.list$rf
+
+	(1/(2*(C - 2)*(sm - 1)^2))*
+		(C*(2 - 2*(4*hf*rm - 1)*sf*((sm - 1)^2) + (4*(hf^2)*rm - 1)*(sf^2)*((sm - 1)^2) + (2 + 8*hm*(rm - 1) - 8*rm)*sm + (-1 - 4*(hm^2)*(rm - 1) + 4*rm - 1)*(sm^2)) + 
+		2*(-2 + 2*hf*sf - (hf^2)*(sf^2) + rf*((hf*sf - 1)^2)*((sm - 1)^2) + 2*sm + 2*hm*sm - 4*hf*sf*sm + 2*(hf^2)*(sf^2)*sm - (sm^2) - (hm^2)*(sm^2) + 2*hf*sf*(sm^2) - (hf^2)*(sf^2)*(sm^2) + rm*((hm*sm - 1)^2)) -
+	    (C^2)*(-2*sf + 4*hf*sf + (sf^2) - 2*(hf^2)*(sf^2) + 2*rf*((-1 + hf*sf)^2)*((-1 + sm)^2) + 2*sm - 4*hm*sm + 4*sf*sm - 8*hf*sf*sm - 2*(sf^2)*sm + 4*(hf^2)*(sf^2)*sm - (sm^2) + 2*(hm^2)*(sm^2) - 
+	    2*sf*(sm^2) + 4*hf*sf*(sm^2) + (sf^2)*(sm^2) - 2*(hf^2)*(sf^2)*(sm^2) + 2*rm*(1 - 4*hf*sf*((-1 + sm)^2) + 2*(hf^2)*(sf^2)*((-1 + sm)^2) + 2*(-2 + hm)*sm - (-2 + (hm^2))*(sm^2))))
+
+}
+
+
+
+######################################################
+##  Analytic solutions (results based on Eigenvalues) 
+
+#' 2-locus SA w/ partial selfing Eigenvalue invasion analysis
+#'
+#' @title 2-locus SA w/ partial selfing Eigenvalue invasion analysis
+#' @param par.list A list with desired parameter values for the simulation with structure:
+#' par.list  <-  list(
+#'				   gen  =  5000,
+#'				   C    =  0,
+#'				   sm   =  0.7,
+#'				   sf   =  0.7,
+#'				   hm   =  0.5,
+#'				   hf   =  0.5,
+#'				   rm   =  0.5,
+#'				   rf   =  0.5
+#'				   )
+#' @return Returns a list with each of the candidate leading eigenvalues calculated at the boundaries p,q = 0 and p,q = 1, 
+#' as well as a coded categorical results indicating the outcome of the invasion analysis where
+#' 0 = indeterminate
+#' 1 = positive selection for the female-beneficial allele
+#' 2 = positive selection for the male-beneficial allele
+#' 3 = unstable internal equilibrium
+#' 4 = protected polymorphism
+#' @seealso 
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' eigenInvAnalysis(par.list) 
+eigenInvAnalysis  <-  function(par.list) {
+
+	##  Warnings
+	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
+		stop('The chosen parameter values fall outside of the reasonable bounds')
+
+	if(any(Fii.init < 0) | any(Fii.init > 1))
+		stop('The chosen initial genotypic frequencies are not valid')
+
+	##  Calculate Eigenvalues from analytic solutions 
+	##  using quasi-equibirium genotypic frequencies
+
+	l.AB1  <- lambda.AB1(par.list)
+	l.AB2  <- lambda.AB2(par.list)
+	l.ab1  <- lambda.ab1(par.list)
+	l.ab2  <- lambda.ab2(par.list)
+
+	
+	## Categorize outcome of invasion analysis
+	invKey  <-  list(
+					 "1"  =  "Positive selection for female-beneficial allele",
+					 "2"  =  "Positive selection for male-beneficial allele",
+					 "3"  =  "Unstable internal equilibrium",
+					 "4"  =  "Protected polymorphism"
+					 )
+
+	Inv  <-  0
+	# Positive selection for female-beneficial allele
+		if (any(c(l.AB1, l.AB2) > 1) & l.ab1 < 1 & l.ab2 < 1 )
+			Inv  <-  1
+
+	# Positive selection for male-beneficial allele
+		if (l.AB1 < 1 & l.AB2 < 1 & any(c(l.ab1, l.ab2) > 1))
+			Inv  <-  2
+
+	# Unstable internal equilibrium
+		if (l.AB1 < 1 & l.AB2 <  1 & l.ab1 < 1 & l.ab2 < 1 )
+			 Inv  <-  3
+
+	# Protected polymorphism
+		if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 ))
+			 Inv  <-  4
+	
+	##  Is invasion facilitated by recombination? 
+	rInv  <-  0
+	if (l.AB1 < 1 & l.AB2 > 1 & l.ab1 < 1 & l.ab2 > 1 )
+		Inv  <-  1
+
+	##  Output list
+	res  <-  list(
+				  "par.list"  =  par.list,
+				  "l.AB1"     =  l.AB1,
+				  "l.AB2"     =  l.AB2,
+				  "l.ab1"     =  l.ab1,
+				  "l.ab2"     =  l.ab2,
+				  "InvKey"    =  invKey,
+				  "Inv"       =  Inv,
+				  "rInv"      =  rInv
+ 				 )
+	return(res)
+}
+
+
+
+
+
+
+
+########################
+##  Simulation function
+########################
+
+#' 2-locus SA w/ partial selfing deterministic genotypic recursions
+#'
+#' @title 2-locus SA w/ partial selfing deterministic genotypic recursions
+#' @param par.list A list with desired parameter values for the simulation with structure:
+#' par.list  <-  list(
+#'				   gen  =  5000,
+#'				   C    =  0,
+#'				   sm   =  0.7,
+#'				   sf   =  0.7,
+#'				   hm   =  0.5,
+#'				   hf   =  0.5,
+#'				   rm   =  0.5,
+#'				   rf   =  0.5
+#'				   )
+#' @param Fii.init A vector of initial genotypic frequencies (must have length = 10).
+#' c(0.99,0,0,0,0,0,0,0,0,0.01) for invasion of aabb into population 'fixed' for AABB.
+#' c(0.01,0,0,0,0,0,0,0,0,0.99) for invasion of AABB into population 'fixed' for aabb.
+#' @return Returns a list with timeseries for each genotype, equilibrium frequencies, and a numeric (0,1) for whether the 
+#' equilibrium was polymorphic (with tolerance 1E-6).
+#' @seealso 
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' twoLocusSAPartSelf  <-  function(par.list, Fii.init) 
+twoLocusSAPartSelf  <-  function(par.list, Fii.init) {
+
+	##  Warnings
+	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
+		stop('The chosen parameter values fall outside of the reasonable bounds')
+
+	if(any(Fii.init < 0) | any(Fii.init > 1))
+		stop('The chosen initial genotypic frequencies are not valid')
+
+
+	##  Fitness Matrices
+	Wf.mat   <-  matrix(
+						c((1-par.list$sf)^2                          , (1-par.list$sf)*(1-par.list$hf*par.list$sf), (1-par.list$sf)*(1-par.list$hf*par.list$sf) , (1-par.list$hf*par.list$sf)^2,
+						  (1-par.list$sf)*(1-par.list$hf*par.list$sf), (1-par.list$sf)                            , (1-par.list$hf*par.list$sf)^2               , (1-par.list$hf*par.list$sf),
+						  (1-par.list$sf)*(1-par.list$hf*par.list$sf), (1-par.list$hf*par.list$sf)^2              , (1-par.list$sf)                             , (1-par.list$hf*par.list$sf),
+						  (1-par.list$hf*par.list$sf)^2              , (1-par.list$hf*par.list$sf)                , (1-par.list$hf*par.list$sf)                 , 1), 
+						nrow=4, byrow=TRUE
+						)
+
+	Wm.mat   <-  matrix(
+						c( 1                           , (1-par.list$hm*par.list$sm)                , (1-par.list$hm*par.list$sm)                 , (1-par.list$hm*par.list$sm)^2,
+						  (1-par.list$hm*par.list$sm)  , (1-par.list$sm)                            , (1-par.list$hm*par.list$sm)^2               , (1-par.list$hm*par.list$sm)*(1-par.list$sm),
+						  (1-par.list$hm*par.list$sm)  , (1-par.list$hm*par.list$sm)^2              , (1-par.list$sm)                             , (1-par.list$sm)*(1-par.list$hm*par.list$sm),
+						  (1-par.list$hm*par.list$sm)^2, (1-par.list$sm)*(1-par.list$hm*par.list$sm), (1-par.list$sm)*(1-par.list$hm*par.list$sm) , (1-par.list$sm)^2), 
+						nrow=4, byrow=TRUE
+						)	
+
+	##  Initilize data storage structures
+	Fii.gen  <-  matrix(0, ncol=10, nrow=par.list$gen)
+
+	##  Generation Loop
+	for (i in 1:par.list$gen) {
+
+		if (i == 1) {
+			Fii.gen[i,1]   <-  F11.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,2]   <-  F12.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,3]   <-  F13.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,4]   <-  F14.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,5]   <-  F22.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,6]   <-  F23.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,7]   <-  F24.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,8]   <-  F33.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,9]   <-  F34.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,10]  <-  F44.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		}
+		if(i > 1) {
+			Fii.gen[i,1]   <-  F11.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,2]   <-  F12.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,3]   <-  F13.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,4]   <-  F14.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,5]   <-  F22.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,6]   <-  F23.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,7]   <-  F24.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,8]   <-  F33.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,9]   <-  F34.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+			Fii.gen[i,10]  <-  F44.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)	
+		}
+	}
+
+	##  Is equilibrium polymorphic?
+	if (any(Fii.gen[i,2:9] > 1E-6))
+		 Poly  <- 1
+	else Poly  <- 0
+
+	##  Calculate Eigenvalues from analytic solutions 
+	##  using quasi-equibirium genotypic frequencies
+
+	l.AB1  <- lambda.AB1(par.list)
+	l.AB2  <- lambda.AB2(par.list)
+	l.ab1  <- lambda.ab1(par.list)
+	l.ab2  <- lambda.ab2(par.list)
+
+	if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 ))
+		 eigPoly  <-  1
+	else eigPoly  <-  0
+
+	##  Does simulation result agree with Eigenvalues?
+
+	if (Poly == eigPoly)
+		 agree  <-  1
+	else agree  <-  0
+
+
+	##  Output list
+	res  <-  list(
+				  "par.list" =  par.list,
+				  "Fii.gen"  =  Fii.gen,
+				  "EQ.freq"  =  Fii.gen[par.list$gen,],
+				  "l.AB1"    =  l.AB1,
+				  "l.AB2"    =  l.AB2,
+				  "l.ab1"    =  l.ab1,
+				  "l.ab2"    =  l.ab2,
+				  "Poly"     =  Poly,
+				  "eigPoly"  =  eigPoly,
+				  "agree"    =  agree
+ 				 )
+	return(res)
+}
+
