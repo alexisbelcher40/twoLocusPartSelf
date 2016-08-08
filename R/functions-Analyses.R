@@ -231,6 +231,50 @@ lambda.ab2  <-  function(par.list) {
 
 
 
+#################################################
+##  Invasion conditions based on Eigenvalues 
+##  from analytic results using quasi-equibirium 
+##  expressions for genotypic frequencies
+
+##  Kidwell et al. (1977) conditions for invasion of 
+##  female 
+Kidwell.lAB  <-  function(sm) {
+	sm/(1 + sm)
+}
+Kidwell.lab  <-  function(sm) {
+	sm/(1 - sm)
+}
+
+##  Invasion based on lambda.AB1 for female beneficial 
+##  allele under obligate outcrossing
+lAB1.obOut  <-  function(hm, sm) {
+	(hm*sm)/(1 - hf + hm*sm)
+}
+
+##  Invasion based on lambda.ab1 for female beneficial 
+##  allele under obligate outcrossing
+lab1.obOut  <-  function(hm, sm) {
+	((-1 + hm)*sm)/(hf*(-1 + sm))
+}
+
+##  Invasion based on lambda.AB2 (w/ recombination)
+##  for female beneficial allele under obligate outcrossing
+lAB2.obOut  <-  function(hf, hm, sf, sm, rf, rm) {
+	(1 + hf*(-1 + rf) + hm*sm*(2 - hm*sm) + rm*((-1 + hm*sm)^2) - 
+		sqrt(-((-1 + hf)^2)*(-1 + rf)*(1 + hm*sm*(2 - hm*sm) + rm*(-1 + hm*sm)^2)))/
+			(1 + (hf^2)*(-1 + rf) + hm*sm*(2 - hm*sm) + rm*((-1 + hm*sm)^2))	
+}
+
+##  Invasion based on lambda.AB2 (w/ recombination)
+##  for male beneficial allele under obligate outcrossing
+lab2.obOut  <-  function(hf, hm, sf, sm, rf, rm) {
+	(hf*(-1 + rf)*((-1 + sm)^2) + 
+		sqrt(-(hf^2)*(-1 + rf)*((-1 + sm)^2)*(1 + rm + 2*(-2 + hm - hm*rm)*sm + (2 + (hm^2)*(-1 + rm))*(sm^2))))/
+			((hf^2)*(-1 + rf)*((-1 + sm)^2))
+}
+
+
+
 ######################################################
 ##  Analytic solutions (results based on Eigenvalues) 
 
