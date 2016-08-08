@@ -109,3 +109,21 @@ testplot  <-  levelplot(r, margin=FALSE, contour=FALSE,
 			xlab=expression(paste(italic(s[m]))), 
 			ylab=expression(paste(italic(s[f]))))
 testplot
+
+
+
+invKidwell.lAB(0.2)
+invKidwell.lab(0.2)
+
+inv.lAB1.obOut(hf=0.5, hm=0.5, sm=0.2)
+inv.lab1.obOut(hf=0.5, hm=0.5, sm=0.2)
+inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm = 0.5, rf = 0.1, rm = 0.1)	
+inv.lab2.obOut(hf = 0.5, hm = 0.5, sm = 0.2, rf = 0.1, rm = 0.1)	
+
+
+
+
+inv.lAB1(hf=0.5, hm=0.5, sm=0.2, C=0.5)
+inv.lab1(hf=0.5, hm=0.5, sm=0.2, C=0.5)
+inv.lAB2(hf = 0.5, hm = 0.5, sf = 0.5, sm = 0.5, rf = 0.1, rm = 0.1, C = 0.5)	
+inv.lab2(hf = 0.5, hm = 0.5, sf = 0.5, sm = 0.5, rf = 0.1, rm = 0.1, C = 0.5)	
