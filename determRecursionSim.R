@@ -31,73 +31,44 @@ source('R/functions-Analyses.R')
 
 
 
-####################################
+######################################
 #  Additive effects (hf = hm = 0.5)
 
-###########
+##############
 # 1: C = 0
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
-r.vals      <-  c(0.5, 0.2, 0.1, 0)
-sm.vals     <-  runif(10)
-sf.vals     <-  runif(10)
-Poly     <-  0
-eigPoly  <-  0
-agree    <-  0
+##############
+# 2: C = 0.25
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0.25, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
+##############
+# 3: C = 0.5
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0.5, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
-Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
-
-	for (i in 1:length(r.vals)) {
-		for (j in 1:length(sm.vals)) {
-			for (k in 1:length(sf.vals)) {
-				
-				par.list  <-  list(
-								   gen  =  5000,
-								   C    =  0,
-								   sm   =  sm.vals[j],
-								   sf   =  sf.vals[k],
-								   hm   =  0.5,
-								   hf   =  0.5,
-								   rm   =  r.vals[i],
-								   rf   =  r.vals[i]
-								  )
-
-				res      <-  twoLocusSAPartSelfRecSim(par.list = par.list, Fii.init = Fii.init, threshold = 1e-7)
-				Poly     <-  c(Poly, res$Poly)
-				eigPoly  <-  c(eigPoly, res$eigPoly)
-				agree    <-  c(agree, res$agree)
-			
-			}
-		} 
-		print(i)
-	}
-
-Poly     <-  Poly[-1]
-eigPoly  <-  eigPoly[-1]
-agree    <-  agree[-1]
-sum(agree)/length(agree)
-
-results.df  <-  data.frame("hf"      = rep(0.5, length(r.vals)*length(sm.vals)),
-						   "hm"      = rep(0.5, length(r.vals)*length(sm.vals)),
-						   "C"       = rep(0,   length(r.vals)*length(sm.vals)),
-						   "r"       = c(rep(r.vals[1],length(sm.vals)), 
-						   		  		 rep(r.vals[2],length(sm.vals)),
-						   		  		 rep(r.vals[3],length(sm.vals)),
-						   		  		 rep(r.vals[4],length(sm.vals))),
-						   "sm"      = sm.vals
-						   "Poly"    = Poly,
-						   "eigPoly" = eigPoly,
-						   "agree"   = agree
-						   )
-
-
-
-head(results.df)
+##############
+# 4: C = 0.75
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0.75, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 
 
 
 
+######################################
+#  Dominance reversal (hf = hm = 0.25)
 
+##############
+# 5: C = 0
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
+##############
+# 6: C = 0.25
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0.25, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
+##############
+# 7: C = 0.5
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0.5, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
+
+##############
+# 8: C = 0.75
+recursionFwdSimLoop(n = 10000, gen = 5000, C = 0.75, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)

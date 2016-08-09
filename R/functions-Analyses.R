@@ -430,9 +430,10 @@ eigenInvAnalysis  <-  function(par.list) {
 ##  Simulation function
 ########################
 
-#' 2-locus SA w/ partial selfing deterministic genotypic recursions
+#' Forward deterministic simulation of genotypic recursions for
+#' 2-locus SA w/ partial selfing model
 #'
-#' @title 2-locus SA w/ partial selfing deterministic genotypic recursions
+#' @title Forward deterministic simulation of genotypic recursions
 #' @param par.list A list with desired parameter values for the simulation with structure:
 #' par.list  <-  list(
 #'				   gen  =  5000,
@@ -453,8 +454,8 @@ eigenInvAnalysis  <-  function(par.list) {
 #' @export
 #' @author Colin Olito.
 #' @examples
-#' twoLocusSAPartSelf  <-  function(par.list, Fii.init, threshold = 1e-6) 
-twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
+#' recursionFwdSim(par.list, Fii.init, threshold = 1e-6) 
+recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 	##  Warnings
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
@@ -519,7 +520,7 @@ twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 	}
 
 	##  Is equilibrium polymorphic?
-	if (any(Fii.gen[i-1,2:9] > 1e-6))
+	if (any(Fii.gen[i-1,2:9] > 1e-5))
 		 Poly  <- 1
 	else Poly  <- 0
 
@@ -556,5 +557,107 @@ twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 				  "agree"    =  agree
  				 )
 	return(res)
+}
+
+
+
+
+
+
+
+
+
+#' Simulation loop wrapping forward deterministic simulations 
+#' of genotypic recursions 
+#' #'
+#' @title Forward deterministic simulation of genotypic recursions.
+#' @param n number of randomly generated values for sf & sm. 
+#' Determines resolution with which parameter space is explored.
+#' @param gen Maximum number of generations for each simulation (as in par.list).
+#' @param C The fixed selfing rate (as in par.list).
+#' @param hf Dominance through female expression (as in par.list).
+#' @param hm Dominance through male expression (as in par.list).
+#' @param r.vals Values of recombination rate to explore(as in par.list).
+#' @param threshold Threshold difference between genotypic frequencies before simulation cuts off.
+#' @return Returns a data frame with parameter values, a variable describing whether 
+#' the final state of the simulation was polymorphic polymorphism, whether evaluating the eigenvalues
+#' predicts polymorphism, and whether these two methods agree with one another.
+#' @seealso `recursionFwdSim`
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
+
+recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7) {
+
+	## Warnings
+	if(any(c(C,hf,hm,r.vals) < 0) | any(c(C,hf,hm) > 1) | any(r.vals > 0.5))
+		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
+
+	if(threshold > 1e-7)
+		stop('Carefully consider whether you want to change this threshold, 
+			  as it will effect whether the simulations agree with the analytic results')
+
+	#  initialize selection coeficients and storage structures
+	sm.vals     <-  runif(n)
+	sf.vals     <-  runif(n)
+	Poly     <-  0
+	eigPoly  <-  0
+	agree    <-  0
+
+	#  initial genotypic frequencies (can change to c(0.01,0,0,0,0,0,0,0,0,0.99))
+	Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
+
+	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
+	for (i in 1:length(r.vals)) {
+		for (j in 1:length(sm.vals)) {
+			for (k in 1:length(sf.vals)) {
+				
+				par.list  <-  list(
+								   gen  =  gen,
+								   C    =  C,
+								   sm   =  sm.vals[j],
+								   sf   =  sf.vals[k],
+								   hm   =  hm,
+								   hf   =  hf,
+								   rm   =  r.vals[i],
+								   rf   =  r.vals[i]
+								  )
+
+				res      <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, threshold = threshold)
+				Poly     <-  c(Poly, res$Poly)
+				eigPoly  <-  c(eigPoly, res$eigPoly)
+				agree    <-  c(agree, res$agree)
+			
+			}
+		} 
+	}
+
+	#  trim leading zero from storage vectors
+	Poly     <-  Poly[-1]
+	eigPoly  <-  eigPoly[-1]
+	agree    <-  agree[-1]
+
+	#  Compile results as data.frame
+	results.df  <-  data.frame("hf"      = rep(0.5, length(r.vals)*length(sm.vals)),
+							   "hm"      = rep(0.5, length(r.vals)*length(sm.vals)),
+							   "C"       = rep(0,   length(r.vals)*length(sm.vals)),
+							   "r"       = c(rep(r.vals[1],length(sm.vals)), 
+							   		  		 rep(r.vals[2],length(sm.vals)),
+							   		  		 rep(r.vals[3],length(sm.vals)),
+							   		  		 rep(r.vals[4],length(sm.vals))),
+							   "sm"      = sm.vals,
+							   "sf"      = sf.vals,
+							   "Poly"    = Poly,
+							   "eigPoly" = eigPoly,
+							   "agree"   = agree
+							   )
+
+	#  Write results.df to .txt file
+	filename  <-  paste("./output/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
+	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+
+	#  Return results.df in case user wants it
+	return(results.df)
 }
 
