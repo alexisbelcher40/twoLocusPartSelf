@@ -5,13 +5,12 @@
 #  of the genotypic frequency recursions
 #
 #  Appendix XXX:
-
 #  
 #  Article title goes here...
 #  
 #  
 #  Authors: Colin Olito, Crispin Jordan, Tim Connallon
-
+#
 #  NOTES:  
 #          
 
@@ -259,7 +258,7 @@ inv.lab1.obOut  <-  function(hf, hm, sm) {
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele under obligate outcrossing
-inv.lAB2.obOut  <-  function(hf, hm, sf, sm, rf, rm) {
+inv.lAB2.obOut  <-  function(hf, hm, sm, rf, rm) {
 	(1 + hf*(-1 + rf) + hm*sm*(2 - hm*sm) + rm*((-1 + hm*sm)^2) - 
 		sqrt(-((-1 + hf)^2)*(-1 + rf)*(1 + hm*sm*(2 - hm*sm) + rm*(-1 + hm*sm)^2)))/
 			(1 + (hf^2)*(-1 + rf) + hm*sm*(2 - hm*sm) + rm*((-1 + hm*sm)^2))	
@@ -289,30 +288,38 @@ inv.lab1  <-  function(hf, hm, sm, C) {
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele (w/ selfing)
-inv.lAB2  <-  function(hf, hm, sf, sm, rf, rm, C) {
-	(-2 - C + (C^2) + 2*hf - 2*(C^2)*hf - 2*hf*rf + 2*(C^2)*hf*rf - 2*rm + 
-	   4*C*rm - 2*(C^2)*rm - 4*C*hf*rm + 4*(C^2)*hf*rm - 2*C*sm + 2*(C^2)*sm - 
-	   4*hm*sm + 8*C*hm*sm - 4*(C^2)*hm*sm + 4*hm*rm*sm - 8*C*hm*rm*sm + 
-	   4*(C^2)*hm*rm*sm + C*(sm^2) - (C^2)*(sm^2) + 2*(hm^2)*(sm^2) - 4*C*(hm^2)*(sm^2) + 
-	   2*(C^2)*(hm^2)*(sm^2) - 2*(hm^2)*rm*(sm^2) + 4*C*(hm^2)*rm*(sm^2) - 2*(C^2)*(hm^2)*rm*(sm^2) + 
-	   	sqrt(((((C^2)*(1 + 2*hf (-1 + rf + 2*rm) + 2*sm - 4*hm*sm - (sm^2) + 2*(hm^2)*(sm^2) - 
-	   	     2*rm*((-1 + hm*sm)^2)) - 2*(1 + hf*(-1 + rf) + 2*hm*sm - (hm^2)*(sm^2) + 
-	   	     rm*((-1 + hm*sm)^2)) + C*(-1 + (-2 + 8*hm)*sm + (1 - 4 (hm^2))*(sm^2) - 
-	   	     4*rm*(hf - (-1 + hm*sm)^2)))^2) + (-1 + C)*(2*(1 + C)*rf + 
-	   		 sm*(-2*hm*(-2 + hm*sm) + C*(2 - 4*hm - sm + 2*(hm^2)*sm)) + 
-	         2*rm*(((-1 + hm*sm)^2) + C*(1 + 2*hm*sm - (hm^2)*(sm^2))))*(2*(1 + 
-	         (hf^2)*(-1 + rf) + 2*hm*sm - (hm^2)*(sm^2) + rm*((-1 + hm*sm)^2)) + 
-		     (C^2)*(-1 - 2*(hf^2)*(-1 + rf + 2*rm) - 2*sm + 4*hm*sm + (sm^2) - 
-	         2*(hm^2)*(sm^2) + 2*rm*((-1 + hm*sm)^2)) + 
-	         C*(1 + (2 - 8*hm)*sm + (-1 + 4*(hm^2))*(sm^2) + 4*rm*((hf^2) - (-1 + hm*sm)^2)))))) /
-		((C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm) + 2*sm - 4*hm*sm - (sm^2) + 2*(hm^2)*(sm^2) - 
-	    	2*rm*((-1 + hm*sm)^2)) - 2*(1 + (hf^2)*(-1 + rf) + 2*hm*sm - (hm^2)*(sm^2) + rm*((-1 + hm*sm)^2)) + 
-	   		C*(-1 + (-2 + 8*hm)*sm + (1 - 4*(hm^2))*(sm^2) - 4*rm*((hf^2) - (-1 + hm*sm)^2)))
+inv.lAB2  <-  function(hf, hm, sm, rf, rm, C) {
+(-2 - C + C^2 + 2*hf - 2*C^2*hf - 2*hf*rf + 2*C^2*hf*rf - 2*rm + 
+   4*C*rm - 2*C^2*rm - 4*C*hf*rm + 4*C^2*hf*rm - 2*C*sm + 2*C^2*sm - 
+   4*hm*sm + 8*C*hm*sm - 4*C^2*hm*sm + 4*hm*rm*sm - 8*C*hm*rm*sm + 
+   4*C^2*hm*rm*sm + C*sm^2 - C^2*sm^2 + 2*hm^2*sm^2 - 4*C*hm^2*sm^2 + 
+   2*C^2*hm^2*sm^2 - 2*hm^2*rm*sm^2 + 4*C*hm^2*rm*sm^2 - 
+   2*C^2*hm^2*rm*sm^2 + sqrt((C^2*(1 + 2*hf*(-1 + rf + 2*rm) + 
+           2*sm - 4*hm*sm - sm^2 + 2*hm^2*sm^2 - 
+           2*rm*(-1 + hm*sm)^2) - 
+        2*(1 + hf*(-1 + rf) + 2*hm*sm - hm^2*sm^2 + 
+           rm*(-1 + hm*sm)^2) + 
+        C*(-1 + (-2 + 8*hm)*sm + (1 - 4*hm^2)*sm^2 - 
+           4*rm*(hf - (-1 + hm*sm)^2)))^2 + (-1 + C)*(2*(1 + C)*rf + 
+         sm*(-2*hm*(-2 + hm*sm) + C*(2 - 4*hm - sm + 2*hm^2*sm)) + 
+         2*rm*((-1 + hm*sm)^2 + C*(1 + 2*hm*sm - hm^2*sm^2)))*(2*(1 +
+             hf^2*(-1 + rf) + 2*hm*sm - hm^2*sm^2 + 
+            rm*(-1 + hm*sm)^2) + 
+         C^2*(-1 - 2*hf^2*(-1 + rf + 2*rm) - 2*sm + 4*hm*sm + sm^2 - 
+            2*hm^2*sm^2 + 2*rm*(-1 + hm*sm)^2) + 
+         C*(1 + (2 - 8*hm)*sm + (-1 + 4*hm^2)*sm^2 + 
+            4*rm*(hf^2 - (-1 + hm*sm)^2)))))/(C^2*(1 + 
+      2*hf^2*(-1 + rf + 2*rm) + 2*sm - 4*hm*sm - sm^2 + 2*hm^2*sm^2 - 
+      2*rm*(-1 + hm*sm)^2) - 
+   2*(1 + hf^2*(-1 + rf) + 2*hm*sm - hm^2*sm^2 + rm*(-1 + hm*sm)^2) + 
+   C*(-1 + (-2 + 8*hm)*sm + (1 - 4*hm^2)*sm^2 - 
+      4*rm*(hf^2 - (-1 + hm*sm)^2)))
 }
+
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele (w/ selfing)
-inv.lab2  <-  function(hf, hm, sf, sm, rf, rm, C) {
+inv.lab2  <-  function(hf, hm, sm, rf, rm, C) {
 	(C + (C^2) + 2*hf - 2*(C^2)*hf - 2*hf*rf + 2*(C^2)*hf*rf - 4*C*hf*rm + 
 	 4*(C^2)*hf*rm - 2*C*sm - 2*(C^2)*sm - 4*hf*sm + 4*(C^2)*hf*sm + 
 	 4*hf*rf*sm - 4*(C^2)*hf*rf*sm + 8*C*hf*rm*sm - 8*(C^2)*hf*rm*sm + 

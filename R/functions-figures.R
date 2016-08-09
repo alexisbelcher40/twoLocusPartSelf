@@ -1,0 +1,514 @@
+###############
+# DEPENDENCIES
+###############
+# library(...)
+
+
+#######################
+# AUXILLIARY FUNCTIONS
+#######################
+
+toPdf <- function(expr, filename, ...) {
+  toDev(expr, pdf, filename, ...)
+}
+
+figPath  <-  function(name) {
+  file.path('output/figures', name)
+}
+
+toDev <- function(expr, dev, filename, ..., verbose=TRUE) {
+  if ( verbose )
+    cat(sprintf('Creating %s\n', filename))
+  dev(filename, family='CM Roman', ...)
+  on.exit(dev.off())
+  eval.parent(substitute(expr))
+}
+
+
+
+####################
+# PLOTTING FUNCTIONS
+####################
+
+#' Plot text or points according to relative axis position.
+#'
+#' @title Plot text or points according to relative axis position
+#' @param px Relative x-axis position (in proportion) where character is to be plotted.
+#' @param py Relative y-axis position (in proportion) where character is to be plotted.
+#' @param lab Plotted text. Works if argument \code{\link[graphics]{text}} is \code{TRUE}.
+#' @param adj See argument of same name in R base function \code{\link[graphics]{par}}.
+#' @param text Logical. Should text or points be plotted?
+#' @param log Used if the original plot uses the argument log, e.g. \code{log='x'}, \code{log='y'} or \code{log='xy'}.
+#' @param ... Additional arguments to R base function \code{\link[graphics]{text}}.
+#' @export
+proportionalLabel <- function(px, py, lab, adj=c(0, 1), text=TRUE, log=FALSE, ...) {
+    usr  <-  par('usr')
+    x.p  <-  usr[1] + px*(usr[2] - usr[1])
+    y.p  <-  usr[3] + py*(usr[4] - usr[3])
+    if(log=='x') {
+        x.p<-10^(x.p)
+    }
+    if(log=='y') {
+        y.p<-10^(y.p)
+    }
+    if(log=='xy') {
+        x.p<-10^(x.p)
+        y.p<-10^(y.p)
+    }
+    if(text){
+        text(x.p, y.p, lab, adj=adj, ...)
+    } else {
+        points(x.p, y.p, ...)
+    }
+}
+
+#' Draw equally-spaced white lines on plot window.
+#'
+#' @title Equally-spaced white lines on plot window
+#' @param ... Additional arguments to internal function \code{\link{proportionalLabel}}.
+#' @author Diego Barneche
+#' @export
+plotGrid  <-  function(lineCol='white',...) {
+    proportionalLabel(rep(0.2, 2), c(0,1), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(rep(0.4, 2), c(0,1), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(rep(0.6, 2), c(0,1), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(rep(0.8, 2), c(0,1), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(c(0,1), rep(0.2, 2), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(c(0,1), rep(0.4, 2), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(c(0,1), rep(0.6, 2), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+    proportionalLabel(c(0,1), rep(0.8, 2), text=FALSE, type='l', col=lineCol, lwd=0.5, ...)
+}
+
+
+#' Internal. Create nice rounded numbers for plotting.
+#'
+#' @title Rounded numbers for plotting
+#' @param value A numeric vector.
+#' @param precision Number of rounding digits.
+#' @return A character vector.
+#' @author Diego Barneche.
+rounded  <-  function(value, precision=1) {
+  sprintf(paste0('%.', precision, 'f'), round(value, precision))
+}
+
+
+#' Creates transparent colours
+#'
+#' @title Creates transparent colours
+#' @param col Colour.
+#' @param opacity equivalent to alpha transparency parameter
+#' @export
+transparentColor <- function(col, opacity=0.5) {
+    if (length(opacity) > 1 && any(is.na(opacity))) {
+        n        <-  max(length(col), length(opacity))
+        opacity  <-  rep(opacity, length.out=n)
+        col      <-  rep(col, length.out=n)
+        ok       <-  !is.na(opacity)
+        ret      <-  rep(NA, length(col))
+        ret[ok]  <-  Recall(col[ok], opacity[ok])
+        ret
+    } else {
+        tmp  <-  col2rgb(col)/255
+        rgb(tmp[1,], tmp[2,], tmp[3,], alpha=opacity)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' Fig.1: Analytic results Kidwell Plots
+#' 
+#'
+#' @title Create a 2x2 panel plot with our analytic results showing Kidwell plots
+#' 
+#' @param FL.df Data frame with female-limited model results
+#' @param ML.df Data frame with male-limited model results
+#' @param EE.df Data frame with equal effects model results
+#' @param SS.df Data frame with sex-specific model results
+#' @param COLS Vector of colors for the plots (have been using
+#' COLS=c("#AE5893","#119ACF","#FA7D04","#789649")
+#' @export
+
+Fig.1  <-  function() {
+
+# Set plot layout
+layout.mat <- matrix(c(1,2,3,4,5,6), nrow=2, ncol=3, byrow=TRUE)
+layout <- layout(layout.mat,respect=TRUE)
+
+#  Create vector of male selection coefficiets for invasion functions
+sm  <-  seq(0,1,by=0.005)
+
+#  Row 1: Additive allelic effects
+    #  Panel One: C = 0
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
+        twoLoc.Hi.obOut[201]  <-  1.00000001
+        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        
+        r0.2.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
+        r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
+        r0.2.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+
+        r0.1.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
+        r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
+        r0.1.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+
+        r0.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi[r0.Hi > 1]  <-  1.00000001
+        r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
+        r0.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+
+        # Make the plot
+        par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi.obOut,rev(twoLoc.Lo.obOut)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=3, col=1)
+        lines(twoLoc.Lo.obOut ~ sm, lwd=3, col=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=3, col=1, lty=3)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo.obOut] ~ sm[r0.2.Lo < twoLoc.Lo.obOut], lwd=3, col=1, lty=3)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=3, col=1, lty=3)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo.obOut] ~ sm[r0.1.Lo < twoLoc.Lo.obOut], lwd=3, col=1, lty=3)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=3, col=1, lty=4)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo.obOut] ~ sm[r0.Lo < twoLoc.Lo.obOut], lwd=3, col=1, lty=4)
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+#        legend(
+#            x       =  usr[2]*0.88,
+#            y       =  usr[4],
+#        #    title   =  expression(paste(Outcome~of~invasion~analysis)),
+#            legend  =  c(
+#                        expression(paste(Purifying~selection~against~mutant~allele)),
+#                        expression(paste(Positive~selection~of~mutant~allele)),
+#                        expression(paste(Unstable~internal~equilibrium)),
+#                        expression(paste(Protected~polymorphism))),
+#            lty     =  1,
+#            lwd     =  4,
+#            col     =  COLS,
+#            cex     =  0.75,
+#            xjust   =  1,
+#            yjust   =  1,
+#            bty     =  'n',
+#            border  =  NA)
+        proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, 1.1, expression(paste('C = ',0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+        rm(twoLoc.Hi.obOut)
+        rm(twoLoc.Lo.obOut)
+        rm(r0.2.Hi)
+        rm(r0.2.Lo)
+        rm(r0.1.Hi)
+        rm(r0.1.Lo)
+        rm(r0.Hi)
+        rm(r0.Lo)
+
+
+
+    #  Panel Two: C = 0.25
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
+        twoLoc.Hi[201]  <-  1.00000001
+        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        
+        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
+        r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
+        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+
+        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
+        r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
+        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+
+        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi[r0.Hi > 1]  <-  1.00000001
+        r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
+        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        
+          # Make the plot
+        #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=3, col=1)
+        lines(twoLoc.Lo ~ sm, lwd=3, col=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=3, col=1, lty=2)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=3, col=1, lty=2)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=3, col=1, lty=3)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=3, col=1, lty=3)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=3, col=1, lty=4)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=3, col=1, lty=4)
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        proportionalLabel(0.5, 1.1, expression(paste('C = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+        # Garbage collection
+        rm(twoLoc.Hi)
+        rm(twoLoc.Lo)
+        rm(r0.2.Hi)
+        rm(r0.2.Lo)
+        rm(r0.1.Hi)
+        rm(r0.1.Lo)
+        rm(r0.Hi)
+        rm(r0.Lo)
+
+
+
+
+    #  Panel Three: C = 0.5
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
+        twoLoc.Hi[201]  <-  1.00000001
+        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        
+        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
+        r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
+        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+
+        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
+        r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
+        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+
+        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi[r0.Hi > 1]  <-  1.00000001
+        r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
+        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        
+          # Make the plot
+        #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=3, col=1)
+        lines(twoLoc.Lo ~ sm, lwd=3, col=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=3, col=1, lty=2)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=3, col=1, lty=2)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=3, col=1, lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=3, col=1, lty=3)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=3, col=1, lty=4)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=3, col=1, lty=4)
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        proportionalLabel(0.5, 1.1, expression(paste('C = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+        # Garbage collection
+        rm(twoLoc.Hi)
+        rm(twoLoc.Lo)
+        rm(r0.2.Hi)
+        rm(r0.2.Lo)
+        rm(r0.1.Hi)
+        rm(r0.1.Lo)
+        rm(r0.Hi)
+        rm(r0.Lo)
+
+
+
+
+
+
+
+
+
+
+
+
+#  Row 2: Dominance Reversal
+    #  Panel Four: C = 0
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.25, hm=0.25, sm=sm)
+        twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
+        twoLoc.Hi.obOut[201]  <-  1.00000001
+        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.25, hm=0.25, sm=sm)
+        
+        r0.2.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
+        r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
+        r0.2.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+
+        r0.1.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
+        r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
+        r0.1.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+
+        r0.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Hi[r0.Hi > 1]  <-  1.00000001
+        r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
+        r0.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+
+        # Make the plot
+#        par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi.obOut,rev(twoLoc.Lo.obOut)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=3, col=1)
+        lines(twoLoc.Lo.obOut ~ sm, lwd=3, col=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=3, col=1, lty=3)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo.obOut] ~ sm[r0.2.Lo < twoLoc.Lo.obOut], lwd=3, col=1, lty=3)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=3, col=1, lty=3)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo.obOut] ~ sm[r0.1.Lo < twoLoc.Lo.obOut], lwd=3, col=1, lty=3)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=3, col=1, lty=4)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo.obOut] ~ sm[r0.Lo < twoLoc.Lo.obOut], lwd=3, col=1, lty=4)
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+        rm(twoLoc.Hi.obOut)
+        rm(twoLoc.Lo.obOut)
+        rm(r0.2.Hi)
+        rm(r0.2.Lo)
+        rm(r0.1.Hi)
+        rm(r0.1.Lo)
+        rm(r0.Hi)
+        rm(r0.Lo)
+
+    #  Panel Five: C = 0.25
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.25)
+        twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
+        twoLoc.Hi[201]  <-  1.00000001
+        twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.25)
+        
+        r0.2.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
+        r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
+        r0.2.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+
+        r0.1.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
+        r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
+        r0.1.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+
+        r0.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi[r0.Hi > 1]  <-  1.00000001
+        r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
+        r0.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        
+          # Make the plot
+        #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=3, col=1)
+        lines(twoLoc.Lo ~ sm, lwd=3, col=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=3, col=1, lty=2)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=3, col=1, lty=2)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=3, col=1, lty=3)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=3, col=1, lty=3)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=3, col=1, lty=4)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=3, col=1, lty=4)
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+        # Garbage collection
+        rm(twoLoc.Hi)
+        rm(twoLoc.Lo)
+        rm(r0.2.Hi)
+        rm(r0.2.Lo)
+        rm(r0.1.Hi)
+        rm(r0.1.Lo)
+        rm(r0.Hi)
+        rm(r0.Lo)
+
+
+
+
+    #  Panel Six: C = 0.5
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.5)
+        twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
+        twoLoc.Hi[201]  <-  1.00000001
+        twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.5)
+        
+        r0.2.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
+        r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
+        r0.2.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+
+        r0.1.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
+        r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
+        r0.1.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+
+        r0.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi[r0.Hi > 1]  <-  1.00000001
+        r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
+        r0.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        
+          # Make the plot
+        #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=3, col=1)
+        lines(twoLoc.Lo ~ sm, lwd=3, col=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=3, col=1, lty=2)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=3, col=1, lty=2)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=3, col=1, lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=3, col=1, lty=3)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=3, col=1, lty=4)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=3, col=1, lty=4)
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+        # Garbage collection
+        rm(twoLoc.Hi)
+        rm(twoLoc.Lo)
+        rm(r0.2.Hi)
+        rm(r0.2.Lo)
+        rm(r0.1.Hi)
+        rm(r0.1.Lo)
+        rm(r0.Hi)
+        rm(r0.Lo)
+
+}
+

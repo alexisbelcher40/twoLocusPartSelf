@@ -19,9 +19,7 @@
 #	  	-- hf = hm = (1/2, 1/4)
 #	  	-- rf = rm = (0.5, 0.1, 0.2, 0.5)
 #	  	-- C  =  (0, 0.25, 0.5, 0.75)
-#	  
-#	  I suspect we will be able to loop over C. Then we just have to 
-#	  submit 2 separate jobs on NecTAR
+
 
 
 rm(list=ls())
