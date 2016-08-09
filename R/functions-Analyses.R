@@ -454,7 +454,7 @@ eigenInvAnalysis  <-  function(par.list) {
 #' @author Colin Olito.
 #' @examples
 #' twoLocusSAPartSelf  <-  function(par.list, Fii.init) 
-twoLocusSAPartSelf  <-  function(par.list, Fii.init) {
+twoLocusSAPartSelf  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 	##  Warnings
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
@@ -485,36 +485,40 @@ twoLocusSAPartSelf  <-  function(par.list, Fii.init) {
 	Fii.gen  <-  matrix(0, ncol=10, nrow=par.list$gen)
 
 	##  Generation Loop
-	for (i in 1:par.list$gen) {
+		# initialize
+		Fii.gen[1,1]   <-  F11.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,2]   <-  F12.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,3]   <-  F13.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,4]   <-  F14.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,5]   <-  F22.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,6]   <-  F23.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,7]   <-  F24.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,8]   <-  F33.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,9]   <-  F34.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,10]  <-  F44.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
 
-		if (i == 1) {
-			Fii.gen[i,1]   <-  F11.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,2]   <-  F12.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,3]   <-  F13.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,4]   <-  F14.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,5]   <-  F22.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,6]   <-  F23.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,7]   <-  F24.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,8]   <-  F33.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,9]   <-  F34.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,10]  <-  F44.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		}
-		if(i > 1) {
-			Fii.gen[i,1]   <-  F11.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,2]   <-  F12.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,3]   <-  F13.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,4]   <-  F14.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,5]   <-  F22.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,6]   <-  F23.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,7]   <-  F24.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,8]   <-  F33.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,9]   <-  F34.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-			Fii.gen[i,10]  <-  F44.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)	
-		}
+	i      <-  1
+	diffs  <-  rep(1,10)
+
+	# Start simulation
+	while (i <= par.list$gen & any(diffs[diffs != 0] > threshold)) {
+		i      <-  i+1
+		Fii.gen[i,1]   <-  F11.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,2]   <-  F12.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,3]   <-  F13.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,4]   <-  F14.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,5]   <-  F22.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,6]   <-  F23.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,7]   <-  F24.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,8]   <-  F33.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,9]   <-  F34.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[i,10]  <-  F44.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)	
+		
+		diffs  <-  Fii.gen[i,] - Fii.gen[i-1,]
 	}
 
 	##  Is equilibrium polymorphic?
-	if (any(Fii.gen[i,2:9] > 1E-6))
+	if (any(Fii.gen[i,2:9] > 1e-6))
 		 Poly  <- 1
 	else Poly  <- 0
 
@@ -541,7 +545,7 @@ twoLocusSAPartSelf  <-  function(par.list, Fii.init) {
 	res  <-  list(
 				  "par.list" =  par.list,
 				  "Fii.gen"  =  Fii.gen,
-				  "EQ.freq"  =  Fii.gen[par.list$gen,],
+				  "EQ.freq"  =  Fii.gen[i,],
 				  "l.AB1"    =  l.AB1,
 				  "l.AB2"    =  l.AB2,
 				  "l.ab1"    =  l.ab1,
