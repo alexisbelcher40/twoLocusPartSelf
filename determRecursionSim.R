@@ -8,122 +8,96 @@
 #  
 #  Article title goes here...
 #  
-#  
 #  Authors: Colin Olito, Crispin Jordan, Tim Connallon
 #
 #  NOTES:  
 #          
+#	  Deterministic simulation need to explore essentially the same 
+#	  parameter conditions we will be presenting in Fig.1.  So, this
+#	  basically means exploring sm x sf = [0,1] for 
+#	  
+#	  	-- hf = hm = (1/2, 1/4)
+#	  	-- rf = rm = (0.5, 0.1, 0.2, 0.5)
+#	  	-- C  =  (0, 0.25, 0.5, 0.75)
+#	  
+#	  I suspect we will be able to loop over C. Then we just have to 
+#	  submit 2 separate jobs on NecTAR
+
 
 rm(list=ls())
 #####################
 ##  Dependencies
-source('R/functions-Simulations.R')
+source('R/functions-Analyses.R')
+
+
 
 ####################################
-#  Simulation parameter values
+#  Additive effects (hf = hm = 0.5)
 
-par.list  <-  list(
-				   gen  =  5000,
-				   C    =  0,
-				   sm   =  0.7,
-				   sf   =  0.7,
-				   hm   =  0.5,
-				   hf   =  0.5,
-				   rm   =  0.5,
-				   rf   =  0.5
-				   )
+###########
+# 1: C = 0
 
+r.vals      <-  c(0.5, 0.2, 0.1, 0)
+sm.vals     <-  runif(10)
+sf.vals     <-  runif(10)
+Poly     <-  0
+eigPoly  <-  0
+agree    <-  0
 
 
-######################################
-#  Initial genotypic frequencies
+Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
 
-Fii.init  <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
-Fii.init  <-  c(0.01,0,0,0,0,0,0,0,0,0.99)
+	for (i in 1:length(r.vals)) {
+		for (j in 1:length(sm.vals)) {
+			for (k in 1:length(sf.vals)) {
+				
+				par.list  <-  list(
+								   gen  =  5000,
+								   C    =  0,
+								   sm   =  sm.vals[j],
+								   sf   =  sf.vals[k],
+								   hm   =  0.5,
+								   hf   =  0.5,
+								   rm   =  r.vals[i],
+								   rf   =  r.vals[i]
+								  )
 
-
-res  <-  twoLocusSAPartSelf(par.list = par.list, Fii.init = Fii.init)
-res$Poly
-res$EQ.freq
-
-test  <-  res$Fii.gen
-plot(test[,1] ~ c(1:nrow(test)), lwd=4, type='l', ylim=c(0,1))
-for (i in 2:10) {
-	lines(test[,i] ~ c(1:nrow(test)), lwd=4, col=i)
-}
-
-eigenInvAnalysis(par.list)
-
-
-sf.seq  <-  seq(0.1,1,len=10)
-sm.seq  <-  seq(0.1,1,len=10)
-
-testAgree  <-  matrix(0,nrow=length(sf.seq),ncol=length(sm.seq))
-
-par.list  <-  list(
-				   gen  =  5000,
-				   C    =  0,
-				   sm   =  0,
-				   sf   =  0,
-				   hm   =  0.5,
-				   hf   =  0.5,
-				   rm   =  0.5,
-				   rf   =  0.5
-				   )
-
-
-
-for (i in 1:length(sf.seq)) {
-	for (j in 1:length(sm.seq)) {
-
-		par.list$sf  <-  sf.seq[i]
-		par.list$sm  <-  sm.seq[j]
-		testAgree[i,j]  <-  twoLocusSAPartSelf(par.list = par.list, Fii.init = Fii.init)$agree
+				res      <-  twoLocusSAPartSelfRecSim(par.list = par.list, Fii.init = Fii.init, threshold = 1e-7)
+				Poly     <-  c(Poly, res$Poly)
+				eigPoly  <-  c(eigPoly, res$eigPoly)
+				agree    <-  c(agree, res$agree)
+			
+			}
+		} 
+		print(i)
 	}
-print(i)
-}
 
-testAgree
+Poly     <-  Poly[-1]
+eigPoly  <-  eigPoly[-1]
+agree    <-  agree[-1]
+sum(agree)/length(agree)
 
-
-library(rasterVis)
-library(grid)
-library(gridExtra)
-library(extrafont)
-library(fontcm)
-loadfonts()
-
-Greys  <- rev(gray.colors(25, start=0.1, end=1.0, gamma=1))
-my.col.at <- seq(0,1, length=25)
-my.lab.at <- seq(0,1, by=0.2)
-myColorkey <- list(at=my.col.at, ## where the colors change
-                   labels=list(
-                       at=my.lab.at ## where to print labels
-                     ))
-length(my.col.at)
-
-r <- raster(testAgree[11:1,])
-
-testplot  <-  levelplot(r, margin=FALSE, contour=FALSE,
-			main=expression(paste(testAgree)), 
-			xlab=expression(paste(italic(s[m]))), 
-			ylab=expression(paste(italic(s[f]))))
-testplot
+results.df  <-  data.frame("hf"      = rep(0.5, length(r.vals)*length(sm.vals)),
+						   "hm"      = rep(0.5, length(r.vals)*length(sm.vals)),
+						   "C"       = rep(0,   length(r.vals)*length(sm.vals)),
+						   "r"       = c(rep(r.vals[1],length(sm.vals)), 
+						   		  		 rep(r.vals[2],length(sm.vals)),
+						   		  		 rep(r.vals[3],length(sm.vals)),
+						   		  		 rep(r.vals[4],length(sm.vals))),
+						   "sm"      = sm.vals
+						   "Poly"    = Poly,
+						   "eigPoly" = eigPoly,
+						   "agree"   = agree
+						   )
 
 
 
-invKidwell.lAB(0.2)
-invKidwell.lab(0.2)
-
-inv.lAB1.obOut(hf=0.5, hm=0.5, sm=0.2)
-inv.lab1.obOut(hf=0.5, hm=0.5, sm=0.2)
-inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm = 0.5, rf = 0.1, rm = 0.1)	
-inv.lab2.obOut(hf = 0.5, hm = 0.5, sm = 0.2, rf = 0.1, rm = 0.1)	
+head(results.df)
 
 
 
 
-inv.lAB1(hf=0.5, hm=0.5, sm=0.2, C=0.5)
-inv.lab1(hf=0.5, hm=0.5, sm=0.2, C=0.5)
-inv.lAB2(hf = 0.5, hm = 0.5, sf = 0.5, sm = 0.5, rf = 0.1, rm = 0.1, C = 0.5)	
-inv.lab2(hf = 0.5, hm = 0.5, sf = 0.5, sm = 0.5, rf = 0.1, rm = 0.1, C = 0.5)	
+
+
+
+

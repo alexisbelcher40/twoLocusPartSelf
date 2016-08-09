@@ -231,8 +231,8 @@ lambda.ab2  <-  function(par.list) {
 
 
 
-#################################################
-##  Invasion conditions based on Eigenvalues 
+##############################################################
+##  Invasion conditions based on Eigenvalues from Mathematica
 ##  from analytic results using quasi-equibirium 
 ##  expressions for genotypic frequencies
 
@@ -497,12 +497,12 @@ twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 		Fii.gen[1,9]   <-  F34.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
 		Fii.gen[1,10]  <-  F44.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
 
-	i      <-  1
-	diffs  <-  rep(1,10)
 
 	# Start simulation
-	while (i <= par.list$gen & any(diffs[diffs != 0] > threshold)) {
-		i      <-  i+1
+	i      <-  2
+	diffs  <-  rep(1,10)
+
+	while (i < par.list$gen & any(diffs[diffs != 0] > threshold)) {
 		Fii.gen[i,1]   <-  F11.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
 		Fii.gen[i,2]   <-  F12.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
 		Fii.gen[i,3]   <-  F13.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
@@ -515,10 +515,11 @@ twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 		Fii.gen[i,10]  <-  F44.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)	
 		
 		diffs  <-  Fii.gen[i,] - Fii.gen[i-1,]
+		i      <-  i+1
 	}
 
 	##  Is equilibrium polymorphic?
-	if (any(Fii.gen[i,2:9] > 1e-6))
+	if (any(Fii.gen[i-1,2:9] > 1e-6))
 		 Poly  <- 1
 	else Poly  <- 0
 
@@ -544,8 +545,8 @@ twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 	##  Output list
 	res  <-  list(
 				  "par.list" =  par.list,
-				  "Fii.gen"  =  Fii.gen,
-				  "EQ.freq"  =  Fii.gen[i,],
+				  "Fii.gen"  =  Fii.gen[1:i-1,],
+				  "EQ.freq"  =  Fii.gen[i-1,],
 				  "l.AB1"    =  l.AB1,
 				  "l.AB2"    =  l.AB2,
 				  "l.ab1"    =  l.ab1,
