@@ -1,7 +1,7 @@
 #####################################################
 #  2-locus SA with partial selfing
 #
-#  Necessary functions for deterministic simulations
+#  Necessary functions for analyses of the model
 #  of the genotypic frequency recursions
 #
 #  Appendix XXX:
@@ -453,8 +453,8 @@ eigenInvAnalysis  <-  function(par.list) {
 #' @export
 #' @author Colin Olito.
 #' @examples
-#' twoLocusSAPartSelf  <-  function(par.list, Fii.init) 
-twoLocusSAPartSelf  <-  function(par.list, Fii.init, threshold = 1e-6) {
+#' twoLocusSAPartSelf  <-  function(par.list, Fii.init, threshold = 1e-6) 
+twoLocusSAPartSelfRecSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 	##  Warnings
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
