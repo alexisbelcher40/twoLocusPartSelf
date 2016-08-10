@@ -524,28 +524,28 @@ Fig.2  <- function() {
     ## Read data files for plotting
 
         # Additive Effects
-        C0.0.h.5  <-  read.table('./output/data/propPrp.out_C0_hf0.5_hm0.5_n500.txt', head=TRUE)
-        C0.1.h.5  <-  read.table('./output/data/propPrp.out_C0.1_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.2.h.5  <-  read.table('./output/data/propPrp.out_C0.2_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.3.h.5  <-  read.table('./output/data/propPrp.out_C0.3_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.4.h.5  <-  read.table('./output/data/propPrp.out_C0.4_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.5.h.5  <-  read.table('./output/data/propPrp.out_C0.5_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.6.h.5  <-  read.table('./output/data/propPrp.out_C0.6_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.7.h.5  <-  read.table('./output/data/propPrp.out_C0.7_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.8.h.5  <-  read.table('./output/data/propPrp.out_C0.8_hf0.5_hm0.5_n100.txt', head=TRUE)
-        C0.9.h.5  <-  read.table('./output/data/propPrp.out_C0.9_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.0.h.5  <-  read.table('./data/propPrp.out_C0_hf0.5_hm0.5_n500.txt', head=TRUE)
+        C0.1.h.5  <-  read.table('./data/propPrp.out_C0.1_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.2.h.5  <-  read.table('./data/propPrp.out_C0.2_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.3.h.5  <-  read.table('./data/propPrp.out_C0.3_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.4.h.5  <-  read.table('./data/propPrp.out_C0.4_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.5.h.5  <-  read.table('./data/propPrp.out_C0.5_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.6.h.5  <-  read.table('./data/propPrp.out_C0.6_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.7.h.5  <-  read.table('./data/propPrp.out_C0.7_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.8.h.5  <-  read.table('./data/propPrp.out_C0.8_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.9.h.5  <-  read.table('./data/propPrp.out_C0.9_hf0.5_hm0.5_n100.txt', head=TRUE)
 
         # Dominance Reversal
-#        C0.0.h.25  <-  read.table('./output/data/propPrp.out_C0_hf0.25_hm0.25_n100.txt')
-#        C0.1.h.25  <-  read.table('./output/data/propPrp.out_C0.1_hf0.25_hm0.25_n100.txt')
-#        C0.2.h.25  <-  read.table('./output/data/propPrp.out_C0.2_hf0.25_hm0.25_n100.txt')
-#        C0.3.h.25  <-  read.table('./output/data/propPrp.out_C0.3_hf0.25_hm0.25_n100.txt')
-#        C0.4.h.25  <-  read.table('./output/data/propPrp.out_C0.4_hf0.25_hm0.25_n100.txt')
-#        C0.5.h.25  <-  read.table('./output/data/propPrp.out_C0.5_hf0.25_hm0.25_n100.txt')
-#        C0.6.h.25  <-  read.table('./output/data/propPrp.out_C0.6_hf0.25_hm0.25_n100.txt')
-#        C0.7.h.25  <-  read.table('./output/data/propPrp.out_C0.7_hf0.25_hm0.25_n100.txt')
-#        C0.8.h.25  <-  read.table('./output/data/propPrp.out_C0.8_hf0.25_hm0.25_n100.txt')
-#        C0.9.h.25  <-  read.table('./output/data/propPrp.out_C0.9_hf0.25_hm0.25_n100.txt')
+#        C0.0.h.25  <-  read.table('./data/propPrp.out_C0_hf0.25_hm0.25_n100.txt')
+#        C0.1.h.25  <-  read.table('./data/propPrp.out_C0.1_hf0.25_hm0.25_n100.txt')
+#        C0.2.h.25  <-  read.table('./data/propPrp.out_C0.2_hf0.25_hm0.25_n100.txt')
+#        C0.3.h.25  <-  read.table('./data/propPrp.out_C0.3_hf0.25_hm0.25_n100.txt')
+#        C0.4.h.25  <-  read.table('./data/propPrp.out_C0.4_hf0.25_hm0.25_n100.txt')
+#        C0.5.h.25  <-  read.table('./data/propPrp.out_C0.5_hf0.25_hm0.25_n100.txt')
+#        C0.6.h.25  <-  read.table('./data/propPrp.out_C0.6_hf0.25_hm0.25_n100.txt')
+#        C0.7.h.25  <-  read.table('./data/propPrp.out_C0.7_hf0.25_hm0.25_n100.txt')
+#        C0.8.h.25  <-  read.table('./data/propPrp.out_C0.8_hf0.25_hm0.25_n100.txt')
+#        C0.9.h.25  <-  read.table('./data/propPrp.out_C0.9_hf0.25_hm0.25_n100.txt')
 
 
     # Color scheme

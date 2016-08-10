@@ -662,7 +662,7 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 							   )
 
 	#  Write results.df to .txt file
-	filename  <-  paste("./output/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
+	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
@@ -779,7 +779,7 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 							   )
 
 	#  Write results.df to .txt file
-	filename  <-  paste("./output/data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+	filename  <-  paste("./data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
@@ -851,8 +851,6 @@ propPrPFast  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 
 	#  initialize selection coeficients and storage structures
 	r.vals      <-  seq(0, 0.5, by=0.01)
-	sm.vals     <-  runif(n)
-	sf.vals     <-  runif(n)
 	PrP     <-  c()
 	rPrP    <-  c()
 
@@ -862,6 +860,8 @@ propPrPFast  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 	##  predicted each time.
 
 	for (i in 1:length(r.vals)) {
+		sm.vals     <-  runif(n)
+		sf.vals     <-  runif(n)
 		poly  <-  rep(0, times=length(sm.vals)*length(sf.vals))
 
 		for (j in 1:length(sm.vals)) {
@@ -896,8 +896,8 @@ propPrPFast  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 							   )
 
 	#  Write results.df to .txt file
-#	filename  <-  paste("./output/data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
-#	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+	filename  <-  paste("./data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
 	return(results.df)
