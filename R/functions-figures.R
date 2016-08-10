@@ -131,12 +131,6 @@ transparentColor <- function(col, opacity=0.5) {
 #'
 #' @title Create a 2x2 panel plot with our analytic results showing Kidwell plots
 #' 
-#' @param FL.df Data frame with female-limited model results
-#' @param ML.df Data frame with male-limited model results
-#' @param EE.df Data frame with equal effects model results
-#' @param SS.df Data frame with sex-specific model results
-#' @param COLS Vector of colors for the plots (have been using
-#' COLS=c("#AE5893","#119ACF","#FA7D04","#789649")
 #' @export
 
 Fig.1  <-  function() {
@@ -152,8 +146,8 @@ sm  <-  seq(0,1,by=0.0001)
 layout.mat <- matrix(c(1,2,3,4,5,6), nrow=2, ncol=3, byrow=TRUE)
 layout <- layout(layout.mat,respect=TRUE)
 
-#  Row 1: Additive allelic effects
-    #  Panel One: C = 0
+##  Row 1: Additive allelic effects
+    ##  Panel One: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
         twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
@@ -199,6 +193,7 @@ layout <- layout(layout.mat,respect=TRUE)
         proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
+        # Garbage collection
         rm(twoLoc.Hi.obOut)
         rm(twoLoc.Lo.obOut)
         rm(r0.2.Hi)
@@ -210,7 +205,7 @@ layout <- layout(layout.mat,respect=TRUE)
 
 
 
-    #  Panel Two: C = 0.25
+    ##  Panel Two: C = 0.25
         
         # Calculate plotting lines for solutions not involving recombination
         twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
@@ -267,7 +262,7 @@ layout <- layout(layout.mat,respect=TRUE)
 
 
 
-    #  Panel Three: C = 0.5
+    ##  Panel Three: C = 0.5
         
         # Calculate plotting lines for solutions not involving recombination
         twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
@@ -339,18 +334,11 @@ layout <- layout(layout.mat,respect=TRUE)
         rm(r0.Lo)
 
 
+############
 
 
-
-
-
-
-
-
-
-
-#  Row 2: Dominance Reversal
-    #  Panel Four: C = 0
+##  Row 2: Dominance Reversal
+    ##  Panel Four: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
         twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.25, hm=0.25, sm=sm)
@@ -396,6 +384,7 @@ layout <- layout(layout.mat,respect=TRUE)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
+        # Garbage collection
         rm(twoLoc.Hi.obOut)
         rm(twoLoc.Lo.obOut)
         rm(r0.2.Hi)
@@ -405,7 +394,7 @@ layout <- layout(layout.mat,respect=TRUE)
         rm(r0.Hi)
         rm(r0.Lo)
 
-    #  Panel Five: C = 0.25
+    ##  Panel Five: C = 0.25
         
         # Calculate plotting lines for solutions not involving recombination
         twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.25)
@@ -462,7 +451,7 @@ layout <- layout(layout.mat,respect=TRUE)
 
 
 
-    #  Panel Six: C = 0.5
+    ##  Panel Six: C = 0.5
         
         # Calculate plotting lines for solutions not involving recombination
         twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.5)
@@ -518,3 +507,16 @@ layout <- layout(layout.mat,respect=TRUE)
 
 }
 
+
+
+
+
+
+#' Fig.2: polymorphism ~ recombination rate plots.
+#' 
+#'
+#' @title Create a 2x2 panel plot with our analytic results showing Kidwell plots
+#' 
+#' @export
+
+Fig.2  <- function()

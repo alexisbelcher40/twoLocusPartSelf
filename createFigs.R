@@ -28,8 +28,8 @@ source('R/functions-figures.R')
 toPdf(Fig.1(), figPath(name='Fig1.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig1.pdf'))
 
-#toPdf(fig2(), figPath(name='fig2.pdf'), width=7, height=7)
-#embed_fonts(figPath(name='fig2.pdf'))
+#toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
+#embed_fonts(figPath(name='Fig2.pdf'))
 
 #toPdf(fig3(), figPath(name='fig3.pdf'), width=7, height=7)
 #embed_fonts(figPath(name='fig3.pdf'))

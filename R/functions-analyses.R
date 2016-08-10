@@ -177,7 +177,7 @@ lambda.AB1  <-  function(par.list) {
 	rm  <-  par.list$rm
 	rf  <-  par.list$rf
 
-	(4 - 2*C - 2*sf + 3*C*sf - (C^2)*sf - 2*hf*sf + 2*(C^2)*hf*sf + (C - 1)*( 2*(C - 1)*hm - C)*(sf - 1)*sm)/(2*(C - 2)* (sf - 1))	
+	(4 - 2*C - 2*sf + 3*C*sf - C^2*sf - 2*hf*sf + 2*C^2*hf*sf + (-1 + C)*(-C + 2*(-1 + C)*hm)*(-1 + sf)*sm)/(2*(-2 + C)*(-1 + sf))
 }
 
 lambda.AB2  <-  function(par.list) {
@@ -371,9 +371,6 @@ eigenInvAnalysis  <-  function(par.list) {
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
-	if(any(Fii.init < 0) | any(Fii.init > 1))
-		stop('The chosen initial genotypic frequencies are not valid')
-
 	##  Calculate Eigenvalues from analytic solutions 
 	##  using quasi-equibirium genotypic frequencies
 
@@ -391,7 +388,9 @@ eigenInvAnalysis  <-  function(par.list) {
 					 "4"  =  "Protected polymorphism"
 					 )
 
-	Inv  <-  0
+	Inv   <-  0
+	PrP   <-  0
+	rPrP  <-  0
 	# Positive selection for female-beneficial allele
 		if (any(c(l.AB1, l.AB2) > 1) & l.ab1 < 1 & l.ab2 < 1 )
 			Inv  <-  1
@@ -402,16 +401,17 @@ eigenInvAnalysis  <-  function(par.list) {
 
 	# Unstable internal equilibrium
 		if (l.AB1 < 1 & l.AB2 <  1 & l.ab1 < 1 & l.ab2 < 1 )
-			 Inv  <-  3
+			Inv  <-  3
 
 	# Protected polymorphism
-		if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 ))
-			 Inv  <-  4
+		if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 )) {
+			Inv  <-  4
+			PrP  <-  1			
+		}
 	
-	##  Is invasion facilitated by recombination? 
-	rInv  <-  0
-	if (l.AB1 < 1 & l.AB2 > 1 & l.ab1 < 1 & l.ab2 > 1 )
-		Inv  <-  1
+	##  Is polymorphism facilitated by recombination? 
+	if (any(c(l.AB1,l.ab1) < 1) & l.AB2 > 1 &  l.ab2 > 1)
+		rPrP  <-  1
 
 	##  Output list
 	res  <-  list(
@@ -422,7 +422,8 @@ eigenInvAnalysis  <-  function(par.list) {
 				  "l.ab2"     =  l.ab2,
 				  "InvKey"    =  invKey,
 				  "Inv"       =  Inv,
-				  "rInv"      =  rInv
+				  "PrP"       =  PrP,
+				  "rPrP"      =  rPrP
  				 )
 	return(res)
 }
@@ -667,4 +668,128 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 	#  Return results.df in case user wants it
 	return(results.df)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' Proportion of parameter space resulting in protected polymorphism
+#' determined by evaluating eigenvalues.
+#'
+#' @titleProportion of parameter space resulting in protected polymorphism
+#' determined by evaluating eigenvalues.
+#' @param n number of randomly generated values for sf & sm. 
+#' Determines resolution with which parameter space is explored.
+#' @param C A vector of selfing rates to explore.
+#' @param hf Dominance through female expression (as in par.list).
+#' @param hm Dominance through male expression (as in par.list).
+#' @return Returns a data frame with ...
+#' @seealso `recursionFwdSim`
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
+
+propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
+
+	## Warnings
+	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
+		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
+
+	#  initialize selection coeficients and storage structures
+	r.vals      <-  seq(0, 0.5, by=0.005)
+	sm.vals     <-  runif(n)
+	sf.vals     <-  runif(n)
+	PrP     <-  c()
+	rPrP    <-  c()
+
+
+	##  Loop over values of r, sm, sf for fixed selfing rate (C)
+	##  calculating proportion of parameter space where PrP is 
+	##  predicted each time.
+
+	for (i in 1:length(r.vals)) {
+		eigPoly     <-  0
+		rPoly       <-  0
+
+		for (j in 1:length(sm.vals)) {
+			for (k in 1:length(sf.vals)) {
+				
+				par.list  <-  list(
+								   gen  =  NA,
+								   C    =  C,
+								   sm   =  sm.vals[j],
+								   sf   =  sf.vals[k],
+								   hm   =  hm,
+								   hf   =  hf,
+								   rm   =  r.vals[i],
+								   rf   =  r.vals[i]
+								  )
+
+				res      <-  eigenInvAnalysis(par.list = par.list)
+				eigPoly  <-  c(eigPoly, res$PrP)
+				rPoly    <-  c(rPoly,    res$rPrP)
+			
+			}
+		}
+		#  trim leading zero from storage vectors
+		eigPoly  <-  eigPoly[-1]
+		rPoly    <-  rPoly[-1]
+		
+		#  Calculate proportion of parameter space resulting in PrP
+		PrP[i]   <-  sum(eigPoly)/length(eigPoly)
+		rPrP[i]  <-  sum(rPoly)/length(rPoly)
+
+	}
+
+
+	#  Compile results as data.frame
+	results.df  <-  data.frame("hf"      = rep(hf, length(r.vals)),
+							   "hm"      = rep(hm, length(r.vals)),
+							   "C"       = rep(C,  length(r.vals)),
+							   "r"       = r.vals,
+							   "PrP"     = PrP,
+							   "rPrP"    = rPrP
+							   )
+
+	#  Write results.df to .txt file
+	filename  <-  paste("./output/data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+
+	#  Return results.df in case user wants it
+#	return(results.df)
+}
+
+
+
 
