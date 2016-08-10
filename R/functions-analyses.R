@@ -696,13 +696,6 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 
 
 
-
-
-
-
-
-
-
 #' Proportion of parameter space resulting in protected polymorphism
 #' determined by evaluating eigenvalues.
 #'
@@ -727,9 +720,7 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
 
 	#  initialize selection coeficients and storage structures
-	r.vals      <-  seq(0, 0.5, by=0.005)
-	sm.vals     <-  runif(n)
-	sf.vals     <-  runif(n)
+	r.vals      <-  seq(0, 0.5, by=0.01)
 	PrP     <-  c()
 	rPrP    <-  c()
 
@@ -739,8 +730,10 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 	##  predicted each time.
 
 	for (i in 1:length(r.vals)) {
-		eigPoly     <-  0
-		rPoly       <-  0
+		sm.vals     <-  runif(n)
+		sf.vals     <-  runif(n)
+		eigPoly     <-  rep(0, times=length(sm.vals)*length(sf.vals))
+		rPoly       <-  rep(0, times=length(sm.vals)*length(sf.vals))
 
 		for (j in 1:length(sm.vals)) {
 			for (k in 1:length(sf.vals)) {
@@ -757,11 +750,12 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 								  )
 
 				res      <-  eigenInvAnalysis(par.list = par.list)
-				eigPoly  <-  c(eigPoly, res$PrP)
-				rPoly    <-  c(rPoly,    res$rPrP)
-			
+				eigPoly[(j-1)*length(sf.vals) + k]  <-  res$PrP
+				rPoly[(j-1)*length(sf.vals) + k]    <-  res$rPrP
+				rm(par.list)
 			}
 		}
+
 		#  trim leading zero from storage vectors
 		eigPoly  <-  eigPoly[-1]
 		rPoly    <-  rPoly[-1]
@@ -770,8 +764,10 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 		PrP[i]   <-  sum(eigPoly)/length(eigPoly)
 		rPrP[i]  <-  sum(rPoly)/length(rPoly)
 
+#		rm(eigPoly)
+#		rm(rPoly)
+		print(r.vals[i])
 	}
-
 
 	#  Compile results as data.frame
 	results.df  <-  data.frame("hf"      = rep(hf, length(r.vals)),
@@ -787,9 +783,122 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
-#	return(results.df)
+	return(results.df)
 }
 
 
 
 
+
+
+#' Quick and dirty invasion analysis, modified to work with apply()
+#'
+#' @titleProportion Quick and dirty invasion analysis, modified to work with apply()
+#' @param x vector of sm values over which to perform Invasion Analysis
+#' @param par.list List of parameters.  as in all other functions
+#' @seealso `propPrPFast`, `eigenInvAnalysis`
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
+
+fastInv  <-  function(x, par.list, ...) {
+	par.list$sf  <-  x
+
+	l.AB1  <- lambda.AB1(par.list)
+	l.AB2  <- lambda.AB2(par.list)
+	l.ab1  <- lambda.ab1(par.list)
+	l.ab2  <- lambda.ab2(par.list)
+
+	PrP  <-  0
+	# Protected polymorphism
+	if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 )) {
+		PrP  <-  1			
+		}
+	
+	##  Is polymorphism facilitated by recombination? 
+	if (any(c(l.AB1,l.ab1) < 1) & l.AB2 > 1 &  l.ab2 > 1)
+		PrP  <-  2
+	PrP
+}
+
+
+
+
+#' Proportion of parameter space resulting in protected polymorphism
+#' determined by evaluating eigenvalues. - Modified to implement apply()
+#' for innermost loop.  about 1/3 times faster than regular propPrP()
+#'
+#' @titleProportion of parameter space resulting in protected polymorphism
+#' determined by evaluating eigenvalues.
+#' @param n number of randomly generated values for sf & sm. 
+#' Determines resolution with which parameter space is explored.
+#' @param C A vector of selfing rates to explore.
+#' @param hf Dominance through female expression (as in par.list).
+#' @param hm Dominance through male expression (as in par.list).
+#' @return Returns a data frame with ...
+#' @seealso `recursionFwdSim`
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
+
+propPrPFast  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
+
+	## Warnings
+	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
+		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
+
+	#  initialize selection coeficients and storage structures
+	r.vals      <-  seq(0, 0.5, by=0.01)
+	sm.vals     <-  runif(n)
+	sf.vals     <-  runif(n)
+	PrP     <-  c()
+	rPrP    <-  c()
+
+
+	##  Loop over values of r and sm for fixed selfing rate (C)
+	##  calculating proportion of parameter space where PrP is 
+	##  predicted each time.
+
+	for (i in 1:length(r.vals)) {
+		poly  <-  rep(0, times=length(sm.vals)*length(sf.vals))
+
+		for (j in 1:length(sm.vals)) {
+			par.list  <-  list(
+							   gen  =  NA,
+							   C    =  C,
+							   sm   =  sm.vals[j],
+							   sf   =  NA,
+							   hm   =  hm,
+							   hf   =  hf,
+							   rm   =  r.vals[i],
+							   rf   =  r.vals[i]
+							  )
+
+			poly[((j-1)*length(sm.vals) + 1):((j-1)*length(sm.vals) + length(sf.vals))]  <-  sapply(sf.vals, function(x) fastInv(x, par.list=par.list))
+		}
+
+		#  Calculate proportion of parameter space resulting in PrP
+		PrP[i]   <-  sum(poly == 1 | poly == 2)/length(poly)
+		rPrP[i]  <-  sum(poly == 2)/length(poly)
+		print(r.vals[i])
+		rm(poly)
+	}
+
+	#  Compile results as data.frame
+	results.df  <-  data.frame("hf"      = rep(hf, length(r.vals)),
+							   "hm"      = rep(hm, length(r.vals)),
+							   "C"       = rep(C,  length(r.vals)),
+							   "r"       = r.vals,
+							   "PrP"     = PrP,
+							   "rPrP"    = rPrP
+							   )
+
+	#  Write results.df to .txt file
+#	filename  <-  paste("./output/data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+#	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+
+	#  Return results.df in case user wants it
+	return(results.df)
+}

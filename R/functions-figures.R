@@ -519,4 +519,144 @@ layout <- layout(layout.mat,respect=TRUE)
 #' 
 #' @export
 
-Fig.2  <- function()
+Fig.2  <- function() {
+
+    ## Read data files for plotting
+
+        # Additive Effects
+        C0.0.h.5  <-  read.table('./output/data/propPrp.out_C0_hf0.5_hm0.5_n500.txt', head=TRUE)
+        C0.1.h.5  <-  read.table('./output/data/propPrp.out_C0.1_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.2.h.5  <-  read.table('./output/data/propPrp.out_C0.2_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.3.h.5  <-  read.table('./output/data/propPrp.out_C0.3_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.4.h.5  <-  read.table('./output/data/propPrp.out_C0.4_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.5.h.5  <-  read.table('./output/data/propPrp.out_C0.5_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.6.h.5  <-  read.table('./output/data/propPrp.out_C0.6_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.7.h.5  <-  read.table('./output/data/propPrp.out_C0.7_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.8.h.5  <-  read.table('./output/data/propPrp.out_C0.8_hf0.5_hm0.5_n100.txt', head=TRUE)
+        C0.9.h.5  <-  read.table('./output/data/propPrp.out_C0.9_hf0.5_hm0.5_n100.txt', head=TRUE)
+
+        # Dominance Reversal
+#        C0.0.h.25  <-  read.table('./output/data/propPrp.out_C0_hf0.25_hm0.25_n100.txt')
+#        C0.1.h.25  <-  read.table('./output/data/propPrp.out_C0.1_hf0.25_hm0.25_n100.txt')
+#        C0.2.h.25  <-  read.table('./output/data/propPrp.out_C0.2_hf0.25_hm0.25_n100.txt')
+#        C0.3.h.25  <-  read.table('./output/data/propPrp.out_C0.3_hf0.25_hm0.25_n100.txt')
+#        C0.4.h.25  <-  read.table('./output/data/propPrp.out_C0.4_hf0.25_hm0.25_n100.txt')
+#        C0.5.h.25  <-  read.table('./output/data/propPrp.out_C0.5_hf0.25_hm0.25_n100.txt')
+#        C0.6.h.25  <-  read.table('./output/data/propPrp.out_C0.6_hf0.25_hm0.25_n100.txt')
+#        C0.7.h.25  <-  read.table('./output/data/propPrp.out_C0.7_hf0.25_hm0.25_n100.txt')
+#        C0.8.h.25  <-  read.table('./output/data/propPrp.out_C0.8_hf0.25_hm0.25_n100.txt')
+#        C0.9.h.25  <-  read.table('./output/data/propPrp.out_C0.9_hf0.25_hm0.25_n100.txt')
+
+
+    # Color scheme
+    COLS  <-  c("#000000", "#252525", "#525252", "#737373", "#969696")
+
+    # Set plot layout
+    layout.mat <- matrix(c(1,2,3,4), nrow=2, ncol=2, byrow=TRUE)
+    layout <- layout(layout.mat,respect=TRUE)
+
+    ####################
+    ##  ADDITIVE EFFECTS
+    ##  Panel 1:  Proportion of parameter space resulting in Protected Polymorphism
+        par(omi=rep(0.75, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.3,0.6), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
+        plotGrid(lineCol='white')
+        box()
+        lines(C0.0.h.5$PrP ~ C0.0.h.5$r, lwd=2, lty=1, col=COLS[1])
+        lines(C0.1.h.5$PrP ~ C0.1.h.5$r, lwd=2, lty=1, col=COLS[1])
+        lines(C0.2.h.5$PrP ~ C0.2.h.5$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.3.h.5$PrP ~ C0.3.h.5$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.4.h.5$PrP ~ C0.4.h.5$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.5.h.5$PrP ~ C0.5.h.5$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.6.h.5$PrP ~ C0.6.h.5$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.7.h.5$PrP ~ C0.7.h.5$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.8.h.5$PrP ~ C0.8.h.5$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.9.h.5$PrP ~ C0.9.h.5$r, lwd=2, lty=1, col=COLS[5])
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        proportionalLabel(0.5, 1.15, 'Protected polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.25, 0.5, expression(paste("Proportion parameters space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        legend(
+            x       =  usr[2]*0.98,
+            y       =  usr[4],
+        #    title   =  expression(paste(Outcome~of~invasion~analysis)),
+            legend  =  c(
+                        expression(paste(italic(C), " = ", 0.0)),
+                        expression(paste(italic(C), " = ", 0.1)),
+                        expression(paste(italic(C), " = ", 0.2)),
+                        expression(paste(italic(C), " = ", 0.3)),
+                        expression(paste(italic(C), " = ", 0.4)),
+                        expression(paste(italic(C), " = ", 0.5))),
+            lty     =  1,
+            lwd     =  3,
+            col     =  rev(COLS),
+            cex     =  0.75,
+            xjust   =  1,
+            yjust   =  1,
+            bty     =  'n',
+            border  =  NA)
+
+    ##  Panel 2: Increase in parameter space resulting in polymorphism due to recombination
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.3), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
+        plotGrid(lineCol='white')
+        box()
+        lines(C0.0.h.5$rPrP ~ C0.0.h.5$r, lwd=2, lty=1, col=COLS[1])
+        lines(C0.2.h.5$rPrP ~ C0.2.h.5$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.4.h.5$rPrP ~ C0.4.h.5$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.6.h.5$rPrP ~ C0.6.h.5$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.8.h.5$rPrP ~ C0.8.h.5$r, lwd=2, lty=1, col=COLS[5])
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        proportionalLabel(0.5, 1.15, 'Poly. due to recombination', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+
+    ######################
+    ##  DOMINANCE REVERSAL
+    ##  Panel 3:  Proportion of parameter space resulting in Protected Polymorphism
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.3,0.6), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
+        plotGrid(lineCol='white')
+        box()
+#        lines(C0.0.h.25$PrP ~ C0.0.h.25$r, lwd=2, lty=1, col=COLS[1])
+#        lines(C0.1.h.25$PrP ~ C0.1.h.25$r, lwd=2, lty=1, col=COLS[1])
+#        lines(C0.2.h.25$PrP ~ C0.2.h.25$r, lwd=2, lty=1, col=COLS[2])
+#        lines(C0.3.h.25$PrP ~ C0.3.h.25$r, lwd=2, lty=1, col=COLS[2])
+#        lines(C0.4.h.25$PrP ~ C0.4.h.25$r, lwd=2, lty=1, col=COLS[3])
+#        lines(C0.5.h.25$PrP ~ C0.5.h.25$r, lwd=2, lty=1, col=COLS[3])
+#        lines(C0.6.h.25$PrP ~ C0.6.h.25$r, lwd=2, lty=1, col=COLS[4])
+#        lines(C0.7.h.25$PrP ~ C0.7.h.25$r, lwd=2, lty=1, col=COLS[4])
+#        lines(C0.8.h.25$PrP ~ C0.8.h.25$r, lwd=2, lty=1, col=COLS[5])
+#        lines(C0.9.h.25$PrP ~ C0.9.h.25$r, lwd=2, lty=1, col=COLS[5])
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.25, 0.5, expression(paste("Proportion parameters space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+    ##  Panel 4: Increase in parameter space resulting in polymorphism due to recombination
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.3), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
+        plotGrid(lineCol='white')
+        box()
+#        lines(C0.0.h.25$rPrP ~ C0.0.h.25$r, lwd=2, lty=1, col=COLS[1])
+#        lines(C0.2.h.25$rPrP ~ C0.2.h.25$r, lwd=2, lty=1, col=COLS[2])
+#        lines(C0.4.h.25$rPrP ~ C0.4.h.25$r, lwd=2, lty=1, col=COLS[3])
+#        lines(C0.6.h.25$rPrP ~ C0.6.h.25$r, lwd=2, lty=1, col=COLS[4])
+#        lines(C0.8.h.25$rPrP ~ C0.8.h.25$r, lwd=2, lty=1, col=COLS[5])
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(0.03, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+}
+
