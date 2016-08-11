@@ -25,7 +25,7 @@
 rm(list=ls())
 #####################
 ##  Dependencies
-source('R/functions-Analyses.R')
+source('R/functions-analyses.R')
 
 
 

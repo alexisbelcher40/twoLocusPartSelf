@@ -803,7 +803,8 @@ propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 #' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
 
 fastInv  <-  function(x, par.list, ...) {
-	par.list$sf  <-  x
+	par.list$sf  <-  x[1]
+	par.list$sm  <-  x[2]
 
 	l.AB1  <- lambda.AB1(par.list)
 	l.AB2  <- lambda.AB2(par.list)
@@ -843,7 +844,7 @@ fastInv  <-  function(x, par.list, ...) {
 #' @examples
 #' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
 
-propPrPFast  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
+propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5) {
 
 	## Warnings
 	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
@@ -860,24 +861,20 @@ propPrPFast  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
 	##  predicted each time.
 
 	for (i in 1:length(r.vals)) {
-		sm.vals     <-  runif(n)
-		sf.vals     <-  runif(n)
-		poly  <-  rep(0, times=length(sm.vals)*length(sf.vals))
+		s.vals    <-  matrix(runif(2*n), ncol=2)
+		poly  <-  rep(0, times=nrow(s.vals))
+		par.list  <-  list(
+						   gen  =  NA,
+						   C    =  C,
+						   sm   =  NA,
+						   sf   =  NA,
+						   hm   =  hm,
+						   hf   =  hf,
+						   rm   =  r.vals[i],
+						   rf   =  r.vals[i]
+						  )
 
-		for (j in 1:length(sm.vals)) {
-			par.list  <-  list(
-							   gen  =  NA,
-							   C    =  C,
-							   sm   =  sm.vals[j],
-							   sf   =  NA,
-							   hm   =  hm,
-							   hf   =  hf,
-							   rm   =  r.vals[i],
-							   rf   =  r.vals[i]
-							  )
-
-			poly[((j-1)*length(sm.vals) + 1):((j-1)*length(sm.vals) + length(sf.vals))]  <-  sapply(sf.vals, function(x) fastInv(x, par.list=par.list))
-		}
+		poly  <-  apply(s.vals, 1,  fastInv, par.list=par.list)
 
 		#  Calculate proportion of parameter space resulting in PrP
 		PrP[i]   <-  sum(poly == 1 | poly == 2)/length(poly)
