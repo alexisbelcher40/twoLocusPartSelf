@@ -136,8 +136,9 @@ transparentColor <- function(col, opacity=0.5) {
 Fig.1  <-  function() {
 
 # Color scheme
-#    COLS  <-  c("black", "grey95", "grey90", "grey85")
-    COLS  <-  c("black", "#525252", "#737373", "#bdbdbd")
+    colfunc <- colorRampPalette(c("#252525", "grey60"))
+    COLS  <-  colfunc(6)
+#    COLS  <-  c("black", "#525252", "#737373", "#bdbdbd")
 
 #  Create vector of male selection coefficiets for invasion functions
 sm  <-  seq(0,1,by=0.0001)
@@ -155,6 +156,21 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
         
+        r0.5.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
+        r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
+        r0.5.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+
+        r0.4.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
+        r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
+        r0.4.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
+
+        r0.3.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
+        r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
+        r0.3.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
+
         r0.2.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
@@ -177,15 +193,23 @@ layout <- layout(layout.mat,respect=TRUE)
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
-        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=2, col=COLS[2], lty=1)
-        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo.obOut] ~ sm[r0.2.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[2], lty=1)
-        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=2, col=COLS[3], lty=1)
-        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo.obOut] ~ sm[r0.1.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[3], lty=1)
-        lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
-        lines(r0.Lo[r0.Lo < twoLoc.Lo.obOut] ~ sm[r0.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[4], lty=1)
+        #  w/ recombination
+        lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1], lwd=2, col=COLS[1], lty=1)
+        lines(r0.5.Lo[r0.5.Lo < twoLoc.Lo.obOut] ~ sm[r0.5.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[1], lty=1)
+        lines(r0.4.Hi[r0.4.Hi > twoLoc.Hi.obOut & r0.4.Hi <= 1] ~ sm[r0.4.Hi > twoLoc.Hi.obOut & r0.4.Hi <= 1], lwd=2, col=COLS[2], lty=1)
+        lines(r0.4.Lo[r0.4.Lo < twoLoc.Lo.obOut] ~ sm[r0.4.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[2], lty=1)
+        lines(r0.3.Hi[r0.3.Hi > twoLoc.Hi.obOut & r0.3.Hi <= 1] ~ sm[r0.3.Hi > twoLoc.Hi.obOut & r0.3.Hi <= 1], lwd=2, col=COLS[3], lty=1)
+        lines(r0.3.Lo[r0.3.Lo < twoLoc.Lo.obOut] ~ sm[r0.3.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[3], lty=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo.obOut] ~ sm[r0.2.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[4], lty=1)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=2, col=COLS[5], lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo.obOut] ~ sm[r0.1.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[5], lty=1)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=2, col=COLS[6], lty=1)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo.obOut] ~ sm[r0.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[6], lty=1)
+        # Using only first eigenvalue (ignoring recombination)
         polygon(c(sm,rev(sm)), c(twoLoc.Hi.obOut, rev(twoLoc.Lo.obOut)), col=transparentColor('grey80', 0.6), border='grey70')
-        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=2, col=COLS[1])
-        lines(twoLoc.Lo.obOut ~ sm, lwd=2, col=COLS[1])
+        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo.obOut ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
@@ -213,6 +237,21 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
+        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
+        r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
+        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+
+        r0.4.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
+        r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
+        r0.4.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
+
+        r0.3.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
+        r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
+        r0.3.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
+
         r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
@@ -235,15 +274,23 @@ layout <- layout(layout.mat,respect=TRUE)
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
-        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[2], lty=1)
-        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
-        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[3], lty=1)
-        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
-        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
-        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        #  w/ recombination
+        lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[1], lty=1)
+        lines(r0.5.Lo[r0.5.Lo < twoLoc.Lo] ~ sm[r0.5.Lo < twoLoc.Lo], lwd=2, col=COLS[1], lty=1)
+        lines(r0.4.Hi[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1] ~ sm[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1], lwd=2, col=COLS[2], lty=1)
+        lines(r0.4.Lo[r0.4.Lo < twoLoc.Lo] ~ sm[r0.4.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
+        lines(r0.3.Hi[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1] ~ sm[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1], lwd=2, col=COLS[3], lty=1)
+        lines(r0.3.Lo[r0.3.Lo < twoLoc.Lo] ~ sm[r0.3.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[5], lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[5], lty=1)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[6], lty=1)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[6], lty=1)
+        # Using only first eigenvalue (ignoring recombination)
         polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
-        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col=1)
-        lines(twoLoc.Lo ~ sm, lwd=2, col=1)
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -270,6 +317,21 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
+        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
+        r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
+        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+
+        r0.4.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
+        r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
+        r0.4.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
+
+        r0.3.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
+        r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
+        r0.3.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
+
         r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
@@ -292,15 +354,22 @@ layout <- layout(layout.mat,respect=TRUE)
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
-        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[2], lty=1)
-        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
-        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[3], lty=1)
-        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
-        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
-        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[1], lty=1)
+        lines(r0.5.Lo[r0.5.Lo < twoLoc.Lo] ~ sm[r0.5.Lo < twoLoc.Lo], lwd=2, col=COLS[1], lty=1)
+        lines(r0.4.Hi[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1] ~ sm[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1], lwd=2, col=COLS[2], lty=1)
+        lines(r0.4.Lo[r0.4.Lo < twoLoc.Lo] ~ sm[r0.4.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
+        lines(r0.3.Hi[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1] ~ sm[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1], lwd=2, col=COLS[3], lty=1)
+        lines(r0.3.Lo[r0.3.Lo < twoLoc.Lo] ~ sm[r0.3.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[5], lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[5], lty=1)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[6], lty=1)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[6], lty=1)
+        # Using only first eigenvalue (ignoring recombination)
         polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
-        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col=1)
-        lines(twoLoc.Lo ~ sm, lwd=2, col=1)
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -313,10 +382,13 @@ layout <- layout(layout.mat,respect=TRUE)
                         expression(paste(italic(r), " = ", 0)),
                         expression(paste(italic(r), " = ", 0.1)),
                         expression(paste(italic(r), " = ", 0.2)),
-                        expression(paste(italic(r), " = ", 0.5))),
+                        expression(paste(italic(r), " = ", 0.3)),
+                        expression(paste(italic(r), " = ", 0.4)),
+                        expression(paste(italic(r), " = ", 0.5)),
+                        expression(paste(italic(lambda[1])))),
             lty     =  1,
             lwd     =  3,
-            col     =  rev(COLS),
+            col     =  c(rev(COLS),'black'),
             cex     =  0.75,
             xjust   =  1,
             yjust   =  1,
@@ -346,6 +418,21 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.25, hm=0.25, sm=sm)
         
+        r0.5.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
+        r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
+        r0.5.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+
+        r0.4.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
+        r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
+        r0.4.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
+
+        r0.3.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
+        r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
+        r0.3.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
+
         r0.2.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
@@ -368,15 +455,23 @@ layout <- layout(layout.mat,respect=TRUE)
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
-        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=2, col=COLS[2], lty=1)
-        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo.obOut] ~ sm[r0.2.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[2], lty=1)
-        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=2, col=COLS[3], lty=1)
-        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo.obOut] ~ sm[r0.1.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[3], lty=1)
-        lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
-        lines(r0.Lo[r0.Lo < twoLoc.Lo.obOut] ~ sm[r0.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[4], lty=1)
-        polygon(c(sm,rev(sm)),c(twoLoc.Hi.obOut,rev(twoLoc.Lo.obOut)), col=transparentColor('grey80', 0.6), border='grey70')
-        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=2, col=1)
-        lines(twoLoc.Lo.obOut ~ sm, lwd=2, col=1)
+        #  w/ recombination
+        lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1], lwd=2, col=COLS[1], lty=1)
+        lines(r0.5.Lo[r0.5.Lo < twoLoc.Lo.obOut] ~ sm[r0.5.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[1], lty=1)
+        lines(r0.4.Hi[r0.4.Hi > twoLoc.Hi.obOut & r0.4.Hi <= 1] ~ sm[r0.4.Hi > twoLoc.Hi.obOut & r0.4.Hi <= 1], lwd=2, col=COLS[2], lty=1)
+        lines(r0.4.Lo[r0.4.Lo < twoLoc.Lo.obOut] ~ sm[r0.4.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[2], lty=1)
+        lines(r0.3.Hi[r0.3.Hi > twoLoc.Hi.obOut & r0.3.Hi <= 1] ~ sm[r0.3.Hi > twoLoc.Hi.obOut & r0.3.Hi <= 1], lwd=2, col=COLS[3], lty=1)
+        lines(r0.3.Lo[r0.3.Lo < twoLoc.Lo.obOut] ~ sm[r0.3.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[3], lty=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo.obOut] ~ sm[r0.2.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[4], lty=1)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=2, col=COLS[5], lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo.obOut] ~ sm[r0.1.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[5], lty=1)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=2, col=COLS[6], lty=1)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo.obOut] ~ sm[r0.Lo < twoLoc.Lo.obOut], lwd=2, col=COLS[6], lty=1)
+        # Using only first eigenvalue (ignoring recombination)
+        polygon(c(sm,rev(sm)), c(twoLoc.Hi.obOut, rev(twoLoc.Lo.obOut)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo.obOut ~ sm, lwd=2, col='black')
         axis(1, las=1)
         axis(2, las=1)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
@@ -402,6 +497,21 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
+        r0.5.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
+        r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
+        r0.5.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+
+        r0.4.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
+        r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
+        r0.4.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
+
+        r0.3.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
+        r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
+        r0.3.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+
         r0.2.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
@@ -424,15 +534,22 @@ layout <- layout(layout.mat,respect=TRUE)
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
-        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[2], lty=1)
-        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
-        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[3], lty=1)
-        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
-        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
-        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[1], lty=1)
+        lines(r0.5.Lo[r0.5.Lo < twoLoc.Lo] ~ sm[r0.5.Lo < twoLoc.Lo], lwd=2, col=COLS[1], lty=1)
+        lines(r0.4.Hi[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1] ~ sm[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1], lwd=2, col=COLS[2], lty=1)
+        lines(r0.4.Lo[r0.4.Lo < twoLoc.Lo] ~ sm[r0.4.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
+        lines(r0.3.Hi[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1] ~ sm[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1], lwd=2, col=COLS[3], lty=1)
+        lines(r0.3.Lo[r0.3.Lo < twoLoc.Lo] ~ sm[r0.3.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[5], lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[5], lty=1)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[6], lty=1)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[6], lty=1)
+        # Using only first eigenvalue (ignoring recombination)
         polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
-        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col=1)
-        lines(twoLoc.Lo ~ sm, lwd=2, col=1)
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -459,6 +576,21 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
+        r0.5.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
+        r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
+        r0.5.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+
+        r0.4.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
+        r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
+        r0.4.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
+
+        r0.3.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
+        r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
+        r0.3.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+
         r0.2.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
@@ -481,15 +613,22 @@ layout <- layout(layout.mat,respect=TRUE)
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
-        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[2], lty=1)
-        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
-        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[3], lty=1)
-        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
-        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
-        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[1], lty=1)
+        lines(r0.5.Lo[r0.5.Lo < twoLoc.Lo] ~ sm[r0.5.Lo < twoLoc.Lo], lwd=2, col=COLS[1], lty=1)
+        lines(r0.4.Hi[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1] ~ sm[r0.4.Hi > twoLoc.Hi & r0.4.Hi <= 1], lwd=2, col=COLS[2], lty=1)
+        lines(r0.4.Lo[r0.4.Lo < twoLoc.Lo] ~ sm[r0.4.Lo < twoLoc.Lo], lwd=2, col=COLS[2], lty=1)
+        lines(r0.3.Hi[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1] ~ sm[r0.3.Hi > twoLoc.Hi & r0.3.Hi <= 1], lwd=2, col=COLS[3], lty=1)
+        lines(r0.3.Lo[r0.3.Lo < twoLoc.Lo] ~ sm[r0.3.Lo < twoLoc.Lo], lwd=2, col=COLS[3], lty=1)
+        lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
+        lines(r0.2.Lo[r0.2.Lo < twoLoc.Lo] ~ sm[r0.2.Lo < twoLoc.Lo], lwd=2, col=COLS[4], lty=1)
+        lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[5], lty=1)
+        lines(r0.1.Lo[r0.1.Lo < twoLoc.Lo] ~ sm[r0.1.Lo < twoLoc.Lo], lwd=2, col=COLS[5], lty=1)
+        lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[6], lty=1)
+        lines(r0.Lo[r0.Lo < twoLoc.Lo] ~ sm[r0.Lo < twoLoc.Lo], lwd=2, col=COLS[6], lty=1)
+        # Using only first eigenvalue (ignoring recombination)
         polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
-        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col=1)
-        lines(twoLoc.Lo ~ sm, lwd=2, col=1)
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -524,32 +663,34 @@ Fig.2  <- function() {
     ## Read data files for plotting
 
         # Additive Effects
-        C0.0.h.5  <-  read.table('./data/propPrp.out_C0_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.1.h.5  <-  read.table('./data/propPrp.out_C0.1_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.2.h.5  <-  read.table('./data/propPrp.out_C0.2_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.3.h.5  <-  read.table('./data/propPrp.out_C0.3_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.4.h.5  <-  read.table('./data/propPrp.out_C0.4_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.5.h.5  <-  read.table('./data/propPrp.out_C0.5_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.6.h.5  <-  read.table('./data/propPrp.out_C0.6_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.7.h.5  <-  read.table('./data/propPrp.out_C0.7_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.8.h.5  <-  read.table('./data/propPrp.out_C0.8_hf0.5_hm0.5_n10000.txt', head=TRUE)
-        C0.9.h.5  <-  read.table('./data/propPrp.out_C0.9_hf0.5_hm0.5_n10000.txt', head=TRUE)
+        C0.0.h.5  <-  read.table('./data/propPrp.out_C0_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.1.h.5  <-  read.table('./data/propPrp.out_C0.1_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.2.h.5  <-  read.table('./data/propPrp.out_C0.2_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.3.h.5  <-  read.table('./data/propPrp.out_C0.3_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.4.h.5  <-  read.table('./data/propPrp.out_C0.4_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.5.h.5  <-  read.table('./data/propPrp.out_C0.5_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.6.h.5  <-  read.table('./data/propPrp.out_C0.6_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.7.h.5  <-  read.table('./data/propPrp.out_C0.7_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.8.h.5  <-  read.table('./data/propPrp.out_C0.8_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.9.h.5  <-  read.table('./data/propPrp.out_C0.9_hf0.5_hm0.5_n30000.txt', head=TRUE)
 
         # Dominance Reversal
-        C0.0.h.25  <-  read.table('./data/propPrp.out_C0_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.1.h.25  <-  read.table('./data/propPrp.out_C0.1_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.2.h.25  <-  read.table('./data/propPrp.out_C0.2_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.3.h.25  <-  read.table('./data/propPrp.out_C0.3_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.4.h.25  <-  read.table('./data/propPrp.out_C0.4_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.5.h.25  <-  read.table('./data/propPrp.out_C0.5_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.6.h.25  <-  read.table('./data/propPrp.out_C0.6_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.7.h.25  <-  read.table('./data/propPrp.out_C0.7_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.8.h.25  <-  read.table('./data/propPrp.out_C0.8_hf0.25_hm0.25_n10000.txt', head=TRUE)
-        C0.9.h.25  <-  read.table('./data/propPrp.out_C0.9_hf0.25_hm0.25_n10000.txt', head=TRUE)
+        C0.0.h.25  <-  read.table('./data/propPrp.out_C0_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.1.h.25  <-  read.table('./data/propPrp.out_C0.1_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.2.h.25  <-  read.table('./data/propPrp.out_C0.2_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.3.h.25  <-  read.table('./data/propPrp.out_C0.3_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.4.h.25  <-  read.table('./data/propPrp.out_C0.4_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.5.h.25  <-  read.table('./data/propPrp.out_C0.5_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.6.h.25  <-  read.table('./data/propPrp.out_C0.6_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.7.h.25  <-  read.table('./data/propPrp.out_C0.7_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.8.h.25  <-  read.table('./data/propPrp.out_C0.8_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.9.h.25  <-  read.table('./data/propPrp.out_C0.9_hf0.25_hm0.25_n30000.txt', head=TRUE)
 
 
     # Color scheme
-    COLS  <-  c("#000000", "#252525", "#525252", "#737373", "#969696")
+    colfunc <- colorRampPalette(c("grey60", "black"))
+    COLS  <-  colfunc(10)
+#    COLS  <-  c("#000000", "#252525", "#525252", "#737373", "#969696")
 
     # Set plot layout
     layout.mat <- matrix(c(1,2,3,4), nrow=2, ncol=2, byrow=TRUE)
@@ -565,15 +706,15 @@ Fig.2  <- function() {
         plotGrid(lineCol='white')
         box()
         lines(C0.0.h.5$PrP ~ C0.0.h.5$r, lwd=2, lty=1, col=COLS[1])
-        lines(C0.1.h.5$PrP ~ C0.1.h.5$r, lwd=2, lty=1, col=COLS[1])
-        lines(C0.2.h.5$PrP ~ C0.2.h.5$r, lwd=2, lty=1, col=COLS[2])
-        lines(C0.3.h.5$PrP ~ C0.3.h.5$r, lwd=2, lty=1, col=COLS[2])
-        lines(C0.4.h.5$PrP ~ C0.4.h.5$r, lwd=2, lty=1, col=COLS[3])
-        lines(C0.5.h.5$PrP ~ C0.5.h.5$r, lwd=2, lty=1, col=COLS[3])
-        lines(C0.6.h.5$PrP ~ C0.6.h.5$r, lwd=2, lty=1, col=COLS[4])
-        lines(C0.7.h.5$PrP ~ C0.7.h.5$r, lwd=2, lty=1, col=COLS[4])
-        lines(C0.8.h.5$PrP ~ C0.8.h.5$r, lwd=2, lty=1, col=COLS[5])
-        lines(C0.9.h.5$PrP ~ C0.9.h.5$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.1.h.5$PrP ~ C0.1.h.5$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.2.h.5$PrP ~ C0.2.h.5$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.3.h.5$PrP ~ C0.3.h.5$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.4.h.5$PrP ~ C0.4.h.5$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.5.h.5$PrP ~ C0.5.h.5$r, lwd=2, lty=1, col=COLS[6])
+        lines(C0.6.h.5$PrP ~ C0.6.h.5$r, lwd=2, lty=1, col=COLS[7])
+        lines(C0.7.h.5$PrP ~ C0.7.h.5$r, lwd=2, lty=1, col=COLS[8])
+        lines(C0.8.h.5$PrP ~ C0.8.h.5$r, lwd=2, lty=1, col=COLS[9])
+        lines(C0.9.h.5$PrP ~ C0.9.h.5$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1, labels=NA)
         axis(2, las=1)
         proportionalLabel(0.5, 1.15, 'Protected polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -581,7 +722,7 @@ Fig.2  <- function() {
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.25, 0.5, expression(paste("Proportion parameters space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         legend(
-            x       =  usr[2]*0.98,
+            x       =  usr[2]*0.6,
             y       =  usr[4],
         #    title   =  expression(paste(Outcome~of~invasion~analysis)),
             legend  =  c(
@@ -589,11 +730,28 @@ Fig.2  <- function() {
                         expression(paste(italic(C), " = ", 0.1)),
                         expression(paste(italic(C), " = ", 0.2)),
                         expression(paste(italic(C), " = ", 0.3)),
-                        expression(paste(italic(C), " = ", 0.4)),
-                        expression(paste(italic(C), " = ", 0.5))),
+                        expression(paste(italic(C), " = ", 0.4))),
             lty     =  1,
             lwd     =  3,
-            col     =  rev(COLS),
+            col     =  COLS[1:5],
+            cex     =  0.75,
+            xjust   =  1,
+            yjust   =  1,
+            bty     =  'n',
+            border  =  NA)
+        legend(
+            x       =  usr[2]*0.98,
+            y       =  usr[4],
+        #    title   =  expression(paste(Outcome~of~invasion~analysis)),
+            legend  =  c(
+                        expression(paste(italic(C), " = ", 0.5)),
+                        expression(paste(italic(C), " = ", 0.6)),
+                        expression(paste(italic(C), " = ", 0.7)),
+                        expression(paste(italic(C), " = ", 0.8)),
+                        expression(paste(italic(C), " = ", 0.9))),
+            lty     =  1,
+            lwd     =  3,
+            col     =  COLS[6:10],
             cex     =  0.75,
             xjust   =  1,
             yjust   =  1,
@@ -601,16 +759,21 @@ Fig.2  <- function() {
             border  =  NA)
 
     ##  Panel 2: Increase in parameter space resulting in polymorphism due to recombination
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.3), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.4), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
         plotGrid(lineCol='white')
         box()
         lines(C0.0.h.5$rPrP ~ C0.0.h.5$r, lwd=2, lty=1, col=COLS[1])
-        lines(C0.2.h.5$rPrP ~ C0.2.h.5$r, lwd=2, lty=1, col=COLS[2])
-        lines(C0.4.h.5$rPrP ~ C0.4.h.5$r, lwd=2, lty=1, col=COLS[3])
-        lines(C0.6.h.5$rPrP ~ C0.6.h.5$r, lwd=2, lty=1, col=COLS[4])
-        lines(C0.8.h.5$rPrP ~ C0.8.h.5$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.1.h.5$rPrP ~ C0.1.h.5$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.2.h.5$rPrP ~ C0.2.h.5$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.3.h.5$rPrP ~ C0.3.h.5$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.4.h.5$rPrP ~ C0.4.h.5$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.5.h.5$rPrP ~ C0.5.h.5$r, lwd=2, lty=1, col=COLS[6])
+        lines(C0.6.h.5$rPrP ~ C0.6.h.5$r, lwd=2, lty=1, col=COLS[7])
+        lines(C0.7.h.5$rPrP ~ C0.7.h.5$r, lwd=2, lty=1, col=COLS[8])
+        lines(C0.8.h.5$rPrP ~ C0.8.h.5$r, lwd=2, lty=1, col=COLS[9])
+        lines(C0.9.h.5$rPrP ~ C0.9.h.5$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1, labels=NA)
         axis(2, las=1)
         proportionalLabel(0.5, 1.15, 'Poly. due to recombination', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -626,15 +789,15 @@ Fig.2  <- function() {
         plotGrid(lineCol='white')
         box()
         lines(C0.0.h.25$PrP ~ C0.0.h.25$r, lwd=2, lty=1, col=COLS[1])
-        lines(C0.1.h.25$PrP ~ C0.1.h.25$r, lwd=2, lty=1, col=COLS[1])
-        lines(C0.2.h.25$PrP ~ C0.2.h.25$r, lwd=2, lty=1, col=COLS[2])
-        lines(C0.3.h.25$PrP ~ C0.3.h.25$r, lwd=2, lty=1, col=COLS[2])
-        lines(C0.4.h.25$PrP ~ C0.4.h.25$r, lwd=2, lty=1, col=COLS[3])
-        lines(C0.5.h.25$PrP ~ C0.5.h.25$r, lwd=2, lty=1, col=COLS[3])
-        lines(C0.6.h.25$PrP ~ C0.6.h.25$r, lwd=2, lty=1, col=COLS[4])
-        lines(C0.7.h.25$PrP ~ C0.7.h.25$r, lwd=2, lty=1, col=COLS[4])
-        lines(C0.8.h.25$PrP ~ C0.8.h.25$r, lwd=2, lty=1, col=COLS[5])
-        lines(C0.9.h.25$PrP ~ C0.9.h.25$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.1.h.25$PrP ~ C0.1.h.25$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.2.h.25$PrP ~ C0.2.h.25$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.3.h.25$PrP ~ C0.3.h.25$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.4.h.25$PrP ~ C0.4.h.25$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.5.h.25$PrP ~ C0.5.h.25$r, lwd=2, lty=1, col=COLS[6])
+        lines(C0.6.h.25$PrP ~ C0.6.h.25$r, lwd=2, lty=1, col=COLS[7])
+        lines(C0.7.h.25$PrP ~ C0.7.h.25$r, lwd=2, lty=1, col=COLS[8])
+        lines(C0.8.h.25$PrP ~ C0.8.h.25$r, lwd=2, lty=1, col=COLS[9])
+        lines(C0.9.h.25$PrP ~ C0.9.h.25$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1)
         axis(2, las=1)
         proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -643,16 +806,21 @@ Fig.2  <- function() {
         proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
     ##  Panel 4: Increase in parameter space resulting in polymorphism due to recombination
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.3), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.4), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
         plotGrid(lineCol='white')
         box()
         lines(C0.0.h.25$rPrP ~ C0.0.h.25$r, lwd=2, lty=1, col=COLS[1])
-        lines(C0.2.h.25$rPrP ~ C0.2.h.25$r, lwd=2, lty=1, col=COLS[2])
-        lines(C0.4.h.25$rPrP ~ C0.4.h.25$r, lwd=2, lty=1, col=COLS[3])
-        lines(C0.6.h.25$rPrP ~ C0.6.h.25$r, lwd=2, lty=1, col=COLS[4])
-        lines(C0.8.h.25$rPrP ~ C0.8.h.25$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.1.h.25$rPrP ~ C0.1.h.25$r, lwd=2, lty=1, col=COLS[2])
+        lines(C0.2.h.25$rPrP ~ C0.2.h.25$r, lwd=2, lty=1, col=COLS[3])
+        lines(C0.3.h.25$rPrP ~ C0.3.h.25$r, lwd=2, lty=1, col=COLS[4])
+        lines(C0.4.h.25$rPrP ~ C0.4.h.25$r, lwd=2, lty=1, col=COLS[5])
+        lines(C0.5.h.25$rPrP ~ C0.5.h.25$r, lwd=2, lty=1, col=COLS[6])
+        lines(C0.6.h.25$rPrP ~ C0.6.h.25$r, lwd=2, lty=1, col=COLS[7])
+        lines(C0.7.h.25$rPrP ~ C0.7.h.25$r, lwd=2, lty=1, col=COLS[8])
+        lines(C0.8.h.25$rPrP ~ C0.8.h.25$r, lwd=2, lty=1, col=COLS[9])
+        lines(C0.9.h.25$rPrP ~ C0.9.h.25$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1)
         axis(2, las=1)
         proportionalLabel(0.03, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)

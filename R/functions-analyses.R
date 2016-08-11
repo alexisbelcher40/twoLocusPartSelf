@@ -737,8 +737,8 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5) {
 	##  calculating proportion of parameter space where PrP is 
 	##  predicted each time.
 
-	for (i in 1:length(r.vals)) {
 		s.vals    <-  matrix(runif(2*n), ncol=2)
+	for (i in 1:length(r.vals)) {
 		poly  <-  rep(0, times=nrow(s.vals))
 		par.list  <-  list(
 						   gen  =  NA,
