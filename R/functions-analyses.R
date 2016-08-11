@@ -607,63 +607,53 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 			  as it will effect whether the simulations agree with the analytic results')
 
 	#  initialize selection coeficients and storage structures
-	sm.vals     <-  runif(n)
-	sf.vals     <-  runif(n)
-	Poly     <-  0
-	eigPoly  <-  0
-	agree    <-  0
+	Poly     <-  c()
+	eigPoly  <-  c()
+	agree    <-  c()
 
 	#  initial genotypic frequencies (can change to c(0.01,0,0,0,0,0,0,0,0,0.99))
 	Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
 
 	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
 	for (i in 1:length(r.vals)) {
-		for (j in 1:length(sm.vals)) {
-			for (k in 1:length(sf.vals)) {
+		s.vals     <-  matrix(runif(2*n), ncol=2)
+			for (j in 1:nrow(s.vals)) {
 				
 				par.list  <-  list(
 								   gen  =  gen,
 								   C    =  C,
-								   sm   =  sm.vals[j],
-								   sf   =  sf.vals[k],
+								   sf   =  s.vals[j,1],
+								   sm   =  s.vals[j,2],
 								   hm   =  hm,
 								   hf   =  hf,
 								   rm   =  r.vals[i],
 								   rf   =  r.vals[i]
 								  )
-
 				res      <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, threshold = threshold)
-				Poly     <-  c(Poly, res$Poly)
-				eigPoly  <-  c(eigPoly, res$eigPoly)
-				agree    <-  c(agree, res$agree)
-			
-			}
+				Poly[(i-1)*nrow(s.vals) + j]     <-  res$Poly
+				eigPoly[(i-1)*nrow(s.vals) + j]  <-  res$eigPoly
+				agree[(i-1)*nrow(s.vals) + j]    <-  res$agree
 		} 
 	}
 
-	#  trim leading zero from storage vectors
-	Poly     <-  Poly[-1]
-	eigPoly  <-  eigPoly[-1]
-	agree    <-  agree[-1]
-
 	#  Compile results as data.frame
-	results.df  <-  data.frame("hf"      = rep(0.5, length(r.vals)*length(sm.vals)),
-							   "hm"      = rep(0.5, length(r.vals)*length(sm.vals)),
-							   "C"       = rep(0,   length(r.vals)*length(sm.vals)),
-							   "r"       = c(rep(r.vals[1],length(sm.vals)), 
-							   		  		 rep(r.vals[2],length(sm.vals)),
-							   		  		 rep(r.vals[3],length(sm.vals)),
-							   		  		 rep(r.vals[4],length(sm.vals))),
-							   "sm"      = sm.vals,
-							   "sf"      = sf.vals,
+	results.df  <-  data.frame("hf"      = rep(0.5, length(r.vals)*length(s.vals)),
+							   "hm"      = rep(0.5, length(r.vals)*length(s.vals)),
+							   "C"       = rep(0,   length(r.vals)*length(s.vals)),
+							   "r"       = c(rep(r.vals[1],length(s.vals)), 
+							   		  		 rep(r.vals[2],length(s.vals)),
+							   		  		 rep(r.vals[3],length(s.vals)),
+							   		  		 rep(r.vals[4],length(s.vals))),
+							   "sf"      = s.vals[,1],
+							   "sm"      = s.vals[,2],
 							   "Poly"    = Poly,
 							   "eigPoly" = eigPoly,
 							   "agree"   = agree
 							   )
 
 	#  Write results.df to .txt file
-	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
-	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+#	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
+#	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
 	return(results.df)
@@ -672,119 +662,6 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#' Proportion of parameter space resulting in protected polymorphism
-#' determined by evaluating eigenvalues.
-#'
-#' @titleProportion of parameter space resulting in protected polymorphism
-#' determined by evaluating eigenvalues.
-#' @param n number of randomly generated values for sf & sm. 
-#' Determines resolution with which parameter space is explored.
-#' @param C A vector of selfing rates to explore.
-#' @param hf Dominance through female expression (as in par.list).
-#' @param hm Dominance through male expression (as in par.list).
-#' @return Returns a data frame with ...
-#' @seealso `recursionFwdSim`
-#' @export
-#' @author Colin Olito.
-#' @examples
-#' recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
-
-propPrP  <-  function(n = 10000, C = 0, hf = 0.5, hm = 0.5) {
-
-	## Warnings
-	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
-		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
-
-	#  initialize selection coeficients and storage structures
-	r.vals      <-  seq(0, 0.5, by=0.01)
-	PrP     <-  c()
-	rPrP    <-  c()
-
-
-	##  Loop over values of r, sm, sf for fixed selfing rate (C)
-	##  calculating proportion of parameter space where PrP is 
-	##  predicted each time.
-
-	for (i in 1:length(r.vals)) {
-		sm.vals     <-  runif(n)
-		sf.vals     <-  runif(n)
-		eigPoly     <-  rep(0, times=length(sm.vals)*length(sf.vals))
-		rPoly       <-  rep(0, times=length(sm.vals)*length(sf.vals))
-
-		for (j in 1:length(sm.vals)) {
-			for (k in 1:length(sf.vals)) {
-				
-				par.list  <-  list(
-								   gen  =  NA,
-								   C    =  C,
-								   sm   =  sm.vals[j],
-								   sf   =  sf.vals[k],
-								   hm   =  hm,
-								   hf   =  hf,
-								   rm   =  r.vals[i],
-								   rf   =  r.vals[i]
-								  )
-
-				res      <-  eigenInvAnalysis(par.list = par.list)
-				eigPoly[(j-1)*length(sf.vals) + k]  <-  res$PrP
-				rPoly[(j-1)*length(sf.vals) + k]    <-  res$rPrP
-				rm(par.list)
-			}
-		}
-
-		#  trim leading zero from storage vectors
-		eigPoly  <-  eigPoly[-1]
-		rPoly    <-  rPoly[-1]
-		
-		#  Calculate proportion of parameter space resulting in PrP
-		PrP[i]   <-  sum(eigPoly)/length(eigPoly)
-		rPrP[i]  <-  sum(rPoly)/length(rPoly)
-
-#		rm(eigPoly)
-#		rm(rPoly)
-		print(r.vals[i])
-	}
-
-	#  Compile results as data.frame
-	results.df  <-  data.frame("hf"      = rep(hf, length(r.vals)),
-							   "hm"      = rep(hm, length(r.vals)),
-							   "C"       = rep(C,  length(r.vals)),
-							   "r"       = r.vals,
-							   "PrP"     = PrP,
-							   "rPrP"    = rPrP
-							   )
-
-	#  Write results.df to .txt file
-	filename  <-  paste("./data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
-	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
-
-	#  Return results.df in case user wants it
-	return(results.df)
-}
 
 
 
