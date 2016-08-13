@@ -469,9 +469,6 @@ recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
-	if(any(Fii.init < 0) | any(Fii.init > 1))
-		stop('The chosen initial genotypic frequencies are not valid')
-
 
 	##  Fitness Matrices
 	Wf.mat   <-  matrix(
