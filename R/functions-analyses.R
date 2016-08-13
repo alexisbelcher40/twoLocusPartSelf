@@ -463,7 +463,7 @@ eigenInvAnalysis  <-  function(par.list) {
 #' @author Colin Olito.
 #' @examples
 #' recursionFwdSim(par.list, Fii.init, threshold = 1e-6) 
-recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
+recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 
 	##  Warnings
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
@@ -492,6 +492,13 @@ recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 	##  Initilize data storage structures
 	Fii.gen  <-  matrix(0, ncol=10, nrow=par.list$gen)
+
+	##  Initial frequencies
+	if(par.list$sf > par.list$sm)
+		Fii.init    <-  c(0.01,0,0,0,0,0,0,0,0,0.99)
+	if(par.list$sf < par.list$sm)
+		Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
+
 
 	##  Generation Loop
 		# initialize
@@ -528,9 +535,9 @@ recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 	}
 
 	##  Is equilibrium polymorphic?
-	if (any(Fii.gen[i-1,2:9] > 1e-5))
-		 Poly  <- 1
-	else Poly  <- 0
+	if (any(Fii.gen[i-1,c(1,10)] > 0.999995) & all(Fii.gen[i-1,2:9] < 1e-5))
+		 Poly  <-  0
+	else Poly  <-  1
 
 	##  Calculate Eigenvalues from analytic solutions 
 	##  using quasi-equibirium genotypic frequencies
@@ -607,16 +614,14 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 			  as it will effect whether the simulations agree with the analytic results')
 
 	#  initialize selection coeficients and storage structures
+	s.vals     <-  matrix(runif(2*n), ncol=2)
 	Poly     <-  c()
 	eigPoly  <-  c()
 	agree    <-  c()
 
-	#  initial genotypic frequencies (can change to c(0.01,0,0,0,0,0,0,0,0,0.99))
-	Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
 
 	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
 	for (i in 1:length(r.vals)) {
-		s.vals     <-  matrix(runif(2*n), ncol=2)
 			for (j in 1:nrow(s.vals)) {
 				
 				par.list  <-  list(
@@ -629,11 +634,11 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 								   rm   =  r.vals[i],
 								   rf   =  r.vals[i]
 								  )
-				res      <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, threshold = threshold)
+				res      <-  recursionFwdSim(par.list = par.list, threshold = threshold)
 				Poly[(i-1)*nrow(s.vals) + j]     <-  res$Poly
 				eigPoly[(i-1)*nrow(s.vals) + j]  <-  res$eigPoly
 				agree[(i-1)*nrow(s.vals) + j]    <-  res$agree
-		} 
+		}
 	}
 
 	#  Compile results as data.frame
@@ -652,8 +657,8 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 							   )
 
 	#  Write results.df to .txt file
-#	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
-#	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
+	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
 	return(results.df)
