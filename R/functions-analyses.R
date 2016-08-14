@@ -723,14 +723,20 @@ fastInv  <-  function(x, par.list, ...) {
 #' @examples
 #' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
 
-propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1)) {
+propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), weakSel = FALSE) {
 
 	## Warnings
 	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
 		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
 
+	if(weakSel == TRUE & max(sRange) > 0.1)
+		stop('There appears to be a disagreement between the chosen range of selection coefficients and the weak selection option. I recommend using sRange = c(0,0.1)')
+
 	#  initialize selection coeficients and storage structures
-	r.vals      <-  seq(0, 0.5, by=0.01)
+	if(weakSel == TRUE)
+		r.vals      <-  c(0,0.5)
+	else 
+		r.vals      <-  seq(0, 0.5, by=0.01)
 	PrP     <-  c()
 	rPrP    <-  c()
 
@@ -739,7 +745,7 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1)) 
 	##  calculating proportion of parameter space where PrP is 
 	##  predicted each time.
 
-	s.vals    <-  matrix(runif(2*n), min=sRange[1], max=sRange[2], ncol=2)
+	s.vals    <-  matrix(runif(2*n, min=sRange[1], max=sRange[2]), ncol=2)
 	for (i in 1:length(r.vals)) {
 		poly  <-  rep(0, times=nrow(s.vals))
 		par.list  <-  list(
@@ -772,9 +778,20 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1)) 
 							   )
 
 	#  Write results.df to .txt file
-	filename  <-  paste("./data/propPrp.out", "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+	if(weakSel == TRUE)
+		sel  <-  "_weak"
+	else 
+		sel  <-  ""
+	filename  <-  paste("./data/propPrp.out", sel, "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
 	return(results.df)
 }
+
+
+
+
+
+
+
