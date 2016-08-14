@@ -600,7 +600,7 @@ recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 #' @examples
 #' recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
-recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7) {
+recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, sRange = c(0,1), C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7) {
 
 	## Warnings
 	if(any(c(C,hf,hm,r.vals) < 0) | any(c(C,hf,hm) > 1) | any(r.vals > 0.5))
@@ -611,7 +611,7 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 			  as it will effect whether the simulations agree with the analytic results')
 
 	#  initialize selection coeficients and storage structures
-	s.vals     <-  matrix(runif(2*n), ncol=2)
+	s.vals   <-  matrix(runif(2*n, min=sRange[1], max=sRange[2]), ncol=2)
 	Poly     <-  c()
 	eigPoly  <-  c()
 	agree    <-  c()
@@ -654,7 +654,7 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0
 							   )
 
 	#  Write results.df to .txt file
-	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, ".txt", sep="")
+	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, "_sMax",sRange[2], ".txt", sep="")
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
@@ -723,7 +723,7 @@ fastInv  <-  function(x, par.list, ...) {
 #' @examples
 #' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
 
-propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5) {
+propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1)) {
 
 	## Warnings
 	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
@@ -739,7 +739,7 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5) {
 	##  calculating proportion of parameter space where PrP is 
 	##  predicted each time.
 
-		s.vals    <-  matrix(runif(2*n), ncol=2)
+	s.vals    <-  matrix(runif(2*n), min=sRange[1], max=sRange[2], ncol=2)
 	for (i in 1:length(r.vals)) {
 		poly  <-  rep(0, times=nrow(s.vals))
 		par.list  <-  list(
