@@ -655,7 +655,7 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, sRange = c(0,1), C = 0,
 
 	#  Write results.df to .txt file
 	filename  <-  paste("./data/simResults/recFwdSimLoop.out", "_C", C, "_hf", hf, "_hm", hm, "_sMax",sRange[2], ".txt", sep="")
-	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+#	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
 	return(results.df)
