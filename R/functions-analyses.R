@@ -499,16 +499,16 @@ recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 
 	##  Generation Loop
 		# initialize
-		Fii.gen[1,1]   <-  F11.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,2]   <-  F12.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,3]   <-  F13.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,4]   <-  F14.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,5]   <-  F22.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,6]   <-  F23.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,7]   <-  F24.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,8]   <-  F33.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,9]   <-  F34.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[1,10]  <-  F44.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+		Fii.gen[1,1]   <-  round(F11.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,2]   <-  round(F12.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,3]   <-  round(F13.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,4]   <-  round(F14.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,5]   <-  round(F22.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,6]   <-  round(F23.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,7]   <-  round(F24.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,8]   <-  round(F33.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,9]   <-  round(F34.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[1,10]  <-  round(F44.pr(Fii = Fii.init, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
 
 
 	# Start simulation
@@ -516,23 +516,23 @@ recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 	diffs  <-  rep(1,10)
 
 	while (i < par.list$gen & any(diffs[diffs != 0] > threshold)) {
-		Fii.gen[i,1]   <-  F11.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,2]   <-  F12.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,3]   <-  F13.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,4]   <-  F14.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,5]   <-  F22.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,6]   <-  F23.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,7]   <-  F24.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,8]   <-  F33.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,9]   <-  F34.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-		Fii.gen[i,10]  <-  F44.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)	
+		Fii.gen[i,1]   <-  round(F11.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,2]   <-  round(F12.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,3]   <-  round(F13.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,4]   <-  round(F14.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,5]   <-  round(F22.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,6]   <-  round(F23.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,7]   <-  round(F24.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,8]   <-  round(F33.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,9]   <-  round(F34.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
+		Fii.gen[i,10]  <-  round(F44.pr(Fii = Fii.gen[i-1,], Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list), digits=6)
 		
 		diffs  <-  Fii.gen[i,] - Fii.gen[i-1,]
 		i      <-  i+1
 	}
 
 	##  Is equilibrium polymorphic?
-	if (any(Fii.gen[i-1,c(1,10)] > 0.999995) & all(Fii.gen[i-1,2:9] < 1e-5))
+	if (any(Fii.gen[i-1,c(1,10)] > 0.999)) # & all(Fii.gen[i-1,2:9] < 1e-4))
 		 Poly  <-  0
 	else Poly  <-  1
 
