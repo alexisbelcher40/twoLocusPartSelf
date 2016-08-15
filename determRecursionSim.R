@@ -34,19 +34,19 @@ source('R/functions-analyses.R')
 
 ##############
 # 1: C = 0
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 10000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 ##############
 # 2: C = 0.25
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.25, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 10000, C = 0.25, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 ##############
 # 3: C = 0.5
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.5, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 10000, C = 0.5, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 ##############
 # 4: C = 0.75
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.75, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 10000, C = 0.75, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 
 
@@ -57,16 +57,16 @@ recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.75, hf = 0.5, 
 
 ##############
 # 5: C = 0
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 5000, C = 0, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 ##############
 # 6: C = 0.25
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.25, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 5000, C = 0.25, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 ##############
 # 7: C = 0.5
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.5, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 5000, C = 0.5, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
 
 ##############
 # 8: C = 0.75
-recursionFwdSimLoop(n = 10000, sRange = c(0,1), gen = 5000, C = 0.75, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-8)
+recursionFwdSimLoop(n = 5000, sRange = c(0,1), gen = 5000, C = 0.75, hf = 0.25, hm = 0.25, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
