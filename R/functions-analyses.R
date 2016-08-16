@@ -277,8 +277,9 @@ inv.lab2.obOut  <-  function(hf, hm, sm, rf, rm) {
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele (w/ selfing)
 inv.lAB1  <-  function(hf, hm, sm, C) {
-	((-1 + C)*(-C - 2*hm + 2*C*hm)*sm)/(2 + C - (C^2) - 2*hf + 2*(C^2)*hf + C*sm - (C^2)*sm + 2*hm*sm - 4*C*hm*sm + 2*(C^2)*hm*sm)
+	((-1 + C)*(-C + 2*(-1 + C)*hm)*sm)/((1 + C)*(2 - C + 2*(-1 + C)*hf) + (-1 + C)*(-C + 2*(-1 + C)*hm)*sm)
 }
+
 
 ##  Invasion based on lambda.ab1 for female beneficial 
 ##  allele (w/ selfing)
@@ -316,25 +317,82 @@ inv.lAB2  <-  function(hf, hm, sm, rf, rm, C) {
       4*rm*(hf^2 - (-1 + hm*sm)^2)))
 }
 
-
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele (w/ selfing)
+#inv.lab2  <-  function(hf, hm, sm, rf, rm, C) {
+#	(C + (C^2) + 2*hf - 2*(C^2)*hf - 2*hf*rf + 2*(C^2)*hf*rf - 4*C*hf*rm + 
+#	 4*(C^2)*hf*rm - 2*C*sm - 2*(C^2)*sm - 4*hf*sm + 4*(C^2)*hf*sm + 
+#	 4*hf*rf*sm - 4*(C^2)*hf*rf*sm + 8*C*hf*rm*sm - 8*(C^2)*hf*rm*sm + 
+#	 C*(sm^2) + (C^2)*(sm^2) + 2*hf*(sm^2) - 2*(C^2)*hf*(sm^2) - 2*hf*rf*(sm^2) + 
+#	 2*(C^2)*hf*rf*(sm^2) - 4*C*hf*rm*(sm^2) + 4*(C^2)*hf*rm*(sm^2) - 
+#	 ((1/2)* sqrt(4*((C - 2*hf*(-1 + rf) - 4*C*hf*rm + 
+#	   (C^2)*(1 + 2*hf*(-1 + rf + 2*rm)))^2)*((-1 + sm)^4) - 
+#	  4*(-1 + C)*(C - 2*(hf^2)*(-1 + rf) - 4*C*(hf^2)*rm + 
+#	  (C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm)))*((-1 + sm)^2)*(2*(1 + C)*rf*((-1 + sm)^2) + 
+#	  sm*(-2*(-1 + hm)*(-2 + sm + hm*sm) + C*(2 - 4*hm - sm + 2*(hm^2)*sm)) + 
+#	  2*rm*(((-1 + hm*sm)^2) + C*(1 + 2*(-2 + hm)*sm - (-2 + (hm^2))*(sm^2))))))) / 
+#		((C - 2*(hf^2)*(-1 + rf) - 4*C*(hf^2)*rm + (C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm)))*((-1 + sm)^2))
+#}
+
+
 inv.lab2  <-  function(hf, hm, sm, rf, rm, C) {
-	(C + (C^2) + 2*hf - 2*(C^2)*hf - 2*hf*rf + 2*(C^2)*hf*rf - 4*C*hf*rm + 
-	 4*(C^2)*hf*rm - 2*C*sm - 2*(C^2)*sm - 4*hf*sm + 4*(C^2)*hf*sm + 
-	 4*hf*rf*sm - 4*(C^2)*hf*rf*sm + 8*C*hf*rm*sm - 8*(C^2)*hf*rm*sm + 
-	 C*(sm^2) + (C^2)*(sm^2) + 2*hf*(sm^2) - 2*(C^2)*hf*(sm^2) - 2*hf*rf*(sm^2) + 
-	 2*(C^2)*hf*rf*(sm^2) - 4*C*hf*rm*(sm^2) + 4*(C^2)*hf*rm*(sm^2) - 
-	 ((1/2)* sqrt(4*((C - 2*hf*(-1 + rf) - 4*C*hf*rm + 
-	   (C^2)*(1 + 2*hf*(-1 + rf + 2*rm)))^2)*((-1 + sm)^4) - 
-	  4*(-1 + C)*(C - 2*(hf^2)*(-1 + rf) - 4*C*(hf^2)*rm + 
-	  (C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm)))*((-1 + sm)^2)*(2*(1 + C)*rf*((-1 + sm)^2) + 
-	  sm*(-2*(-1 + hm)*(-2 + sm + hm*sm) + C*(2 - 4*hm - sm + 2*(hm^2)*sm)) + 
-	  2*rm*(((-1 + hm*sm)^2) + C*(1 + 2*(-2 + hm)*sm - (-2 + (hm^2))*(sm^2))))))) / 
-		((C - 2*(hf^2)*(-1 + rf) - 4*C*(hf^2)*rm + (C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm)))*((-1 + sm)^2))
+(C + C^2 + 2*hf - 2*C^2*hf - 2*hf*rf + 2*C^2*hf*rf - 4*C*hf*rm + 
+  4*C^2*hf*rm - 
+  2*sqrt(1/((-2 + C)^2*(-1 + 
+         sm)^2)*(-4*hf^2*(-1 + rf)*(1 + 
+           2*(-2 + hm)*sm - (-2 + hm^2)*sm^2 + rm*(-1 + hm*sm)^2) + 
+        C^4*(1 - 2*rf - 2*rm + 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
+           4*sm + 4*hm*sm + 4*rf*sm + 8*rm*sm - 4*hm*rm*sm + 2*sm^2 - 
+           2*hm^2*sm^2 - 2*rf*sm^2 - 4*rm*sm^2 + 2*hm^2*rm*sm^2 + 
+           2*hf^2*(-1 + rf + 
+              2*rm)*(-2 + (2 + 4*hm)*sm - (1 + 2*hm^2)*sm^2 + 
+              2*rm*(-1 + hm*sm)^2)) + 
+        C^2*(1 + 2*rf + 2*rm - 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
+           4*hm*sm - 4*rf*sm - 8*rm*sm + 4*hm*rm*sm + 2*hm^2*sm^2 + 
+           2*rf*sm^2 + 4*rm*sm^2 - 2*hm^2*rm*sm^2 + 
+           2*hf^2*(-4 + 10*sm - 5*sm^2 + 12*rm^2*(-1 + hm*sm)^2 + 
+              rf*(4 - 10*sm + 5*sm^2) + 
+              rm*(4 + 4*(-7 + 6*hm)*sm - 2*(-7 + 6*hm^2)*sm^2))) + 
+        2*C*(rm - 2*hf*(-1 + rf)*(-1 + sm)^2 + rf*(-1 + sm)^2 - 
+           2*sm + 2*hm*sm - 2*hm*rm*sm + sm^2 - hm^2*sm^2 + 
+           hm^2*rm*sm^2 + 
+           hf^2*(-4*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
+                 3*sm + 4*hm^2*sm) + 
+              4*rm*(-2*(-1 + sm)^2 + rf*(-1 + hm*sm)^2))) - 
+        2*C^3*(-2*hf*(-1 + rf)*(-1 + sm)^2 + 
+           rf*(-1 + sm)^2 + (-1 + rm)*(-1 + hm*sm)^2 + 
+           hf^2*(12*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
+                 3*sm + 4*hm^2*sm) + 
+              4*rm*(-2 - 2*sm + 8*hm*sm + sm^2 - 4*hm^2*sm^2 + 
+                 rf*(-1 + hm*sm)^2))))) + 
+  C*sqrt(1/((-2 + C)^2*(-1 + 
+         sm)^2)*(-4*hf^2*(-1 + rf)*(1 + 
+           2*(-2 + hm)*sm - (-2 + hm^2)*sm^2 + rm*(-1 + hm*sm)^2) + 
+        C^4*(1 - 2*rf - 2*rm + 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
+           4*sm + 4*hm*sm + 4*rf*sm + 8*rm*sm - 4*hm*rm*sm + 2*sm^2 - 
+           2*hm^2*sm^2 - 2*rf*sm^2 - 4*rm*sm^2 + 2*hm^2*rm*sm^2 + 
+           2*hf^2*(-1 + rf + 
+              2*rm)*(-2 + (2 + 4*hm)*sm - (1 + 2*hm^2)*sm^2 + 
+              2*rm*(-1 + hm*sm)^2)) + 
+        C^2*(1 + 2*rf + 2*rm - 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
+           4*hm*sm - 4*rf*sm - 8*rm*sm + 4*hm*rm*sm + 2*hm^2*sm^2 + 
+           2*rf*sm^2 + 4*rm*sm^2 - 2*hm^2*rm*sm^2 + 
+           2*hf^2*(-4 + 10*sm - 5*sm^2 + 12*rm^2*(-1 + hm*sm)^2 + 
+              rf*(4 - 10*sm + 5*sm^2) + 
+              rm*(4 + 4*(-7 + 6*hm)*sm - 2*(-7 + 6*hm^2)*sm^2))) + 
+        2*C*(rm - 2*hf*(-1 + rf)*(-1 + sm)^2 + rf*(-1 + sm)^2 - 
+           2*sm + 2*hm*sm - 2*hm*rm*sm + sm^2 - hm^2*sm^2 + 
+           hm^2*rm*sm^2 + 
+           hf^2*(-4*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
+                 3*sm + 4*hm^2*sm) + 
+              4*rm*(-2*(-1 + sm)^2 + rf*(-1 + hm*sm)^2))) - 
+        2*C^3*(-2*hf*(-1 + rf)*(-1 + sm)^2 + 
+           rf*(-1 + sm)^2 + (-1 + rm)*(-1 + hm*sm)^2 + 
+           hf^2*(12*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
+                 3*sm + 4*hm^2*sm) + 
+              4*rm*(-2 - 2*sm + 8*hm*sm + sm^2 - 4*hm^2*sm^2 + 
+                 rf*(-1 + hm*sm)^2))))))
 }
-
-
 
 ######################################################
 ##  Analytic solutions (results based on Eigenvalues) 
