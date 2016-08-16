@@ -1169,12 +1169,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0] ~
                C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0] ~
                C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[5])
+        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0] ~
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1215,12 +1215,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0] ~
                C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0] ~
                C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0] ~
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1260,12 +1260,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0] ~
                C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0] ~
                C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0] ~
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1304,12 +1304,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0] ~
                C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0] ~
                C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0] ~
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1348,12 +1348,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
                C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
                C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[5])
+        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1395,12 +1395,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
                C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
                C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1441,12 +1441,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
                C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
                C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1486,12 +1486,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
                C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
                C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1534,12 +1534,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
                C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
                C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[5])
+        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1581,12 +1581,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
                C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
                C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1627,12 +1627,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
                C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
                C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1672,12 +1672,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
                C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
                C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1720,12 +1720,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
                C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
                C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[5])
+        points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1768,12 +1768,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
                C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
                C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1815,12 +1815,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
                C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
                C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1861,12 +1861,12 @@ Fig.S1_add  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
                C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
                C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
+        points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)

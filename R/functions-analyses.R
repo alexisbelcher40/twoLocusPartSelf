@@ -90,8 +90,8 @@ y4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 
 
 F11.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
-	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
-	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list)
+	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
+	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	(1 - par.list$C)*x1*y1 + par.list$C*(Fii[1] + Fii[2]/4 + Fii[3]/4 + Fii[4]*((1 - par.list$rf)^2)/4 + Fii[6]*(par.list$rf^2)/4)
 }
 
