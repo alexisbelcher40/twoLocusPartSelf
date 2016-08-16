@@ -92,7 +92,7 @@ y4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 F11.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x1*y1 + par.list$C*(Fii[1] + Fii[2]/4 + Fii[3]/4 + Fii[4]*((1 - par.list$rf)^2)/4 + Fii[6]*(par.list$rf^2)/4)
+	(1 - par.list$C)*x1*y1 + par.list$C*((Fii[1]*Wf.mat[1,1] + Fii[2]*Wf.mat[1,2]/4 + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*((1 - par.list$rf)^2)/4 + Fii[6]*Wf.mat[2,3]*(par.list$rf^2)/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -100,7 +100,7 @@ F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y2 + x2*y1) + par.list$C*(Fii[2]/2 + Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2)
+	(1 - par.list$C)*(x1*y2 + x2*y1) + par.list$C*((Fii[2]*Wf.mat[1,2]/2 + Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -108,7 +108,7 @@ F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*(Fii[3]/2 + Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2)
+	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*((Fii[3]*Wf.mat[1,3]/2 + Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -116,13 +116,13 @@ F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y4 + x4*y1) + par.list$C*(Fii[4]*((1 - par.list$rf)^2)/2 + Fii[6]*(par.list$rf^2)/2)
+	(1 - par.list$C)*(x1*y4 + x4*y1) + par.list$C*((Fii[4]*Wf.mat[1,4]*((1 - par.list$rf)^2)/2 + Fii[6]*Wf.mat[2,3]*(par.list$rf^2)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F22.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x2*y2 + par.list$C*(Fii[5] + Fii[2]/4 + Fii[4]*(par.list$rf^2)/4 + Fii[6]*((1 - par.list$rf)^2)/4 + Fii[7]/4)
+	(1 - par.list$C)*x2*y2 + par.list$C*((Fii[5]*Wf.mat[2,2] + Fii[2]*Wf.mat[1,2]/4 + Fii[4]*Wf.mat[1,4]*(par.list$rf^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$rf)^2)/4 + Fii[7]*Wf.mat[2,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -130,7 +130,7 @@ F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x2*y3 + x3*y2) + par.list$C*(Fii[4]*(par.list$rf^2)/2 + Fii[6]*((1 - par.list$rf)^2)/2)
+	(1 - par.list$C)*(x2*y3 + x3*y2) + par.list$C*((Fii[4]*Wf.mat[1,4]*(par.list$rf^2)/2 + Fii[6]*Wf.mat[2,3]*((1 - par.list$rf)^2)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -138,13 +138,13 @@ F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x2*y4 + x4*y2) + par.list$C*(Fii[7]/2 + Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2)
+	(1 - par.list$C)*(x2*y4 + x4*y2) + par.list$C*((Fii[7]*Wf.mat[2,4]/2 + Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F33.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x3*y3 + par.list$C*(Fii[8] + Fii[3]/4 + Fii[4]*(par.list$rf^2)/4 + Fii[6]*((1 - par.list$rf)^2)/4 + Fii[9]/4)
+	(1 - par.list$C)*x3*y3 + par.list$C*((Fii[8]*Wf.mat[3,3] + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*(par.list$rf^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$rf)^2)/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -152,13 +152,13 @@ F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x3*y4 + x4*y3) + par.list$C*(Fii[4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*par.list$rf*(1 - par.list$rf)/2 + Fii[9]/2)
+	(1 - par.list$C)*(x3*y4 + x4*y3) + par.list$C*((Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2 + Fii[9]*Wf.mat[3,4]/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x4*y4 + par.list$C*(Fii[10] + Fii[4]*((1 - par.list$rf)^2)/4 + Fii[6]*(par.list$rf^2)/4 + Fii[7]/4 + Fii[9]/4)
+	(1 - par.list$C)*x4*y4 + par.list$C*((Fii[10]*Wf.mat[4,4] + Fii[4]*Wf.mat[1,4]*((1 - par.list$rf)^2)/4 + Fii[6]*Wf.mat[2,3]*(par.list$rf^2)/4 + Fii[7]*Wf.mat[2,4]/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 
