@@ -166,68 +166,107 @@ F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par
 ###########################################
 ##  Eigenvalues from Mathematica solutions
 ##  using quasi-equibirium expressions for
-##  genotypic frequencies
+##  genotypic frequencies.
 
-lambda.AB1  <-  function(par.list) {
+##  Additive fitness effects
+
+lambda.AB1.add  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	hm  <-  par.list$hm
-	hf  <-  par.list$hf
-	rm  <-  par.list$rm
-	rf  <-  par.list$rf
 
-	(4 - 2*C - 2*sf + 3*C*sf - C^2*sf - 2*hf*sf + 2*C^2*hf*sf + (-1 + C)*(-C + 2*(-1 + C)*hm)*(-1 + sf)*sm)/(2*(-2 + C)*(-1 + sf))
+	(4 + sf*(-3 + sm) - sm + C*(-2 - sf*(-3 + sm) + sm))/(2*(-2 + C)*(-1 + sf))
 }
 
-lambda.AB2  <-  function(par.list) {
+lambda.AB2.add  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	hm  <-  par.list$hm
-	hf  <-  par.list$hf
 	rm  <-  par.list$rm
 	rf  <-  par.list$rf
 
-	(1/(2*(C - 2)*(sf - 1)^2))*
-	(2*C - 2*(C^2)*rm - 6*C*sf + 2*(C^2)*sf - 4* (C^2)*hf*sf + 8*C*rm*sf - 4*(C^2)*rm*sf - 8*C*hf*rm*sf + 
-	 8*(C^2)*hf*rm*sf + 3*C*(sf^2) - (C^2)*(sf^2) + 2*(C^2)*(hf^2)*(sf^2) - 
-	 4*C*rm*(sf^2) + 2*(C^2)*rm*(sf^2) + 4*C*(hf^2)*rm*(sf^2) - 
-	 4*(C^2)*(hf^2)*rm*(sf^2) + 2*(rf + rm + 2*sf - 2) - 2*(C^2)*rf*((hf*sf - 1)^2) + 
-	 2*sf*((-2)*(hf*(rf - 1) + rm) + ((hf^2)*(rf - 1) + rm - 1)*sf) - 
-	 2*(C - 1)*(C + 2*hm - 2*C*hm + 2*(C - 1)*hm*rm)*((sf - 1)^2)*sm + 
-	 (C - 1)*(C*(1 + 2*(hm^2)*(rm - 1)) - 2*(hm^2)*(rm - 1))*((sf - 1)^2)*(sm^2))
+	(1/(4*(-2 + C)*(-1 + sf)^2)) * (-8 + 4*C + 4*rf - 4*C^2*rf + 4*rm - 
+	  4*C^2*rm + 12*sf - 12*C*sf - 4*rf*sf + 4*C^2*rf*sf - 8*rm*sf + 
+	  8*C*rm*sf - 5*sf^2 + 6*C*sf^2 - C^2*sf^2 + rf*sf^2 - C^2*rf*sf^2 + 
+	  4*rm*sf^2 - 6*C*rm*sf^2 + 2*C^2*rm*sf^2 - 
+	  4*(-1 + C)*(1 + (-1 + C)*rm)*(-1 + sf)^2*sm + (-1 + C)*(1 + 
+	     C + (-1 + C)*rm)*(-1 + sf)^2*sm^2)
 }
 
-lambda.ab1  <-  function(par.list) {
+lambda.ab1.add  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	hm  <-  par.list$hm
-	hf  <-  par.list$hf
-	rm  <-  par.list$rm
-	rf  <-  par.list$rf
 
-	(2*hf*sf*(sm - 1) - 2*(sm + hm*sm - 2) + C*(sf*(sm - 1) - sm + 4*hm*sm - 2) + (C^2)*(sm - 2*hm*sm + sf*(2*hf + sm - 2*hf*sm - 1)))/(2*(C - 2)*(sm - 1))
+	(4 + sf*(-1 + sm) - 3*sm + C*(-2 + sf*(-1 + sm) + sm))/(2*(-2 + C)*(-1 + sm))
 }
 
-lambda.ab2  <-  function(par.list) {
+lambda.ab2.add  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	hm  <-  par.list$hm
-	hf  <-  par.list$hf
 	rm  <-  par.list$rm
 	rf  <-  par.list$rf
 
-	(1/(2*(C - 2)*(sm - 1)^2))*
-		(C*(2 - 2*(4*hf*rm - 1)*sf*((sm - 1)^2) + (4*(hf^2)*rm - 1)*(sf^2)*((sm - 1)^2) + (2 + 8*hm*(rm - 1) - 8*rm)*sm + (-1 - 4*(hm^2)*(rm - 1) + 4*rm - 1)*(sm^2)) + 
-		2*(-2 + 2*hf*sf - (hf^2)*(sf^2) + rf*((hf*sf - 1)^2)*((sm - 1)^2) + 2*sm + 2*hm*sm - 4*hf*sf*sm + 2*(hf^2)*(sf^2)*sm - (sm^2) - (hm^2)*(sm^2) + 2*hf*sf*(sm^2) - (hf^2)*(sf^2)*(sm^2) + rm*((hm*sm - 1)^2)) -
-	    (C^2)*(-2*sf + 4*hf*sf + (sf^2) - 2*(hf^2)*(sf^2) + 2*rf*((-1 + hf*sf)^2)*((-1 + sm)^2) + 2*sm - 4*hm*sm + 4*sf*sm - 8*hf*sf*sm - 2*(sf^2)*sm + 4*(hf^2)*(sf^2)*sm - (sm^2) + 2*(hm^2)*(sm^2) - 
-	    2*sf*(sm^2) + 4*hf*sf*(sm^2) + (sf^2)*(sm^2) - 2*(hf^2)*(sf^2)*(sm^2) + 2*rm*(1 - 4*hf*sf*((-1 + sm)^2) + 2*(hf^2)*(sf^2)*((-1 + sm)^2) + 2*(-2 + hm)*sm - (-2 + (hm^2))*(sm^2))))
-
+	(-5 + C^2 + 4*rf - 4*C^2*rf + rm + 6*C*rm - 7*C^2*rm + 4*sf + 
+	 4*C*sf - 4*rf*sf + 4*C^2*rf*sf - 8*C*rm*sf + 8*C^2*rm*sf - sf^2 - 
+	 2*C*sf^2 - C^2*sf^2 + rf*sf^2 - C^2*rf*sf^2 + 2*C*rm*sf^2 - 
+	 2*C^2*rm*sf^2 + ((-1 + C)*(1 + C + (-1 + C)*rm))/(-1 + sm)^2 - (
+	 2*(-1 + C)^2*(-1 + rm))/(-1 + sm))/(4*(-2 + C))
 }
 
+
+
+
+
+##  Dominance Reversal fitness effects
+
+lambda.AB1.domRev  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+
+	(8 + C*(-4 + 6*sf) + sf*(-5 + sm) - sm - C^2*(sf + (-1 + sf)*sm))/(4*(-2 + C)*(-1 + sf))
+}
+
+lambda.AB2.domRev  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+	rm  <-  par.list$rm
+	rf  <-  par.list$rf
+
+	(1/(16*(-2 + C)*(-1 + sf)^2)) * (-32 + 16*rm + rf*(-4 + sf)^2 + 40*sf - 
+	  32*rm*sf - 17*sf^2 + 16*rm*sf^2 - 
+	  8*(-1 + rm)*(-1 + sf)^2*sm + (-1 + rm)*(-1 + sf)^2*sm^2 + 
+	  2*C*(8 - 3*sf*(8 - 4*sf + rm*(-8 + 5*sf)) + 
+	     8*rm*(-1 + sf)^2*sm - (3 + rm)*(-1 + sf)^2*sm^2) + 
+	  C^2*(-16*rm - rf*(-4 + sf)^2 + 8*sf - 16*rm*sf - 7*sf^2 + 
+	     14*rm*sf^2 - 8*(1 + rm)*(-1 + sf)^2*sm + (7 + rm)*(-1 + sf)^2*sm^2))
+}
+
+lambda.ab1.domRev  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+
+	-((-8 + sf + C*(4 + (2 + C)*sf) + 5*sm - (C^2 + (1 + C)^2*sf)*sm)/(4*(-2 + C)*(-1 + sm)))
+}
+
+lambda.ab2.domRev  <-  function(par.list) {
+	C   <-  par.list$C
+	sm  <-  par.list$sm
+	sf  <-  par.list$sf
+	rm  <-  par.list$rm
+	rf  <-  par.list$rf
+
+	(-17 + rm + rf*(-4 + sf)^2 + 8*sf - sf^2 + 
+	 C^2*(7 - 31*rm - rf*(-4 + sf)^2 + 8*sf + 16*rm*sf - 7*sf^2 - 
+	    2*rm*sf^2 + (-1 + 9*rm)/(-1 + sm)^2 - (6*(-1 + rm))/(-1 + sm)) + (
+	 9*(-1 + rm)) / (-1 + sm)^2 - (6*(-1 + rm)) / (-1 + sm) + (
+	 2*C*(8 - 8*(-1 + rm)*sf*(-1 + sm)^2 + (-4 + rm)*sf^2*(-1 + sm)^2 + 
+	    3*sm*(-8*rm - sm + 5*rm*sm))) / (-1 + sm)^2) / (16*(-2 + C))
+}
 
 
 ##############################################################
@@ -244,155 +283,204 @@ invKidwell.lab  <-  function(sm) {
 	sm/(1 - sm)
 }
 
+#############################
+##  Additive fitness effects
+
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele under obligate outcrossing
-inv.lAB1.obOut  <-  function(hf, hm, sm) {
-	(hm*sm)/(1 - hf + hm*sm)
+inv.lAB1.add.obOut  <-  function(hf, hm, sm) {
+	sm/(1 + sm)
 }
 
 ##  Invasion based on lambda.ab1 for female beneficial 
 ##  allele under obligate outcrossing
-inv.lab1.obOut  <-  function(hf, hm, sm) {
-	((-1 + hm)*sm)/(hf*(-1 + sm))
+inv.lab1.add.obOut  <-  function(hf, hm, sm) {
+	sm/(1 - sm)
 }
+
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele under obligate outcrossing
-inv.lAB2.obOut  <-  function(hf, hm, sm, rf, rm) {
-	(1 + hf*(-1 + rf) + hm*sm*(2 - hm*sm) + rm*((-1 + hm*sm)^2) - 
-		sqrt(-((-1 + hf)^2)*(-1 + rf)*(1 + hm*sm*(2 - hm*sm) + rm*(-1 + hm*sm)^2)))/
-			(1 + (hf^2)*(-1 + rf) + hm*sm*(2 - hm*sm) + rm*((-1 + hm*sm)^2))	
+inv.lAB2.add.obOut  <-  function(hf, hm, sm, rf, rm) {
+	(2 + 2*rf + rm*(-2 + sm)^2 - (-4 + sm)*sm - sqrt(-(-1 + rf)*(4 + 
+	    rm*(-2 + sm)^2 - (-4 + sm)*sm)))/(3 + rf + rm*(-2 + sm)^2 - (-4 + sm)*sm)
 }
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele under obligate outcrossing
-inv.lab2.obOut  <-  function(hf, hm, sm, rf, rm) {
-	(hf*(-1 + rf)*((-1 + sm)^2) + 
-			sqrt(-(hf^2)*(-1 + rf)*((-1 + sm)^2)*(1 + rm + 2*(-2 + hm - hm*rm)*sm + (2 + (hm^2)*(-1 + rm))*sm^2))) / 
-		((hf^2)*(-1 + rf)*((-1 + sm)^2))
+inv.lab2.add.obOut  <-  function(hf, hm, sm, rf, rm) {
+	(-2 + 2*rf + sqrt(-(((-1 + rf)*(4 + rm*(-2 + sm)^2 + 
+	     sm*(-12 + 7*sm))) / (-1 + sm)^2))) / (-1 + rf)
 }
 
 
 
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele (w/ selfing)
-inv.lAB1  <-  function(hf, hm, sm, C) {
-	((-1 + C)*(-C + 2*(-1 + C)*hm)*sm)/((1 + C)*(2 - C + 2*(-1 + C)*hf) + (-1 + C)*(-C + 2*(-1 + C)*hm)*sm)
+inv.lAB1.add  <-  function(hf, hm, sm, C) {
+	(sm - C*sm)/(1 + C + sm - C*sm)
 }
 
 
 ##  Invasion based on lambda.ab1 for female beneficial 
 ##  allele (w/ selfing)
-inv.lab1  <-  function(hf, hm, sm, C) {
-	-(((-1 + C)*(2 - C + 2*(-1 + C)*hm)*sm)/((1 + C)*(-C + 2*(-1 + C)*hf)*(-1 + sm)))
+inv.lab1.add  <-  function(hf, hm, sm, C) {
+	((-1 + C)*sm) / ((1 + C)*(-1 + sm))
 }
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele (w/ selfing)
-inv.lAB2  <-  function(hf, hm, sm, rf, rm, C) {
-(-2 - C + C^2 + 2*hf - 2*C^2*hf - 2*hf*rf + 2*C^2*hf*rf - 2*rm + 
-   4*C*rm - 2*C^2*rm - 4*C*hf*rm + 4*C^2*hf*rm - 2*C*sm + 2*C^2*sm - 
-   4*hm*sm + 8*C*hm*sm - 4*C^2*hm*sm + 4*hm*rm*sm - 8*C*hm*rm*sm + 
-   4*C^2*hm*rm*sm + C*sm^2 - C^2*sm^2 + 2*hm^2*sm^2 - 4*C*hm^2*sm^2 + 
-   2*C^2*hm^2*sm^2 - 2*hm^2*rm*sm^2 + 4*C*hm^2*rm*sm^2 - 
-   2*C^2*hm^2*rm*sm^2 + sqrt((C^2*(1 + 2*hf*(-1 + rf + 2*rm) + 
-           2*sm - 4*hm*sm - sm^2 + 2*hm^2*sm^2 - 
-           2*rm*(-1 + hm*sm)^2) - 
-        2*(1 + hf*(-1 + rf) + 2*hm*sm - hm^2*sm^2 + 
-           rm*(-1 + hm*sm)^2) + 
-        C*(-1 + (-2 + 8*hm)*sm + (1 - 4*hm^2)*sm^2 - 
-           4*rm*(hf - (-1 + hm*sm)^2)))^2 + (-1 + C)*(2*(1 + C)*rf + 
-         sm*(-2*hm*(-2 + hm*sm) + C*(2 - 4*hm - sm + 2*hm^2*sm)) + 
-         2*rm*((-1 + hm*sm)^2 + C*(1 + 2*hm*sm - hm^2*sm^2)))*(2*(1 +
-             hf^2*(-1 + rf) + 2*hm*sm - hm^2*sm^2 + 
-            rm*(-1 + hm*sm)^2) + 
-         C^2*(-1 - 2*hf^2*(-1 + rf + 2*rm) - 2*sm + 4*hm*sm + sm^2 - 
-            2*hm^2*sm^2 + 2*rm*(-1 + hm*sm)^2) + 
-         C*(1 + (2 - 8*hm)*sm + (-1 + 4*hm^2)*sm^2 + 
-            4*rm*(hf^2 - (-1 + hm*sm)^2)))))/(C^2*(1 + 
-      2*hf^2*(-1 + rf + 2*rm) + 2*sm - 4*hm*sm - sm^2 + 2*hm^2*sm^2 - 
-      2*rm*(-1 + hm*sm)^2) - 
-   2*(1 + hf^2*(-1 + rf) + 2*hm*sm - hm^2*sm^2 + rm*(-1 + hm*sm)^2) + 
-   C*(-1 + (-2 + 8*hm)*sm + (1 - 4*hm^2)*sm^2 - 
-      4*rm*(hf^2 - (-1 + hm*sm)^2)))
+inv.lAB2.add  <-  function(hf, hm, sm, rf, rm, C) {
+	-((-2 - 2*rf - 4*rm + 2*C*(-1 + C*rf + 2*rm) - 4*sm + 
+     4*(C + (-1 + C)^2*rm)*sm - (-1 + C)*(1 + 
+        C + (-1 + C)*rm)*sm^2 + sqrt(4*((1 + 
+             C)^2 - (-1 + C^2)^2*rf + (-1 + C)^3*(1 + C)*(-1 + 
+              rf)*rm + 2*(-1 + C)^3*C*rm^2) - 
+        4*(-1 + C)*(1 + (-1 + C)*rm)*(1 - rf + 
+           C*(2 + C + C*rf + 2*(-1 + C)*rm))*sm + (-1 + C)*(1 + 
+           C + (-1 + C)*rm)*(1 - rf + 
+           C*(2 + C + C*rf + 2*(-1 + C)*rm))*sm^2)) / (3 + rf + 4*rm - 
+     C*(-2 + C*(1 + rf - 2*rm) + 6*rm) + 4*sm - 
+     4*(C + (-1 + C)^2*rm)*sm + (-1 + C)*(1 + C + (-1 + C)*rm)*sm^2))
 }
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele (w/ selfing)
-#inv.lab2  <-  function(hf, hm, sm, rf, rm, C) {
-#	(C + (C^2) + 2*hf - 2*(C^2)*hf - 2*hf*rf + 2*(C^2)*hf*rf - 4*C*hf*rm + 
-#	 4*(C^2)*hf*rm - 2*C*sm - 2*(C^2)*sm - 4*hf*sm + 4*(C^2)*hf*sm + 
-#	 4*hf*rf*sm - 4*(C^2)*hf*rf*sm + 8*C*hf*rm*sm - 8*(C^2)*hf*rm*sm + 
-#	 C*(sm^2) + (C^2)*(sm^2) + 2*hf*(sm^2) - 2*(C^2)*hf*(sm^2) - 2*hf*rf*(sm^2) + 
-#	 2*(C^2)*hf*rf*(sm^2) - 4*C*hf*rm*(sm^2) + 4*(C^2)*hf*rm*(sm^2) - 
-#	 ((1/2)* sqrt(4*((C - 2*hf*(-1 + rf) - 4*C*hf*rm + 
-#	   (C^2)*(1 + 2*hf*(-1 + rf + 2*rm)))^2)*((-1 + sm)^4) - 
-#	  4*(-1 + C)*(C - 2*(hf^2)*(-1 + rf) - 4*C*(hf^2)*rm + 
-#	  (C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm)))*((-1 + sm)^2)*(2*(1 + C)*rf*((-1 + sm)^2) + 
-#	  sm*(-2*(-1 + hm)*(-2 + sm + hm*sm) + C*(2 - 4*hm - sm + 2*(hm^2)*sm)) + 
-#	  2*rm*(((-1 + hm*sm)^2) + C*(1 + 2*(-2 + hm)*sm - (-2 + (hm^2))*(sm^2))))))) / 
-#		((C - 2*(hf^2)*(-1 + rf) - 4*C*(hf^2)*rm + (C^2)*(1 + 2*(hf^2)*(-1 + rf + 2*rm)))*((-1 + sm)^2))
-#}
-
-
-inv.lab2  <-  function(hf, hm, sm, rf, rm, C) {
-(C + C^2 + 2*hf - 2*C^2*hf - 2*hf*rf + 2*C^2*hf*rf - 4*C*hf*rm + 
-  4*C^2*hf*rm - 
-  2*sqrt(1/((-2 + C)^2*(-1 + 
-         sm)^2)*(-4*hf^2*(-1 + rf)*(1 + 
-           2*(-2 + hm)*sm - (-2 + hm^2)*sm^2 + rm*(-1 + hm*sm)^2) + 
-        C^4*(1 - 2*rf - 2*rm + 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
-           4*sm + 4*hm*sm + 4*rf*sm + 8*rm*sm - 4*hm*rm*sm + 2*sm^2 - 
-           2*hm^2*sm^2 - 2*rf*sm^2 - 4*rm*sm^2 + 2*hm^2*rm*sm^2 + 
-           2*hf^2*(-1 + rf + 
-              2*rm)*(-2 + (2 + 4*hm)*sm - (1 + 2*hm^2)*sm^2 + 
-              2*rm*(-1 + hm*sm)^2)) + 
-        C^2*(1 + 2*rf + 2*rm - 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
-           4*hm*sm - 4*rf*sm - 8*rm*sm + 4*hm*rm*sm + 2*hm^2*sm^2 + 
-           2*rf*sm^2 + 4*rm*sm^2 - 2*hm^2*rm*sm^2 + 
-           2*hf^2*(-4 + 10*sm - 5*sm^2 + 12*rm^2*(-1 + hm*sm)^2 + 
-              rf*(4 - 10*sm + 5*sm^2) + 
-              rm*(4 + 4*(-7 + 6*hm)*sm - 2*(-7 + 6*hm^2)*sm^2))) + 
-        2*C*(rm - 2*hf*(-1 + rf)*(-1 + sm)^2 + rf*(-1 + sm)^2 - 
-           2*sm + 2*hm*sm - 2*hm*rm*sm + sm^2 - hm^2*sm^2 + 
-           hm^2*rm*sm^2 + 
-           hf^2*(-4*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
-                 3*sm + 4*hm^2*sm) + 
-              4*rm*(-2*(-1 + sm)^2 + rf*(-1 + hm*sm)^2))) - 
-        2*C^3*(-2*hf*(-1 + rf)*(-1 + sm)^2 + 
-           rf*(-1 + sm)^2 + (-1 + rm)*(-1 + hm*sm)^2 + 
-           hf^2*(12*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
-                 3*sm + 4*hm^2*sm) + 
-              4*rm*(-2 - 2*sm + 8*hm*sm + sm^2 - 4*hm^2*sm^2 + 
-                 rf*(-1 + hm*sm)^2))))) + 
-  C*sqrt(1/((-2 + C)^2*(-1 + 
-         sm)^2)*(-4*hf^2*(-1 + rf)*(1 + 
-           2*(-2 + hm)*sm - (-2 + hm^2)*sm^2 + rm*(-1 + hm*sm)^2) + 
-        C^4*(1 - 2*rf - 2*rm + 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
-           4*sm + 4*hm*sm + 4*rf*sm + 8*rm*sm - 4*hm*rm*sm + 2*sm^2 - 
-           2*hm^2*sm^2 - 2*rf*sm^2 - 4*rm*sm^2 + 2*hm^2*rm*sm^2 + 
-           2*hf^2*(-1 + rf + 
-              2*rm)*(-2 + (2 + 4*hm)*sm - (1 + 2*hm^2)*sm^2 + 
-              2*rm*(-1 + hm*sm)^2)) + 
-        C^2*(1 + 2*rf + 2*rm - 4*hf*(-1 + rf + 2*rm)*(-1 + sm)^2 - 
-           4*hm*sm - 4*rf*sm - 8*rm*sm + 4*hm*rm*sm + 2*hm^2*sm^2 + 
-           2*rf*sm^2 + 4*rm*sm^2 - 2*hm^2*rm*sm^2 + 
-           2*hf^2*(-4 + 10*sm - 5*sm^2 + 12*rm^2*(-1 + hm*sm)^2 + 
-              rf*(4 - 10*sm + 5*sm^2) + 
-              rm*(4 + 4*(-7 + 6*hm)*sm - 2*(-7 + 6*hm^2)*sm^2))) + 
-        2*C*(rm - 2*hf*(-1 + rf)*(-1 + sm)^2 + rf*(-1 + sm)^2 - 
-           2*sm + 2*hm*sm - 2*hm*rm*sm + sm^2 - hm^2*sm^2 + 
-           hm^2*rm*sm^2 + 
-           hf^2*(-4*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
-                 3*sm + 4*hm^2*sm) + 
-              4*rm*(-2*(-1 + sm)^2 + rf*(-1 + hm*sm)^2))) - 
-        2*C^3*(-2*hf*(-1 + rf)*(-1 + sm)^2 + 
-           rf*(-1 + sm)^2 + (-1 + rm)*(-1 + hm*sm)^2 + 
-           hf^2*(12*rm^2*(-1 + hm*sm)^2 - (-1 + rf)*sm*(6 - 8*hm - 
-                 3*sm + 4*hm^2*sm) + 
-              4*rm*(-2 - 2*sm + 8*hm*sm + sm^2 - 4*hm^2*sm^2 + 
-                 rf*(-1 + hm*sm)^2))))))
+inv.lab2.add  <-  function(hf, hm, sm, rf, rm, C) {
+	1 / (1 - rf - 2*C*(-1 + rm) + 
+  C^2*(1 + rf + 2*rm))*(2 + 2*C - 2*rf + 2*C^2*rf - 4*C*rm + 
+   4*C^2*rm - 
+   2*sqrt(1/((-2 + C)^2*(-1 + 
+          sm)^2)*(-(-1 + rf)*(4 + rm*(-2 + sm)^2 - 12*sm + 7*sm^2) + 
+         C^4*(rf*(2 + rm*(-2 + sm) - 3*sm)*(-2 + sm) + 
+            2*rm^2*(-2 + sm)^2 + sm^2 + rm*(-4 + 12*sm - 5*sm^2)) - 
+         2*C^3*(3*rm^2*(-2 + sm)^2 + sm*(-2 + 2*rf*(-1 + sm) + sm) + 
+            rm*(-4 + rf*(-2 + sm)^2 + 4*sm + sm^2)) + 
+         2*C^2*(2 + 3*rm^2*(-2 + sm)^2 - 2*sm + 2*rm*sm*(-6 + 5*sm) + 
+            rf*(4 - 10*sm + 5*sm^2)) - 
+         2*C*(-4 + rm^2*(-2 + sm)^2 + 
+            2*(5 + rf)*sm - (5 + 2*rf)*sm^2 + 
+            rm*(4 - rf*(-2 + sm)^2 - 12*sm + 7*sm^2)))) + 
+   C*sqrt(1/((-2 + C)^2*(-1 + 
+          sm)^2)*(-(-1 + rf)*(4 + rm*(-2 + sm)^2 - 12*sm + 7*sm^2) + 
+         C^4*(rf*(2 + rm*(-2 + sm) - 3*sm)*(-2 + sm) + 
+            2*rm^2*(-2 + sm)^2 + sm^2 + rm*(-4 + 12*sm - 5*sm^2)) - 
+         2*C^3*(3*rm^2*(-2 + sm)^2 + sm*(-2 + 2*rf*(-1 + sm) + sm) + 
+            rm*(-4 + rf*(-2 + sm)^2 + 4*sm + sm^2)) + 
+         2*C^2*(2 + 3*rm^2*(-2 + sm)^2 - 2*sm + 2*rm*sm*(-6 + 5*sm) + 
+            rf*(4 - 10*sm + 5*sm^2)) - 2*C*(-4 + rm^2*(-2 + sm)^2 + 
+            2*(5 + rf)*sm - (5 + 2*rf)*sm^2 + 
+            rm*(4 - rf*(-2 + sm)^2 - 12*sm + 7*sm^2)))))
 }
+
+
+
+
+#######################################
+##  Dominance Reversal fitness effects
+
+##  Invasion based on lambda.AB1 for female beneficial 
+##  allele under obligate outcrossing
+inv.lAB1.domRev.obOut  <-  function(hf, hm, sm) {
+	sm/(3 + sm)
+}
+
+##  Invasion based on lambda.ab1 for female beneficial 
+##  allele under obligate outcrossing
+inv.lab1.domRev.obOut  <-  function(hf, hm, sm) {
+	-((3*sm)/(-1 + sm))
+}
+
+##  Invasion based on lambda.AB2 (w/ recombination)
+##  for female beneficial allele under obligate outcrossing
+inv.lAB2.domRev.obOut  <-  function(hf, hm, sm, rf, rm) {
+	(12 + 4*rf + rm*(-4 + sm)^2 + 8*sm - sm^2 - 
+ 	3*sqrt(-(-1 + rf)*(16 + rm*(-4 + sm)^2 - (-8 + sm)*sm)))/(15 + rf + 
+ 	rm*(-4 + sm)^2 - (-8 + sm)*sm)
+}
+
+##  Invasion based on lambda.ab2 (w/ recombination)
+##  for male beneficial allele under obligate outcrossing
+inv.lab2.domRev.obOut  <-  function(hf, hm, sm, rf, rm) {
+	(-4 + 4*rf + sqrt(-(((-1 + rf)*(16 + rm*(-4 + sm)^2 + 
+	     sm*(-56 + 31*sm))) / (-1 + sm)^2))) / (-1 + rf)
+}
+
+
+##  Invasion based on lambda.AB1 for female beneficial 
+##  allele (w/ selfing)
+inv.lAB1.domRev  <-  function(hf, hm, sm, C) {
+	((-1 + C)*sm)/(-3 + C + (-1 + C)*sm)
+}
+
+
+##  Invasion based on lambda.ab1 for female beneficial 
+##  allele (w/ selfing)
+inv.lab1.domRev  <-  function(hf, hm, sm, C) {
+	-(((-3 + C)*(-1 + C)*sm) / ((1 + C)^2*(-1 + sm)))
+}
+
+##  Invasion based on lambda.AB2 (w/ recombination)
+##  for female beneficial allele (w/ selfing)
+inv.lAB2.domRev  <-  function(hf, hm, sm, rf, rm, C) {
+	
+	(-12 - 8*C + 4*C^2 - 4*rf + 4*C^2*rf - 16*rm + 24*C*rm - 8*C^2*rm - 
+	   8*sm + 8*C^2*sm + 8*rm*sm - 16*C*rm*sm + 8*C^2*rm*sm + sm^2 + 
+	   6*C*sm^2 - 7*C^2*sm^2 - rm*sm^2 + 2*C*rm*sm^2 - 
+	   C^2*rm*sm^2 + sqrt((-12 - 4*rf - 16*rm - 8*sm + 8*rm*sm + sm^2 -
+	         rm*sm^2 + 
+	        C^2*(4 + 4*rf + 8*sm - 7*sm^2 - rm*(8 - 8*sm + sm^2)) + 
+	        2*C*(-4 + 3*sm^2 + rm*(12 - 8*sm + sm^2)))^2 + (-1 + 
+	         C)*(16*(1 + C)*rf - sm*(-8 + sm + C*(-8 + 7*sm)) + 
+	         rm*((-4 + sm)^2 + C*(16 + 8*sm - sm^2)))*(15 + rf + 16*rm + 
+	         8*sm - 8*rm*sm - sm^2 + rm*sm^2 - 
+	         C^2*(7 + rf + 8*sm - 7*sm^2 - rm*(14 - 8*sm + sm^2)) - 
+	         2*C*(-4 + 3*sm^2 + rm*(15 - 8*sm + sm^2)))))/(-15 - rf - 
+	   16*rm - 8*sm + 8*rm*sm + sm^2 - rm*sm^2 + 
+	   C^2*(7 + rf + 8*sm - 7*sm^2 - rm*(14 - 8*sm + sm^2)) + 
+	   2*C*(-4 + 3*sm^2 + rm*(15 - 8*sm + sm^2)))
+}
+
+##  Invasion based on lambda.ab2 (w/ recombination)
+##  for male beneficial allele (w/ selfing)
+
+inv.lab2.domRev  <-  function(hf, hm, sm, rf, rm, C) {
+	1/(1 - rf - 2*C*(-4 + rm) + 
+	  C^2*(7 + rf + 2*rm))*(4 + 8*C + 4*C^2 - 4*rf + 4*C^2*rf - 8*C*rm + 
+	   8*C^2*rm - 
+	   2*sqrt(1/((-2 + C)^2*(-1 + 
+	          sm)^2)*(-(-1 + rf)*(16 + rm*(-4 + sm)^2 - 56*sm + 31*sm^2) +
+	          C^4*(16 + 2*rm^2*(-4 + sm)^2 - 88*sm + 65*sm^2 + 
+	            rm*(-48 + 248*sm - 139*sm^2) + 
+	            rf*(-80 + rm*(-4 + sm)^2 + 152*sm - 73*sm^2)) - 
+	         2*C^3*(-32 + 3*rm^2*(-4 + sm)^2 - 16*sm + 17*sm^2 + 
+	            16*rm*(2 - 2*sm + sm^2) + 
+	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
+	         2*C*(32 - rm^2*(-4 + sm)^2 - 144*sm + 81*sm^2 - 
+	            4*rm*(-8 - 8*sm + 7*sm^2) + 
+	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
+	         2*C^2*(3*rm^2*(-4 + sm)^2 + 8*(6 - 7*sm + 2*sm^2) + 
+	            4*rf*(12 - 26*sm + 13*sm^2) + 
+	            rm*(16 - 184*sm + 113*sm^2)))) + 
+	   C*sqrt(1/((-2 + C)^2*(-1 + 
+	          sm)^2)*(-(-1 + rf)*(16 + rm*(-4 + sm)^2 - 56*sm + 31*sm^2) +
+	          C^4*(16 + 2*rm^2*(-4 + sm)^2 - 88*sm + 65*sm^2 + 
+	            rm*(-48 + 248*sm - 139*sm^2) + 
+	            rf*(-80 + rm*(-4 + sm)^2 + 152*sm - 73*sm^2)) - 
+	         2*C^3*(-32 + 3*rm^2*(-4 + sm)^2 - 16*sm + 17*sm^2 + 
+	            16*rm*(2 - 2*sm + sm^2) + 
+	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
+	         2*C*(32 - rm^2*(-4 + sm)^2 - 144*sm + 81*sm^2 - 
+	            4*rm*(-8 - 8*sm + 7*sm^2) + 
+	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
+	         2*C^2*(3*rm^2*(-4 + sm)^2 + 8*(6 - 7*sm + 2*sm^2) + 
+	            4*rf*(12 - 26*sm + 13*sm^2) + 
+	            rm*(16 - 184*sm + 113*sm^2)))))
+}
+
+
+
+
 
 ######################################################
 ##  Analytic solutions (results based on Eigenvalues) 
@@ -429,13 +517,26 @@ eigenInvAnalysis  <-  function(par.list) {
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
+	if(par.list$hf  !=  par.list$hm)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	if(par.list$hf != 0.5 & par.list$hf != 0.25)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
 	##  Calculate Eigenvalues from analytic solutions 
 	##  using quasi-equibirium genotypic frequencies
-
-	l.AB1  <- lambda.AB1(par.list)
-	l.AB2  <- lambda.AB2(par.list)
-	l.ab1  <- lambda.ab1(par.list)
-	l.ab2  <- lambda.ab2(par.list)
+	if (par.list$hf == 0.5) {
+		l.AB1  <- lambda.AB1.add(par.list)
+		l.AB2  <- lambda.AB2.add(par.list)
+		l.ab1  <- lambda.ab1.add(par.list)
+		l.ab2  <- lambda.ab2.add(par.list)
+	}
+	if (par.list$hf == 0.25) {
+		l.AB1  <- lambda.AB1.domRev(par.list)
+		l.AB2  <- lambda.AB2.domRev(par.list)
+		l.ab1  <- lambda.ab1.domRev(par.list)
+		l.ab2  <- lambda.ab2.domRev(par.list)
+	}
 
 	
 	## Categorize outcome of invasion analysis
@@ -527,6 +628,13 @@ recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
+	if(par.list$hf  !=  par.list$hm)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	if(par.list$hf != 0.5 & par.list$hf != 0.25)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+
 
 	##  Fitness Matrices
 	Wf.mat   <-  matrix(
@@ -596,11 +704,18 @@ recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 
 	##  Calculate Eigenvalues from analytic solutions 
 	##  using quasi-equibirium genotypic frequencies
-
-	l.AB1  <- lambda.AB1(par.list)
-	l.AB2  <- lambda.AB2(par.list)
-	l.ab1  <- lambda.ab1(par.list)
-	l.ab2  <- lambda.ab2(par.list)
+	if (par.list$hf == 0.5) {
+		l.AB1  <- lambda.AB1.add(par.list)
+		l.AB2  <- lambda.AB2.add(par.list)
+		l.ab1  <- lambda.ab1.add(par.list)
+		l.ab2  <- lambda.ab2.add(par.list)
+	}
+	if (par.list$hf == 0.25) {
+		l.AB1  <- lambda.AB1.domRev(par.list)
+		l.AB2  <- lambda.AB2.domRev(par.list)
+		l.ab1  <- lambda.ab1.domRev(par.list)
+		l.ab2  <- lambda.ab2.domRev(par.list)
+	}
 
 	if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 ))
 		 eigPoly  <-  1
@@ -740,13 +855,31 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, sRange = c(0,1), C = 0,
 #' propPrPFast(n = 10000, C = 0, hf = 0.5, hm = 0.5)
 
 fastInv  <-  function(x, par.list, ...) {
+
+	if(par.list$hf  !=  par.list$hm)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	if(par.list$hf != 0.5 & par.list$hf != 0.25)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+
 	par.list$sf  <-  x[1]
 	par.list$sm  <-  x[2]
 
-	l.AB1  <- lambda.AB1(par.list)
-	l.AB2  <- lambda.AB2(par.list)
-	l.ab1  <- lambda.ab1(par.list)
-	l.ab2  <- lambda.ab2(par.list)
+	##  Calculate Eigenvalues from analytic solutions 
+	##  using quasi-equibirium genotypic frequencies
+	if (par.list$hf == 0.5) {
+		l.AB1  <- lambda.AB1.add(par.list)
+		l.AB2  <- lambda.AB2.add(par.list)
+		l.ab1  <- lambda.ab1.add(par.list)
+		l.ab2  <- lambda.ab2.add(par.list)
+	}
+	if (par.list$hf == 0.25) {
+		l.AB1  <- lambda.AB1.domRev(par.list)
+		l.AB2  <- lambda.AB2.domRev(par.list)
+		l.ab1  <- lambda.ab1.domRev(par.list)
+		l.ab2  <- lambda.ab2.domRev(par.list)
+	}
 
 	PrP  <-  0
 	# Protected polymorphism

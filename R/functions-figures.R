@@ -152,40 +152,40 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel One: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
         twoLoc.Hi.obOut[10001]  <-  1.00000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
 
-        r0.4.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
 
-        r0.3.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
 
-        r0.2.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
 
-        r0.1.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
 
-        r0.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
 
         # Make the plot
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -233,40 +233,40 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Two: C = 0.25
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
 
-        r0.4.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
 
-        r0.3.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
 
-        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
 
-        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
 
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
         
           # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -312,40 +312,40 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Three: C = 0.5
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
 
-        r0.4.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
 
-        r0.3.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
 
-        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
 
-        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
 
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -413,40 +413,40 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Four: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.25, hm=0.25, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
         twoLoc.Hi.obOut[10001]  <-  1.00000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.25, hm=0.25, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
 
-        r0.4.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
 
-        r0.3.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
 
-        r0.2.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
 
-        r0.1.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
 
-        r0.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -491,40 +491,40 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Five: C = 0.25
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
 
-        r0.4.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
 
-        r0.3.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
 
-        r0.2.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
 
-        r0.1.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
 
-        r0.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
         
           # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -569,40 +569,40 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Six: C = 0.5
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
 
-        r0.4.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
 
-        r0.3.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.5)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.3.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.5)
 
-        r0.2.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
 
-        r0.1.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
 
-        r0.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -675,15 +675,15 @@ layout <- layout(layout.mat,respect=TRUE)
 
     ##  Panel One: C = 0
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 0.1]  <-  0.100000001
         twoLoc.Hi.obOut[10001]  <-  0.100000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
 
         # Make the plot
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -717,14 +717,14 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Two: C = 0.25
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -756,14 +756,14 @@ layout <- layout(layout.mat,respect=TRUE)
 
     ##  Panel Three: C = 0.5
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
 
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -812,15 +812,15 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Four: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.25, hm=0.25, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 0.1]  <-  0.100000001
         twoLoc.Hi.obOut[10001]  <-  0.100000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.25, hm=0.25, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.Hi  <-  inv.lab2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
 
         # Make the plot
 #        par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -852,15 +852,15 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Five: C = 0.25
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
         twoLoc.Hi[10001]  <-  0.100000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -892,14 +892,14 @@ layout <- layout(layout.mat,respect=TRUE)
     ##  Panel Six: C = 0.5
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi   <-  inv.lab1(hf=0.25, hm=0.25, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.25, hm=0.25, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -981,7 +981,7 @@ Fig.2  <- function() {
     ##  ADDITIVE EFFECTS
     ##  Panel 1:  Proportion of parameter space resulting in Protected Polymorphism
         par(omi=rep(0.75, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.35,0.55), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.2,0.55), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
         plotGrid(lineCol='white')
@@ -1040,7 +1040,7 @@ Fig.2  <- function() {
             border  =  NA)
 
     ##  Panel 2: Increase in parameter space resulting in polymorphism due to recombination
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.4), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.2), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
         plotGrid(lineCol='white')
@@ -1064,7 +1064,7 @@ Fig.2  <- function() {
     ######################
     ##  DOMINANCE REVERSAL
     ##  Panel 3:  Proportion of parameter space resulting in Protected Polymorphism
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.4,0.8), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.2,0.8), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
         plotGrid(lineCol='white')
@@ -1087,7 +1087,7 @@ Fig.2  <- function() {
         proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
     ##  Panel 4: Increase in parameter space resulting in polymorphism due to recombination
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.4), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0,0.2), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
         plotGrid(lineCol='white')
@@ -1135,9 +1135,9 @@ Fig.S1_add  <-  function() {
         C0.75.h.5  <-  read.table('./data/simResults/recFwdSimLoop.out_C0.75_hf0.5_hm0.5_sMax1.txt', head=TRUE)
 
     # Color scheme
-    COLS  <-  c(transparentColor('seagreen3', opacity=0.4), 
-                transparentColor('dodgerblue2', opacity=0.4), 
-                transparentColor('tomato2', opacity=0.4),
+    COLS  <-  c(transparentColor('seagreen3', opacity=0.2), 
+                transparentColor('dodgerblue2', opacity=0.2), 
+                transparentColor('tomato2', opacity=0.2),
                 'black')
 
     #  Create vector of male selection coefficients for invasion functions
@@ -1151,15 +1151,15 @@ Fig.S1_add  <-  function() {
     ##  Panel One: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
         twoLoc.Hi.obOut[10001]  <-  1.00000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
 
         # Make the plot
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1170,11 +1170,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[1])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0] ~
-               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[2])
+               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[5])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[5])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi.obOut & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1197,15 +1197,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1216,11 +1216,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[1])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0] ~
-               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[2])
+               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[3])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1242,15 +1242,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
         
         # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1261,11 +1261,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[1])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0] ~
-               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[2])
+               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[3])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1286,15 +1286,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.75)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.75)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.75)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.75)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1305,11 +1305,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[1])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0] ~
-               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[2])
+               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, bg=COLS[3])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.Hi[r0.Hi > twoLoc.Hi & r0.Hi <= 1] ~ sm[r0.Hi > twoLoc.Hi & r0.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1331,15 +1331,15 @@ Fig.S1_add  <-  function() {
     ##  Panel 5: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
         twoLoc.Hi.obOut[10001]  <-  1.00000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.1.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -1349,11 +1349,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[5])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[5])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi.obOut & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1377,15 +1377,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1396,11 +1396,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1423,15 +1423,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
         
         # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1442,11 +1442,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1468,15 +1468,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.1.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.75)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.75)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.75)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.75)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1487,11 +1487,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.1.Hi[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1] ~ sm[r0.1.Hi > twoLoc.Hi & r0.1.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1517,15 +1517,15 @@ Fig.S1_add  <-  function() {
     ##  Panel 9: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
         twoLoc.Hi.obOut[10001]  <-  1.00000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.2.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -1535,11 +1535,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[5])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[5])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi.obOut & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1563,15 +1563,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1582,11 +1582,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1609,15 +1609,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
         
         # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1628,11 +1628,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1654,15 +1654,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.2.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.75)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.75)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.75)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.75)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1673,11 +1673,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.2.Hi[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1] ~ sm[r0.2.Hi > twoLoc.Hi & r0.2.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1703,15 +1703,15 @@ Fig.S1_add  <-  function() {
     ##  Panel 13: C = 0
         
         # Calculate plotting lines for solutions not involving recombination
-        twoLoc.Hi.obOut   <-  inv.lab1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
         twoLoc.Hi.obOut[10001]  <-  1.00000001
-        twoLoc.Lo.obOut  <-  inv.lAB1.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -1721,11 +1721,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 1 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.0.h.5$sm[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.0.h.5$sf[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1] ~
-               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[5])
+               C0.0.h.5$sm[C0.0.h.5$eigPoly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[5])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi.obOut & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1750,15 +1750,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1769,11 +1769,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 1 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.25.h.5$sm[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.25.h.5$sf[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1] ~
-               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.25.h.5$sm[C0.25.h.5$eigPoly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1797,15 +1797,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
         
         # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1816,11 +1816,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 1 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.5.h.5$sm[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.5.h.5$sf[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1] ~
-               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.5.h.5$sm[C0.5.h.5$eigPoly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
@@ -1843,15 +1843,15 @@ Fig.S1_add  <-  function() {
         
         # Calculate plotting lines for solutions not involving recombination
 
-        twoLoc.Hi   <-  inv.lab1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
         twoLoc.Hi[10001]  <-  1.00000001
-        twoLoc.Lo  <-  inv.lAB1(hf=0.5, hm=0.5, sm=sm, C=0.75)
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.5.Hi  <-  inv.lab2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.75)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.75)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.75)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.75)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1862,11 +1862,11 @@ Fig.S1_add  <-  function() {
         box()
         # Simulation points
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[1])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 1 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[1])
         points(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[2])
+               C0.75.h.5$sm[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[2])
         points(C0.75.h.5$sf[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1] ~
-               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, bg=COLS[3])
+               C0.75.h.5$sm[C0.75.h.5$eigPoly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1], pch=21, col=NA, cex=0.75, bg=COLS[3])
         # Overlay analytic solutions for single locus & r=0 cases
             #  w/ recombination
             lines(r0.5.Hi[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1] ~ sm[r0.5.Hi > twoLoc.Hi & r0.5.Hi <= 1], lwd=2, col=COLS[4], lty=1)
