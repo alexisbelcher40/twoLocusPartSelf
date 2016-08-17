@@ -944,28 +944,28 @@ Fig.2  <- function() {
     ## Read data files for plotting
 
         # Additive Effects
-        C0.0.h.5  <-  read.table('./data/propPrp.out_C0_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.1.h.5  <-  read.table('./data/propPrp.out_C0.1_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.2.h.5  <-  read.table('./data/propPrp.out_C0.2_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.3.h.5  <-  read.table('./data/propPrp.out_C0.3_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.4.h.5  <-  read.table('./data/propPrp.out_C0.4_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.5.h.5  <-  read.table('./data/propPrp.out_C0.5_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.6.h.5  <-  read.table('./data/propPrp.out_C0.6_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.7.h.5  <-  read.table('./data/propPrp.out_C0.7_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.8.h.5  <-  read.table('./data/propPrp.out_C0.8_hf0.5_hm0.5_n30000.txt', head=TRUE)
-        C0.9.h.5  <-  read.table('./data/propPrp.out_C0.9_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.0.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.1.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.1_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.2.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.2_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.3.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.3_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.4.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.4_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.5.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.5_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.6.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.6_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.7.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.7_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.8.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.8_hf0.5_hm0.5_n30000.txt', head=TRUE)
+        C0.9.h.5  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.9_hf0.5_hm0.5_n30000.txt', head=TRUE)
 
         # Dominance Reversal
-        C0.0.h.25  <-  read.table('./data/propPrp.out_C0_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.1.h.25  <-  read.table('./data/propPrp.out_C0.1_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.2.h.25  <-  read.table('./data/propPrp.out_C0.2_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.3.h.25  <-  read.table('./data/propPrp.out_C0.3_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.4.h.25  <-  read.table('./data/propPrp.out_C0.4_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.5.h.25  <-  read.table('./data/propPrp.out_C0.5_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.6.h.25  <-  read.table('./data/propPrp.out_C0.6_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.7.h.25  <-  read.table('./data/propPrp.out_C0.7_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.8.h.25  <-  read.table('./data/propPrp.out_C0.8_hf0.25_hm0.25_n30000.txt', head=TRUE)
-        C0.9.h.25  <-  read.table('./data/propPrp.out_C0.9_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.0.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.1.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.1_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.2.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.2_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.3.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.3_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.4.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.4_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.5.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.5_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.6.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.6_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.7.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.7_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.8.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.8_hf0.25_hm0.25_n30000.txt', head=TRUE)
+        C0.9.h.25  <-  read.table('./output/data/Fig2Data/propPrp.out_C0.9_hf0.25_hm0.25_n30000.txt', head=TRUE)
 
 
     # Color scheme
@@ -1130,10 +1130,10 @@ Fig.2  <- function() {
 Fig.S1_add  <-  function() {
 
     ## Read data files for plotting
-        C0.0.h.5   <-  read.table('./data/simResults/recFwdSimLoop.out_C0_hf0.5_hm0.5_sMax1.txt', head=TRUE)
-        C0.25.h.5  <-  read.table('./data/simResults/recFwdSimLoop.out_C0.25_hf0.5_hm0.5_sMax1.txt', head=TRUE)
-        C0.5.h.5   <-  read.table('./data/simResults/recFwdSimLoop.out_C0.5_hf0.5_hm0.5_sMax1.txt', head=TRUE)
-        C0.75.h.5  <-  read.table('./data/simResults/recFwdSimLoop.out_C0.75_hf0.5_hm0.5_sMax1.txt', head=TRUE)
+        C0.0.h.5   <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0_hf0.5_hm0.5_sMax1.txt', head=TRUE)
+        C0.25.h.5  <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0.25_hf0.5_hm0.5_sMax1.txt', head=TRUE)
+        C0.5.h.5   <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0.5_hf0.5_hm0.5_sMax1.txt', head=TRUE)
+        C0.75.h.5  <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0.75_hf0.5_hm0.5_sMax1.txt', head=TRUE)
 
     # Color scheme
     COLS  <-  c(transparentColor('seagreen3', opacity=0.2), 
@@ -2085,10 +2085,10 @@ Fig.S1_add  <-  function() {
 Fig.S2_domRev  <-  function() {
 
     ## Read data files for plotting
-        C0.0.h.25   <-  read.table('./data/simResults/recFwdSimLoop.out_C0_hf0.25_hm0.25_sMax1.txt', head=TRUE)
-        C0.25.h.25  <-  read.table('./data/simResults/recFwdSimLoop.out_C0.25_hf0.25_hm0.25_sMax1.txt', head=TRUE)
-        C0.5.h.25   <-  read.table('./data/simResults/recFwdSimLoop.out_C0.5_hf0.25_hm0.25_sMax1.txt', head=TRUE)
-        C0.75.h.25  <-  read.table('./data/simResults/recFwdSimLoop.out_C0.75_hf0.25_hm0.25_sMax1.txt', head=TRUE)
+        C0.0.h.25   <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0_hf0.25_hm0.25_sMax1.txt', head=TRUE)
+        C0.25.h.25  <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0.25_hf0.25_hm0.25_sMax1.txt', head=TRUE)
+        C0.5.h.25   <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0.5_hf0.25_hm0.25_sMax1.txt', head=TRUE)
+        C0.75.h.25  <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0.75_hf0.25_hm0.25_sMax1.txt', head=TRUE)
 
     # Color scheme
     COLS  <-  c(transparentColor('seagreen3', opacity=0.2), 
