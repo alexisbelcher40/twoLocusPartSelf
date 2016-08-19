@@ -882,6 +882,7 @@ fastInv  <-  function(x, par.list, ...) {
 	}
 
 	PrP  <-  0
+
 	# Protected polymorphism
 	if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 )) {
 		PrP  <-  1			
@@ -960,12 +961,13 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), 
 	}
 
 	#  Compile results as data.frame
-	results.df  <-  data.frame("hf"      = rep(hf, length(r.vals)),
-							   "hm"      = rep(hm, length(r.vals)),
-							   "C"       = rep(C,  length(r.vals)),
-							   "r"       = r.vals,
-							   "PrP"     = PrP,
-							   "rPrP"    = rPrP
+	results.df  <-  data.frame("hf"      =  rep(hf, length(r.vals)),
+							   "hm"      =  rep(hm, length(r.vals)),
+							   "C"       =  rep(C,  length(r.vals)),
+							   "r"       =  r.vals,
+							   "PrP"     =  PrP,
+							   "rPrP"    =  rPrP,
+							   "slPrP"   =  PrP - rPrP
 							   )
 
 	#  Write results.df to .txt file
@@ -973,7 +975,7 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), 
 		sel  <-  "_weak"
 	else 
 		sel  <-  ""
-	filename  <-  paste("./output/data/Fig2Data/propPrp.out", sel, "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+	filename  <-  paste("./output/data/Fig2Data/TESTpropPrp.out", sel, "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
