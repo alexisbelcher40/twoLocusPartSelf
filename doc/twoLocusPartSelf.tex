@@ -22,7 +22,7 @@
 
 % Graphics
 \usepackage{graphicx}
-\graphicspath{{./}.eps}
+\graphicspath{{../output/figures/}.pdf}
 
 % New commands: fonts
 %\newcommand{\code}{\fontfamily{pcr}\selectfont}
@@ -65,7 +65,10 @@
 \newpage{}
 \section*{Abstract}
 
-\noindent{} \hl{...}
+\noindent{} ...
+
+\newpage{}
+
 
 \section*{Introduction}
 
@@ -96,30 +99,20 @@
 
 \section*{Model}
 
-	\subsection*{Study species}
-
-	\subsection*{Flume experiment}
-
-	\subsection*{Analyses}
-
 
 
 \section*{Results}
 
-	\subsection*{Flume experiment}
-
-	\subsection*{Analyses}
 
 
 
 \section*{Discussion}
 
-\hl{...}
 
 
 
 \section*{Acknowledgments}
-CO thanks C.~Venables for helpful discussions and patience. The ideas in this article were conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K. Abbott. CO gratefully acknowledges their encouragement and feedback in developing these ideas. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship to CO, an Australian Research Council grants to DJM, and by the Monash University Centre for Geometric Biology.
+CO thanks C.~Venables for helpful discussions and patience. The ideas in this article were conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K. Abbott. CO gratefully acknowledges their encouragement and feedback in developing these ideas. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship to CO, and by the Monash University Centre for Geometric Biology.
 
 \newpage{}
 
@@ -149,20 +142,61 @@ M.~M. Patten, D. Haig, and F. \'{U}beda. 2010.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Tables}
+\renewcommand{\thetable}{\arabic{table}}
+\setcounter{table}{0}
+
+\begin{table}[h]
+\caption{Two-locus fitness matrix for females ($\mathbf{W}_f$). Rows and columns indicate the haplotype inherited from mothers and fathers respectively.}
+\label{Table:Fitness}
+\centering
+\begin{tabular}{l c c c c} \hline
+Haplotype & $y_1 = AB$ & $y_2 = Ab$ & $y_3 = aB$ & $y_4 = ab$ \\
+\hline
+$x_1 = AB$ & $(1-s_f)^2$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - h_f s_f)^2$ \\
+$x_2 = Ab$ & $(1 - s_f)(1 - h_f s_f)$ & $(1-s_f)$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ \\
+$x_3 = aB$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - h_f s_f)^2$ & $(1-s_f)$ & $(1 - h_f s_f)$ \\
+$x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
+\hline
+\end{tabular}
+\bigskip{}
+\end{table}
+
+
+\newpage{}
+
 \section*{Figures}
  
-%\begin{figure}[!ht]
-%\includegraphics[scale=0.7]{./fig1}
-%\caption{......}
-%\label{Fig:fig1.pdf}
-%\end{figure}
-%\newpage{}
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{./Fig1}
+\caption{Self-fertilization increases the scope for genetic linkage to expand the parameter space where sexually antagonistic polymorphism is maintained. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single locus case; greyscale lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles at different recombination rates for the two-locus model.}
+\label{Fig:Fig1.pdf}
+\end{figure}
+\newpage{}
+
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{./Fig2}
+\caption{The proportion of parameter space where sexually antagonistic polymorphism is maintained decreases with recombination and self-fertilization (panels A,C). The relative increase in sexually antagonistic polymorphism for the two-locus vs.~single-locus case also decreases with the recombination rate, but increases with the rate of self-fertilization (panels B,D). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalues for 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$.}
+\label{Fig:Fig2.pdf}
+\end{figure}
+\newpage{}
 
 
 
-%\subsection*{Supporting information and appendices}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Supporting Information}
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{figure}{0}
+
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{./Fig1wk}
+\caption{Under weak selection, the parameter space where sexually antagonistic polymorphism is maintained is only expanded beyond the single-locus case when there is very tight linkage between loci. Thus, there is little scope for self-fertilization to influence sexually antagonistic polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single-locus case; grey lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles under complete linkage ($r = 0$).}
+\label{Fig:Fig1wk.pdf}
+\end{figure}
+\newpage{}
 
 %\begin{figure}[!ht]
 %\includegraphics[width=\textwidth]{./figA1}
