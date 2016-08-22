@@ -137,7 +137,7 @@ transparentColor <- function(col, opacity=0.5) {
 Fig.1  <-  function() {
 
 # Color scheme
-    colfunc <- colorRampPalette(c("#252525", "grey60"))
+    colfunc <- colorRampPalette(c("#252525", "grey70"))
     COLS  <-  colfunc(6)
 #    COLS  <-  c("black", "#525252", "#737373", "#bdbdbd")
 
@@ -157,35 +157,35 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.5)
 
-        r0.4.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.4)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.4)
 
-        r0.3.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.3)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.3)
 
-        r0.2.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.2)
 
-        r0.1.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.1)
 
-        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0)
 
         # Make the plot
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -215,7 +215,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(2, las=1)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
@@ -238,35 +238,35 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.25)
 
-        r0.4.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.4, C=0.25)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.4, C=0.25)
 
-        r0.3.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.3, C=0.25)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.3, C=0.25)
 
-        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.25)
 
-        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.25)
 
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.25)
         
           # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -293,7 +293,7 @@ layout <- layout(layout.mat,respect=TRUE)
         lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
@@ -317,35 +317,35 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.5)
 
-        r0.4.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.4, C=0.5)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.4, C=0.5)
 
-        r0.3.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.3, C=0.5)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.3, C=0.5)
 
-        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.5)
 
-        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.5)
 
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.5)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -372,10 +372,10 @@ layout <- layout(layout.mat,respect=TRUE)
         lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         legend(
-            x       =  usr[2]*0.4,
+            x       =  usr[2]*0.39,
             y       =  usr[4],
         #    title   =  expression(paste(Outcome~of~invasion~analysis)),
             legend  =  c(
@@ -385,7 +385,7 @@ layout <- layout(layout.mat,respect=TRUE)
                         expression(paste(italic(r), " = ", 0.3)),
                         expression(paste(italic(r), " = ", 0.4)),
                         expression(paste(italic(r), " = ", 0.5)),
-                        expression(paste(italic(lambda[1])))),
+                        expression(paste(1~locus))),
             lty     =  1,
             lwd     =  3,
             col     =  c(rev(COLS),'black'),
@@ -418,35 +418,35 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.5)
 
-        r0.4.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.4)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4)
+        r0.4.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.4)
 
-        r0.3.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.3)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3)
+        r0.3.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.3)
 
-        r0.2.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.2)
 
-        r0.1.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.1)
 
-        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0)
 
         # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -496,35 +496,35 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.25)
 
-        r0.4.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.4, C=0.25)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.25)
+        r0.4.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.4, C=0.25)
 
-        r0.3.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.3, C=0.25)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.25)
+        r0.3.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.3, C=0.25)
 
-        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.25)
 
-        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.25)
 
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.25)
         
           # Make the plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -574,35 +574,35 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.5)
 
-        r0.4.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.4, C=0.5)
         r0.4.Hi[r0.4.Hi > 1]  <-  1.00000001
         r0.4.Hi[r0.4.Hi == 'NaN']  <-  1.00000001
-        r0.4.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.4, rm=0.4, C=0.5)
+        r0.4.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.4, C=0.5)
 
-        r0.3.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.3, C=0.5)
         r0.3.Hi[r0.3.Hi > 1]  <-  1.00000001
         r0.3.Hi[r0.3.Hi == 'NaN']  <-  1.00000001
-        r0.3.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.3, rm=0.3, C=0.5)
+        r0.3.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.3, C=0.5)
 
-        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.5)
 
-        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.5)
 
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.5)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -660,7 +660,7 @@ layout <- layout(layout.mat,respect=TRUE)
 Fig.1wk  <-  function() {
 
 # Color scheme
-    colfunc <- colorRampPalette(c("#252525", "grey60"))
+    colfunc <- colorRampPalette(c("#252525", "grey70"))
     COLS  <-  colfunc(6)
 #    COLS  <-  c("black", "#525252", "#737373", "#bdbdbd")
 
@@ -680,10 +680,10 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi.obOut[10001]  <-  0.100000001
         twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0)
 
         # Make the plot
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -703,7 +703,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(2, las=1)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
@@ -721,10 +721,10 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.25)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -742,7 +742,7 @@ layout <- layout(layout.mat,respect=TRUE)
         lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
@@ -760,10 +760,10 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.5)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.5)
 
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -780,15 +780,15 @@ layout <- layout(layout.mat,respect=TRUE)
         lines(twoLoc.Lo ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         legend(
-            x       =  usr[2]*0.4,
+            x       =  usr[2]*0.39,
             y       =  usr[4],
         #    title   =  expression(paste(Outcome~of~invasion~analysis)),
             legend  =  c(
                         expression(paste(italic(r), " = ", 0)),
-                        expression(paste(italic(lambda[1])))),
+                        expression(paste(1~locus))),
             lty     =  1,
             lwd     =  3,
             col     =  c(rev(COLS)[1],'black'),
@@ -817,10 +817,10 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi.obOut[10001]  <-  0.100000001
         twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0)
 
         # Make the plot
 #        par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -857,10 +857,10 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[10001]  <-  0.100000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.25)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.25)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -896,10 +896,10 @@ layout <- layout(layout.mat,respect=TRUE)
         twoLoc.Hi[twoLoc.Hi > 0.1]  <-  0.100000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.5)
         r0.Hi[r0.Hi > 0.1]  <-  0.100000001
         r0.Hi[r0.Hi == 'NaN']  <-  0.100000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.5)
         
           # Make the plot
         #par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
@@ -1201,10 +1201,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0)
 
         pAgree  <-  rounded(sum(C0.0.h.5$agree[C0.0.h.5$r == 0.0])/length(C0.0.h.5$agree[C0.0.h.5$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.0]) / 
@@ -1256,10 +1256,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.25)
 
         pAgree  <-  rounded(sum(C0.25.h.5$agree[C0.25.h.5$r == 0.0])/length(C0.25.h.5$agree[C0.25.h.5$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.0]) / 
@@ -1310,10 +1310,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.5)
 
         pAgree  <-  rounded(sum(C0.5.h.5$agree[C0.5.h.5$r == 0.0])/length(C0.5.h.5$agree[C0.5.h.5$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.0]) / 
@@ -1363,10 +1363,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.75)
+        r0.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.75)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0, rm=0, C=0.75)
+        r0.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0, C=0.75)
 
         pAgree  <-  rounded(sum(C0.75.h.5$agree[C0.75.h.5$r == 0.0])/length(C0.75.h.5$agree[C0.75.h.5$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.0]) / 
@@ -1420,10 +1420,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.1.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.1)
 
         pAgree  <-  rounded(sum(C0.0.h.5$agree[C0.0.h.5$r == 0.1])/length(C0.0.h.5$agree[C0.0.h.5$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.1]) / 
@@ -1475,10 +1475,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.25)
         
         pAgree  <-  rounded(sum(C0.25.h.5$agree[C0.25.h.5$r == 0.1])/length(C0.25.h.5$agree[C0.25.h.5$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.1]) / 
@@ -1529,10 +1529,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.5)
         
         pAgree  <-  rounded(sum(C0.5.h.5$agree[C0.5.h.5$r == 0.1])/length(C0.5.h.5$agree[C0.5.h.5$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.1]) / 
@@ -1582,10 +1582,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.75)
+        r0.1.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.75)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.1, rm=0.1, C=0.75)
+        r0.1.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.1, C=0.75)
         
         pAgree  <-  rounded(sum(C0.75.h.5$agree[C0.75.h.5$r == 0.1])/length(C0.75.h.5$agree[C0.75.h.5$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.1]) / 
@@ -1640,10 +1640,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.2.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.2)
 
         pAgree  <-  rounded(sum(C0.0.h.5$agree[C0.0.h.5$r == 0.2])/length(C0.0.h.5$agree[C0.0.h.5$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.2]) / 
@@ -1695,10 +1695,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.25)
         
         pAgree  <-  rounded(sum(C0.25.h.5$agree[C0.25.h.5$r == 0.2])/length(C0.25.h.5$agree[C0.25.h.5$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.2]) / 
@@ -1750,10 +1750,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.5)
         
         pAgree  <-  rounded(sum(C0.5.h.5$agree[C0.5.h.5$r == 0.2])/length(C0.5.h.5$agree[C0.5.h.5$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.2]) / 
@@ -1804,10 +1804,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.75)
+        r0.2.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.75)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.2, rm=0.2, C=0.75)
+        r0.2.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.2, C=0.75)
         
         pAgree  <-  rounded(sum(C0.75.h.5$agree[C0.75.h.5$r == 0.2])/length(C0.75.h.5$agree[C0.75.h.5$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.2]) / 
@@ -1862,10 +1862,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.add.obOut(hf = 0.5, hm = 0.5, sm=sm, r=0.5)
 
         pAgree  <-  rounded(sum(C0.0.h.5$agree[C0.0.h.5$r == 0.2])/length(C0.0.h.5$agree[C0.0.h.5$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.0.h.5$sf[C0.0.h.5$Poly == 1 & C0.0.h.5$agree == 0 & C0.0.h.5$r  ==  0.5]) / 
@@ -1918,10 +1918,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.25)
         
         pAgree  <-  rounded(sum(C0.25.h.5$agree[C0.25.h.5$r == 0.2])/length(C0.25.h.5$agree[C0.25.h.5$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.25.h.5$sf[C0.25.h.5$Poly == 1 & C0.25.h.5$agree == 0 & C0.25.h.5$r  ==  0.5]) / 
@@ -1974,10 +1974,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.5)
         
         pAgree  <-  rounded(sum(C0.5.h.5$agree[C0.5.h.5$r == 0.2])/length(C0.5.h.5$agree[C0.5.h.5$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.5.h.5$sf[C0.5.h.5$Poly == 1 & C0.5.h.5$agree == 0 & C0.5.h.5$r  ==  0.5]) / 
@@ -2029,10 +2029,10 @@ Fig.S1_add  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.75)
         
-        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.75)
+        r0.5.Hi  <-  inv.lab2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.75)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, rf=0.5, rm=0.5, C=0.75)
+        r0.5.Lo  <-  inv.lAB2.add(hf = 0.5, hm = 0.5, sm=sm, r=0.5, C=0.75)
         
         pAgree  <-  rounded(sum(C0.75.h.5$agree[C0.75.h.5$r == 0.2])/length(C0.75.h.5$agree[C0.75.h.5$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.75.h.5$sf[C0.75.h.5$Poly == 1 & C0.75.h.5$agree == 0 & C0.75.h.5$r  ==  0.5]) / 
@@ -2156,10 +2156,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0)
+        r0.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0)
 
         pAgree  <-  rounded(sum(C0.0.h.25$agree[C0.0.h.25$r == 0.0])/length(C0.0.h.25$agree[C0.0.h.25$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.0.h.25$sf[C0.0.h.25$Poly == 1 & C0.0.h.25$agree == 0 & C0.0.h.25$r  ==  0.0]) / 
@@ -2211,10 +2211,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.25)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.25)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.25)
 
         pAgree  <-  rounded(sum(C0.25.h.25$agree[C0.25.h.25$r == 0.0])/length(C0.25.h.25$agree[C0.25.h.25$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.25.h.25$sf[C0.25.h.25$Poly == 1 & C0.25.h.25$agree == 0 & C0.25.h.25$r  ==  0.0]) / 
@@ -2265,10 +2265,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.5)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.5)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.5)
 
         pAgree  <-  rounded(sum(C0.5.h.25$agree[C0.5.h.25$r == 0.0])/length(C0.5.h.25$agree[C0.5.h.25$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.5.h.25$sf[C0.5.h.25$Poly == 1 & C0.5.h.25$agree == 0 & C0.5.h.25$r  ==  0.0]) / 
@@ -2318,10 +2318,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.75)
         
-        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.75)
+        r0.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.75)
         r0.Hi[r0.Hi > 1]  <-  1.00000001
         r0.Hi[r0.Hi == 'NaN']  <-  1.00000001
-        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0, rm=0, C=0.75)
+        r0.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0, C=0.75)
 
         pAgree  <-  rounded(sum(C0.75.h.25$agree[C0.75.h.25$r == 0.0])/length(C0.75.h.25$agree[C0.75.h.25$r == 0.0]), precision=3)
         pSim    <-  rounded(length(C0.75.h.25$sf[C0.75.h.25$Poly == 1 & C0.75.h.25$agree == 0 & C0.75.h.25$r  ==  0.0]) / 
@@ -2375,10 +2375,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.1.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.1)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1)
+        r0.1.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.1)
 
         pAgree  <-  rounded(sum(C0.0.h.25$agree[C0.0.h.25$r == 0.1])/length(C0.0.h.25$agree[C0.0.h.25$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.0.h.25$sf[C0.0.h.25$Poly == 1 & C0.0.h.25$agree == 0 & C0.0.h.25$r  ==  0.1]) / 
@@ -2430,10 +2430,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.25)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.25)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.25)
         
         pAgree  <-  rounded(sum(C0.25.h.25$agree[C0.25.h.25$r == 0.1])/length(C0.25.h.25$agree[C0.25.h.25$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.25.h.25$sf[C0.25.h.25$Poly == 1 & C0.25.h.25$agree == 0 & C0.25.h.25$r  ==  0.1]) / 
@@ -2484,10 +2484,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.5)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.5)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.5)
         
         pAgree  <-  rounded(sum(C0.5.h.25$agree[C0.5.h.25$r == 0.1])/length(C0.5.h.25$agree[C0.5.h.25$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.5.h.25$sf[C0.5.h.25$Poly == 1 & C0.5.h.25$agree == 0 & C0.5.h.25$r  ==  0.1]) / 
@@ -2537,10 +2537,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.75)
         
-        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.75)
+        r0.1.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.75)
         r0.1.Hi[r0.1.Hi > 1]  <-  1.00000001
         r0.1.Hi[r0.1.Hi == 'NaN']  <-  1.00000001
-        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.1, rm=0.1, C=0.75)
+        r0.1.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.1, C=0.75)
         
         pAgree  <-  rounded(sum(C0.75.h.25$agree[C0.75.h.25$r == 0.1])/length(C0.75.h.25$agree[C0.75.h.25$r == 0.1]), precision=3)
         pSim    <-  rounded(length(C0.75.h.25$sf[C0.75.h.25$Poly == 1 & C0.75.h.25$agree == 0 & C0.75.h.25$r  ==  0.1]) / 
@@ -2595,10 +2595,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.2.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.2)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2)
+        r0.2.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.2)
 
         pAgree  <-  rounded(sum(C0.0.h.25$agree[C0.0.h.25$r == 0.2])/length(C0.0.h.25$agree[C0.0.h.25$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.0.h.25$sf[C0.0.h.25$Poly == 1 & C0.0.h.25$agree == 0 & C0.0.h.25$r  ==  0.2]) / 
@@ -2650,10 +2650,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.25)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.25)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.25)
         
         pAgree  <-  rounded(sum(C0.25.h.25$agree[C0.25.h.25$r == 0.2])/length(C0.25.h.25$agree[C0.25.h.25$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.25.h.25$sf[C0.25.h.25$Poly == 1 & C0.25.h.25$agree == 0 & C0.25.h.25$r  ==  0.2]) / 
@@ -2705,10 +2705,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.5)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.5)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.5)
         
         pAgree  <-  rounded(sum(C0.5.h.25$agree[C0.5.h.25$r == 0.2])/length(C0.5.h.25$agree[C0.5.h.25$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.5.h.25$sf[C0.5.h.25$Poly == 1 & C0.5.h.25$agree == 0 & C0.5.h.25$r  ==  0.2]) / 
@@ -2759,10 +2759,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.75)
         
-        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.75)
+        r0.2.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.75)
         r0.2.Hi[r0.2.Hi > 1]  <-  1.00000001
         r0.2.Hi[r0.2.Hi == 'NaN']  <-  1.00000001
-        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.2, rm=0.2, C=0.75)
+        r0.2.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.2, C=0.75)
         
         pAgree  <-  rounded(sum(C0.75.h.25$agree[C0.75.h.25$r == 0.2])/length(C0.75.h.25$agree[C0.75.h.25$r == 0.2]), precision=3)
         pSim    <-  rounded(length(C0.75.h.25$sf[C0.75.h.25$Poly == 1 & C0.75.h.25$agree == 0 & C0.75.h.25$r  ==  0.2]) / 
@@ -2817,10 +2817,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi.obOut[10001]  <-  1.00000001
         twoLoc.Lo.obOut  <-  inv.lAB1.domRev.obOut(hf=0.25, hm=0.25, sm=sm)
         
-        r0.5.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Hi  <-  inv.lab2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5)
+        r0.5.Lo  <-  inv.lAB2.domRev.obOut(hf = 0.25, hm = 0.25, sm=sm, r=0.5)
 
         pAgree  <-  rounded(sum(C0.0.h.25$agree[C0.0.h.25$r == 0.2])/length(C0.0.h.25$agree[C0.0.h.25$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.0.h.25$sf[C0.0.h.25$Poly == 1 & C0.0.h.25$agree == 0 & C0.0.h.25$r  ==  0.5]) / 
@@ -2873,10 +2873,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.25)
         
-        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.25)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.25)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.25)
         
         pAgree  <-  rounded(sum(C0.25.h.25$agree[C0.25.h.25$r == 0.2])/length(C0.25.h.25$agree[C0.25.h.25$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.25.h.25$sf[C0.25.h.25$Poly == 1 & C0.25.h.25$agree == 0 & C0.25.h.25$r  ==  0.5]) / 
@@ -2929,10 +2929,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.5)
         
-        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.5)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.5)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.5)
         
         pAgree  <-  rounded(sum(C0.5.h.25$agree[C0.5.h.25$r == 0.2])/length(C0.5.h.25$agree[C0.5.h.25$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.5.h.25$sf[C0.5.h.25$Poly == 1 & C0.5.h.25$agree == 0 & C0.5.h.25$r  ==  0.5]) / 
@@ -2984,10 +2984,10 @@ Fig.S2_domRev  <-  function() {
         twoLoc.Hi[10001]  <-  1.00000001
         twoLoc.Lo  <-  inv.lAB1.domRev(hf=0.25, hm=0.25, sm=sm, C=0.75)
         
-        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.75)
+        r0.5.Hi  <-  inv.lab2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.75)
         r0.5.Hi[r0.5.Hi > 1]  <-  1.00000001
         r0.5.Hi[r0.5.Hi == 'NaN']  <-  1.00000001
-        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, rf=0.5, rm=0.5, C=0.75)
+        r0.5.Lo  <-  inv.lAB2.domRev(hf = 0.25, hm = 0.25, sm=sm, r=0.5, C=0.75)
         
         pAgree  <-  rounded(sum(C0.75.h.25$agree[C0.75.h.25$r == 0.2])/length(C0.75.h.25$agree[C0.75.h.25$r == 0.5]), precision=3)
         pSim    <-  rounded(length(C0.75.h.25$sf[C0.75.h.25$Poly == 1 & C0.75.h.25$agree == 0 & C0.75.h.25$r  ==  0.5]) / 

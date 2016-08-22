@@ -45,43 +45,43 @@ Wm.av  <-  function(Fii, Wm.mat, ...){
 #  Ovules
 x1p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 	((2*Fii[1]*Wf.mat[1,1]) + (Fii[2]*Wf.mat[1,2]) + (Fii[3]*Wf.mat[1,3]) + (Fii[4]*Wf.mat[1,4])) / (2*Wf.av(Fii, Wf.mat)) - 
-		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+		par.list$r*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
 x2p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
 	((2*Fii[5]*Wf.mat[2,2]) + (Fii[2]*Wf.mat[1,2]) + (Fii[6]*Wf.mat[2,3]) + (Fii[7]*Wf.mat[2,4]))/(2*Wf.av(Fii, Wf.mat)) + 
-		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+		par.list$r*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
 x3p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 	 ((2*Fii[8]*Wf.mat[3,3]) + (Fii[9]*Wf.mat[3,4]) + (Fii[3]*Wf.mat[1,3]) + (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)) + 
- 		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+ 		par.list$r*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
 x4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 	((2*Fii[10]*Wf.mat[4,4]) + (Fii[9]*Wf.mat[3,4]) + (Fii[4]*Wf.mat[1,4]) + (Fii[7]*Wf.mat[2,4]))/(2*Wf.av(Fii, Wf.mat)) - 
-		par.list$rf*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
+		par.list$r*(((Fii[4]*Wf.mat[1,4]) - (Fii[6]*Wf.mat[2,3]))/(2*Wf.av(Fii, Wf.mat)))
 }
 
 #  Pollen/Sperm
 y1p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 	((2*Fii[1]*Wm.mat[1,1]) + (Fii[2]*Wm.mat[1,2]) + (Fii[3]*Wm.mat[1,3]) + (Fii[4]*Wm.mat[1,4])) / (2*Wm.av(Fii, Wm.mat)) - 
-		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+		par.list$r*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
 y2p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...){
 	((2*Fii[5]*Wm.mat[2,2]) + (Fii[2]*Wm.mat[1,2]) + (Fii[6]*Wm.mat[2,3]) + (Fii[7]*Wm.mat[2,4]))/(2*Wm.av(Fii, Wm.mat)) + 
-		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+		par.list$r*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
 y3p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 	 ((2*Fii[8]*Wm.mat[3,3]) + (Fii[9]*Wm.mat[3,4]) + (Fii[3]*Wm.mat[1,3]) + (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)) + 
- 		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+ 		par.list$r*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
 y4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 	((2*Fii[10]*Wm.mat[4,4]) + (Fii[9]*Wm.mat[3,4]) + (Fii[4]*Wm.mat[1,4]) + (Fii[7]*Wm.mat[2,4]))/(2*Wm.av(Fii, Wm.mat)) - 
-		par.list$rm*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
+		par.list$r*(((Fii[4]*Wm.mat[1,4]) - (Fii[6]*Wm.mat[2,3]))/(2*Wm.av(Fii, Wm.mat)))
 }
 
 
@@ -92,7 +92,7 @@ y4p  <-  function(Fii, Wf.mat, Wm.mat, par.list,...) {
 F11.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x1  <-  x1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x1*y1 + par.list$C*((Fii[1]*Wf.mat[1,1] + Fii[2]*Wf.mat[1,2]/4 + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*((1 - par.list$rf)^2)/4 + Fii[6]*Wf.mat[2,3]*(par.list$rf^2)/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*x1*y1 + par.list$C*((Fii[1]*Wf.mat[1,1] + Fii[2]*Wf.mat[1,2]/4 + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*((1 - par.list$r)^2)/4 + Fii[6]*Wf.mat[2,3]*(par.list$r^2)/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -100,7 +100,7 @@ F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y2 + x2*y1) + par.list$C*((Fii[2]*Wf.mat[1,2]/2 + Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x1*y2 + x2*y1) + par.list$C*((Fii[2]*Wf.mat[1,2]/2 + Fii[4]*Wf.mat[1,4]*par.list$r*(1 - par.list$r)/2 + Fii[6]*Wf.mat[2,3]*par.list$r*(1 - par.list$r)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -108,7 +108,7 @@ F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*((Fii[3]*Wf.mat[1,3]/2 + Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*((Fii[3]*Wf.mat[1,3]/2 + Fii[4]*Wf.mat[1,4]*par.list$r*(1 - par.list$r)/2 + Fii[6]*Wf.mat[2,3]*par.list$r*(1 - par.list$r)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -116,13 +116,13 @@ F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y4 + x4*y1) + par.list$C*((Fii[4]*Wf.mat[1,4]*((1 - par.list$rf)^2)/2 + Fii[6]*Wf.mat[2,3]*(par.list$rf^2)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x1*y4 + x4*y1) + par.list$C*((Fii[4]*Wf.mat[1,4]*((1 - par.list$r)^2)/2 + Fii[6]*Wf.mat[2,3]*(par.list$r^2)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F22.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x2  <-  x2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x2*y2 + par.list$C*((Fii[5]*Wf.mat[2,2] + Fii[2]*Wf.mat[1,2]/4 + Fii[4]*Wf.mat[1,4]*(par.list$rf^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$rf)^2)/4 + Fii[7]*Wf.mat[2,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*x2*y2 + par.list$C*((Fii[5]*Wf.mat[2,2] + Fii[2]*Wf.mat[1,2]/4 + Fii[4]*Wf.mat[1,4]*(par.list$r^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$r)^2)/4 + Fii[7]*Wf.mat[2,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -130,7 +130,7 @@ F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x2*y3 + x3*y2) + par.list$C*((Fii[4]*Wf.mat[1,4]*(par.list$rf^2)/2 + Fii[6]*Wf.mat[2,3]*((1 - par.list$rf)^2)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x2*y3 + x3*y2) + par.list$C*((Fii[4]*Wf.mat[1,4]*(par.list$r^2)/2 + Fii[6]*Wf.mat[2,3]*((1 - par.list$r)^2)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -138,13 +138,13 @@ F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y2  <-  y2p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x2*y4 + x4*y2) + par.list$C*((Fii[7]*Wf.mat[2,4]/2 + Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x2*y4 + x4*y2) + par.list$C*((Fii[7]*Wf.mat[2,4]/2 + Fii[4]*Wf.mat[1,4]*par.list$r*(1 - par.list$r)/2 + Fii[6]*Wf.mat[2,3]*par.list$r*(1 - par.list$r)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F33.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x3  <-  x3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x3*y3 + par.list$C*((Fii[8]*Wf.mat[3,3] + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*(par.list$rf^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$rf)^2)/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*x3*y3 + par.list$C*((Fii[8]*Wf.mat[3,3] + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*(par.list$r^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$r)^2)/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
@@ -152,13 +152,13 @@ F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y3  <-  y3p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x3*y4 + x4*y3) + par.list$C*((Fii[4]*Wf.mat[1,4]*par.list$rf*(1 - par.list$rf)/2 + Fii[6]*Wf.mat[2,3]*par.list$rf*(1 - par.list$rf)/2 + Fii[9]*Wf.mat[3,4]/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x3*y4 + x4*y3) + par.list$C*((Fii[4]*Wf.mat[1,4]*par.list$r*(1 - par.list$r)/2 + Fii[6]*Wf.mat[2,3]*par.list$r*(1 - par.list$r)/2 + Fii[9]*Wf.mat[3,4]/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
 	x4  <-  x4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y4  <-  y4p(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*x4*y4 + par.list$C*((Fii[10]*Wf.mat[4,4] + Fii[4]*Wf.mat[1,4]*((1 - par.list$rf)^2)/4 + Fii[6]*Wf.mat[2,3]*(par.list$rf^2)/4 + Fii[7]*Wf.mat[2,4]/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*x4*y4 + par.list$C*((Fii[10]*Wf.mat[4,4] + Fii[4]*Wf.mat[1,4]*((1 - par.list$r)^2)/4 + Fii[6]*Wf.mat[2,3]*(par.list$r^2)/4 + Fii[7]*Wf.mat[2,4]/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 
@@ -175,22 +175,19 @@ lambda.AB1.add  <-  function(par.list) {
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
 
-	(4 + sf*(-3 + sm) - sm + C*(-2 - sf*(-3 + sm) + sm))/(2*(-2 + C)*(-1 + sf))
+	(4 + sf*(-3 + sm) - sm + C*(-2 - sf*(-3 + sm) + sm)) / (2*(-2 + C)*(-1 + sf))
 }
 
 lambda.AB2.add  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	rm  <-  par.list$rm
-	rf  <-  par.list$rf
+	r   <-  par.list$r
 
-	(1/(4*(-2 + C)*(-1 + sf)^2)) * (-8 + 4*C + 4*rf - 4*C^2*rf + 4*rm - 
-	  4*C^2*rm + 12*sf - 12*C*sf - 4*rf*sf + 4*C^2*rf*sf - 8*rm*sf + 
-	  8*C*rm*sf - 5*sf^2 + 6*C*sf^2 - C^2*sf^2 + rf*sf^2 - C^2*rf*sf^2 + 
-	  4*rm*sf^2 - 6*C*rm*sf^2 + 2*C^2*rm*sf^2 - 
-	  4*(-1 + C)*(1 + (-1 + C)*rm)*(-1 + sf)^2*sm + (-1 + C)*(1 + 
-	     C + (-1 + C)*rm)*(-1 + sf)^2*sm^2)
+(-8 + 4*C + 8*r - 8*C^2*r + 12*sf - 12*C*sf - 12*r*sf + 8*C*r*sf + 
+ 4*C^2*r*sf - 5*sf^2 + 6*C*sf^2 - C^2*sf^2 + 5*r*sf^2 - 6*C*r*sf^2 + 
+ C^2*r*sf^2 - 4*(-1 + C)*(1 + (-1 + C)*r)*(-1 + sf)^2*sm + (-1 + C)*
+ (1 + C + (-1 + C)*r)*(-1 + sf)^2*sm^2) / (4*(-2 + C)*(-1 + sf)^2)
 }
 
 lambda.ab1.add  <-  function(par.list) {
@@ -198,21 +195,19 @@ lambda.ab1.add  <-  function(par.list) {
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
 
-	(4 + sf*(-1 + sm) - 3*sm + C*(-2 + sf*(-1 + sm) + sm))/(2*(-2 + C)*(-1 + sm))
+(4 + sf*(-1 + sm) - 3*sm + C*(-2 + sf*(-1 + sm) + sm)) / (2*(-2 + C)*(-1 + sm))
 }
 
 lambda.ab2.add  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	rm  <-  par.list$rm
-	rf  <-  par.list$rf
+	r   <-  par.list$r
 
-	(-5 + C^2 + 4*rf - 4*C^2*rf + rm + 6*C*rm - 7*C^2*rm + 4*sf + 
-	 4*C*sf - 4*rf*sf + 4*C^2*rf*sf - 8*C*rm*sf + 8*C^2*rm*sf - sf^2 - 
-	 2*C*sf^2 - C^2*sf^2 + rf*sf^2 - C^2*rf*sf^2 + 2*C*rm*sf^2 - 
-	 2*C^2*rm*sf^2 + ((-1 + C)*(1 + C + (-1 + C)*rm))/(-1 + sm)^2 - (
-	 2*(-1 + C)^2*(-1 + rm))/(-1 + sm))/(4*(-2 + C))
+1 / (4*(-2 + C)*(-1 + sm)^2)*((-1 + r)*(8 - 4*sf*(-1 + sm)^2 + sf^2*(-1 + sm)^2 + 
+      sm*(-12 + 5*sm)) + 2*C*(2 - 2*(-1 + 2*r)*sf*(-1 + sm)^2 + (-1 + r)*sf^2*(-1 + sm)^2 + 
+      sm*(-2 + r*(-4 + 3*sm))) - C^2*(sf^2*(-1 + sm)^2 - sm^2 + r*(8 - 12*sf*(-1 + sm)^2 + 
+      3*sf^2*(-1 + sm)^2 + sm*(-20 + 11*sm))))
 }
 
 
@@ -226,23 +221,22 @@ lambda.AB1.domRev  <-  function(par.list) {
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
 
-	(8 + C*(-4 + 6*sf) + sf*(-5 + sm) - sm - C^2*(sf + (-1 + sf)*sm))/(4*(-2 + C)*(-1 + sf))
+	(8 + C*(-4 + 6*sf) + sf*(-5 + sm) - sm - C^2*(sf + (-1 + sf)*sm)) / (4*(-2 + C)*(-1 + sf))
 }
 
 lambda.AB2.domRev  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	rm  <-  par.list$rm
-	rf  <-  par.list$rf
+	r   <-  par.list$r
 
-	(1/(16*(-2 + C)*(-1 + sf)^2)) * (-32 + 16*rm + rf*(-4 + sf)^2 + 40*sf - 
-	  32*rm*sf - 17*sf^2 + 16*rm*sf^2 - 
-	  8*(-1 + rm)*(-1 + sf)^2*sm + (-1 + rm)*(-1 + sf)^2*sm^2 + 
-	  2*C*(8 - 3*sf*(8 - 4*sf + rm*(-8 + 5*sf)) + 
-	     8*rm*(-1 + sf)^2*sm - (3 + rm)*(-1 + sf)^2*sm^2) + 
-	  C^2*(-16*rm - rf*(-4 + sf)^2 + 8*sf - 16*rm*sf - 7*sf^2 + 
-	     14*rm*sf^2 - 8*(1 + rm)*(-1 + sf)^2*sm + (7 + rm)*(-1 + sf)^2*sm^2))
+	(1 / (16*(-2 + C)*(-1 + sf)^2))*
+	((-1 + r)*(32 - 40*sf + 17*sf^2 - 
+    8*(-1 + sf)^2*sm + (-1 + sf)^2*sm^2) + 
+	2*C*(8 - 3*sf*(8 - 4*sf + r*(-8 + 5*sf)) + 
+	8*r*(-1 + sf)^2*sm - (3 + r)*(-1 + sf)^2*sm^2) + 
+	C^2*(-32*r + 8*sf - 8*r*sf - 7*sf^2 + 13*r*sf^2 - 
+	8*(1 + r)*(-1 + sf)^2*sm + (7 + r)*(-1 + sf)^2*sm^2))
 }
 
 lambda.ab1.domRev  <-  function(par.list) {
@@ -257,15 +251,14 @@ lambda.ab2.domRev  <-  function(par.list) {
 	C   <-  par.list$C
 	sm  <-  par.list$sm
 	sf  <-  par.list$sf
-	rm  <-  par.list$rm
-	rf  <-  par.list$rf
+	r   <-  par.list$r
 
-	(-17 + rm + rf*(-4 + sf)^2 + 8*sf - sf^2 + 
-	 C^2*(7 - 31*rm - rf*(-4 + sf)^2 + 8*sf + 16*rm*sf - 7*sf^2 - 
-	    2*rm*sf^2 + (-1 + 9*rm)/(-1 + sm)^2 - (6*(-1 + rm))/(-1 + sm)) + (
-	 9*(-1 + rm)) / (-1 + sm)^2 - (6*(-1 + rm)) / (-1 + sm) + (
-	 2*C*(8 - 8*(-1 + rm)*sf*(-1 + sm)^2 + (-4 + rm)*sf^2*(-1 + sm)^2 + 
-	    3*sm*(-8*rm - sm + 5*rm*sm))) / (-1 + sm)^2) / (16*(-2 + C))
+	(1/(16*(-2 + C)*(-1 + sm)^2))*
+	(2*C*(8 - 8*(-1 + r)*sf*(-1 + sm)^2 + (-4 + r)*sf^2*(-1 + sm)^2 - 
+	3*sm^2 + 3*r*sm*(-8 + 5*sm)) + (-1 + r)*(32 - 8*sf*(-1 + sm)^2 +
+	sf^2*(-1 + sm)^2 + sm*(-40 + 17*sm)) + 
+	C^2*(8*sf*(-1 + sm)^2 - 7*sf^2*(-1 + sm)^2 + sm*(-8 + 7*sm) + 
+	r*(-32 + 24*sf*(-1 + sm)^2 - 3*sf^2*(-1 + sm)^2 + (88 - 47*sm)*sm)))
 }
 
 
@@ -286,6 +279,7 @@ invKidwell.lab  <-  function(sm) {
 #############################
 ##  Additive fitness effects
 
+########
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele under obligate outcrossing
 inv.lAB1.add.obOut  <-  function(hf, hm, sm) {
@@ -301,20 +295,21 @@ inv.lab1.add.obOut  <-  function(hf, hm, sm) {
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele under obligate outcrossing
-inv.lAB2.add.obOut  <-  function(hf, hm, sm, rf, rm) {
-	(2 + 2*rf + rm*(-2 + sm)^2 - (-4 + sm)*sm - sqrt(-(-1 + rf)*(4 + 
-	    rm*(-2 + sm)^2 - (-4 + sm)*sm)))/(3 + rf + rm*(-2 + sm)^2 - (-4 + sm)*sm)
+inv.lAB2.add.obOut  <-  function(hf, hm, sm, r) {
+
+	(2 - (-4 + sm)*sm - sqrt(-(-1 + r)*(4 +r*(-2 + sm)^2 - (-4 + sm)*sm)) + 
+		r*(6 + (-4 + sm)*sm)) / (3 - (-4 + sm)*sm + r*(5 + (-4 + sm)*sm))
 }
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele under obligate outcrossing
-inv.lab2.add.obOut  <-  function(hf, hm, sm, rf, rm) {
-	(-2 + 2*rf + sqrt(-(((-1 + rf)*(4 + rm*(-2 + sm)^2 + 
-	     sm*(-12 + 7*sm))) / (-1 + sm)^2))) / (-1 + rf)
+inv.lab2.add.obOut  <-  function(hf, hm, sm, r) {
+
+	2 + (sqrt(-(((-1 + r)*(4 + r*(-2 + sm)^2 + sm*(-12 + 7*sm))) / (-1 + sm)^2)) / (-1 + r))
 }
 
 
-
+########
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele (w/ selfing)
 inv.lAB1.add  <-  function(hf, hm, sm, C) {
@@ -330,47 +325,41 @@ inv.lab1.add  <-  function(hf, hm, sm, C) {
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele (w/ selfing)
-inv.lAB2.add  <-  function(hf, hm, sm, rf, rm, C) {
-	-((-2 - 2*rf - 4*rm + 2*C*(-1 + C*rf + 2*rm) - 4*sm + 
-     4*(C + (-1 + C)^2*rm)*sm - (-1 + C)*(1 + 
-        C + (-1 + C)*rm)*sm^2 + sqrt(4*((1 + 
-             C)^2 - (-1 + C^2)^2*rf + (-1 + C)^3*(1 + C)*(-1 + 
-              rf)*rm + 2*(-1 + C)^3*C*rm^2) - 
-        4*(-1 + C)*(1 + (-1 + C)*rm)*(1 - rf + 
-           C*(2 + C + C*rf + 2*(-1 + C)*rm))*sm + (-1 + C)*(1 + 
-           C + (-1 + C)*rm)*(1 - rf + 
-           C*(2 + C + C*rf + 2*(-1 + C)*rm))*sm^2)) / (3 + rf + 4*rm - 
-     C*(-2 + C*(1 + rf - 2*rm) + 6*rm) + 4*sm - 
-     4*(C + (-1 + C)^2*rm)*sm + (-1 + C)*(1 + C + (-1 + C)*rm)*sm^2))
+inv.lAB2.add  <-  function(hf, hm, sm, r, C) {
+
+	(2 + 2*C + 6*r - 2*C*(2 + C)*r + 4*sm - 
+   4*(C + (-1 + C)^2*r)*sm + (-1 + C)*(1 + C + (-1 + C)*r)*sm^2 - 
+   sqrt(4*((1 + C)^2 - 
+       2*(-1 + C)^2*C*(1 + C)*r + (-1 + C)^3*(1 + 3*C)*r^2) - 
+    4*(-1 + C)*(1 + (-1 + C)*r)*((1 + 
+         C)^2 + (-1 + C)*(1 + 3*C)*r)*sm + (-1 + C)*(1 + 
+       C + (-1 + C)*r)*((1 + C)^2 + (-1 + C)*(1 + 3*C)*r)*sm^2)) / 
+	(3 + C*(2 + C*(-1 + r) - 6*r) + 5*r + 4*sm - 
+   4*(C + (-1 + C)^2*r)*sm + (-1 + C)*(1 + C + (-1 + C)*r)*sm^2)
 }
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele (w/ selfing)
-inv.lab2.add  <-  function(hf, hm, sm, rf, rm, C) {
-	1 / (1 - rf - 2*C*(-1 + rm) + 
-  C^2*(1 + rf + 2*rm))*(2 + 2*C - 2*rf + 2*C^2*rf - 4*C*rm + 
-   4*C^2*rm - 
-   2*sqrt(1/((-2 + C)^2*(-1 + 
-          sm)^2)*(-(-1 + rf)*(4 + rm*(-2 + sm)^2 - 12*sm + 7*sm^2) + 
-         C^4*(rf*(2 + rm*(-2 + sm) - 3*sm)*(-2 + sm) + 
-            2*rm^2*(-2 + sm)^2 + sm^2 + rm*(-4 + 12*sm - 5*sm^2)) - 
-         2*C^3*(3*rm^2*(-2 + sm)^2 + sm*(-2 + 2*rf*(-1 + sm) + sm) + 
-            rm*(-4 + rf*(-2 + sm)^2 + 4*sm + sm^2)) + 
-         2*C^2*(2 + 3*rm^2*(-2 + sm)^2 - 2*sm + 2*rm*sm*(-6 + 5*sm) + 
-            rf*(4 - 10*sm + 5*sm^2)) - 
-         2*C*(-4 + rm^2*(-2 + sm)^2 + 
-            2*(5 + rf)*sm - (5 + 2*rf)*sm^2 + 
-            rm*(4 - rf*(-2 + sm)^2 - 12*sm + 7*sm^2)))) + 
-   C*sqrt(1/((-2 + C)^2*(-1 + 
-          sm)^2)*(-(-1 + rf)*(4 + rm*(-2 + sm)^2 - 12*sm + 7*sm^2) + 
-         C^4*(rf*(2 + rm*(-2 + sm) - 3*sm)*(-2 + sm) + 
-            2*rm^2*(-2 + sm)^2 + sm^2 + rm*(-4 + 12*sm - 5*sm^2)) - 
-         2*C^3*(3*rm^2*(-2 + sm)^2 + sm*(-2 + 2*rf*(-1 + sm) + sm) + 
-            rm*(-4 + rf*(-2 + sm)^2 + 4*sm + sm^2)) + 
-         2*C^2*(2 + 3*rm^2*(-2 + sm)^2 - 2*sm + 2*rm*sm*(-6 + 5*sm) + 
-            rf*(4 - 10*sm + 5*sm^2)) - 2*C*(-4 + rm^2*(-2 + sm)^2 + 
-            2*(5 + rf)*sm - (5 + 2*rf)*sm^2 + 
-            rm*(4 - rf*(-2 + sm)^2 - 12*sm + 7*sm^2)))))
+inv.lab2.add  <-  function(hf, hm, sm, r, C) {
+
+	1 / (1 - 2*C*(-1 + r) - r + 
+  C^2*(1 + 3*r))*(2 + 2*C - 2*r - 4*C*r + 6*C^2*r - 
+   2*sqrt(1 / ((-2 + C)^2*(-1 + sm)^2)*(4 - r^2*(-2 + sm)^2 - 
+         12*sm + 2*r*(4 - 3*sm)*sm + 7*sm^2 - 
+         2*C*(-1 + r)*(4 - 10*sm + 5*sm^2) + 
+         C^4*(3*r^2*(-2 + sm)^2 + sm^2 - 4*r*(2 - 5*sm + 2*sm^2)) - 
+         2*C^3*(4*r^2*(-2 + sm)^2 + (-2 + sm)*sm + 
+            r*(-4 + 2*sm + 3*sm^2)) + 
+         C^2*(4 + 6*r^2*(-2 + sm)^2 - 4*sm + 
+            r*(8 - 44*sm + 30*sm^2)))) + 
+   C*sqrt(1 / ((-2 + C)^2*(-1 + sm)^2)*(4 - r^2*(-2 + sm)^2 - 
+         12*sm + 2*r*(4 - 3*sm)*sm + 7*sm^2 - 
+         2*C*(-1 + r)*(4 - 10*sm + 5*sm^2) + 
+         C^4*(3*r^2*(-2 + sm)^2 + sm^2 - 4*r*(2 - 5*sm + 2*sm^2)) - 
+         2*C^3*(4*r^2*(-2 + sm)^2 + (-2 + sm)*sm + 
+            r*(-4 + 2*sm + 3*sm^2)) + 
+         C^2*(4 + 6*r^2*(-2 + sm)^2 - 4*sm + 
+            r*(8 - 44*sm + 30*sm^2)))))
 }
 
 
@@ -379,6 +368,7 @@ inv.lab2.add  <-  function(hf, hm, sm, rf, rm, C) {
 #######################################
 ##  Dominance Reversal fitness effects
 
+########
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele under obligate outcrossing
 inv.lAB1.domRev.obOut  <-  function(hf, hm, sm) {
@@ -393,89 +383,81 @@ inv.lab1.domRev.obOut  <-  function(hf, hm, sm) {
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele under obligate outcrossing
-inv.lAB2.domRev.obOut  <-  function(hf, hm, sm, rf, rm) {
-	(12 + 4*rf + rm*(-4 + sm)^2 + 8*sm - sm^2 - 
- 	3*sqrt(-(-1 + rf)*(16 + rm*(-4 + sm)^2 - (-8 + sm)*sm)))/(15 + rf + 
- 	rm*(-4 + sm)^2 - (-8 + sm)*sm)
+inv.lAB2.domRev.obOut  <-  function(hf, hm, sm, r) {
+
+	(12 + 8*sm - sm^2 - 3*sqrt(-(-1 + r)*(16 + r*(-4 + sm)^2 - (-8 + sm)*sm)) + r*(20 + (-8 + sm)*sm)) / 
+		(15 - (-8 + sm)*sm + r*(17 + (-8 + sm)*sm))
 }
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele under obligate outcrossing
-inv.lab2.domRev.obOut  <-  function(hf, hm, sm, rf, rm) {
-	(-4 + 4*rf + sqrt(-(((-1 + rf)*(16 + rm*(-4 + sm)^2 + 
-	     sm*(-56 + 31*sm))) / (-1 + sm)^2))) / (-1 + rf)
+inv.lab2.domRev.obOut  <-  function(hf, hm, sm, r) {
+
+	4 + sqrt(-(((-1 + r)*(16 + r*(-4 + sm)^2 + sm*(-56 + 31*sm))) / (-1 + sm)^2)) / (-1 + r)
 }
 
-
+########
 ##  Invasion based on lambda.AB1 for female beneficial 
 ##  allele (w/ selfing)
 inv.lAB1.domRev  <-  function(hf, hm, sm, C) {
-	((-1 + C)*sm)/(-3 + C + (-1 + C)*sm)
+
+	((-1 + C)*sm) / (-3 + C + (-1 + C)*sm)
 }
 
 
 ##  Invasion based on lambda.ab1 for female beneficial 
 ##  allele (w/ selfing)
 inv.lab1.domRev  <-  function(hf, hm, sm, C) {
+
 	-(((-3 + C)*(-1 + C)*sm) / ((1 + C)^2*(-1 + sm)))
 }
 
 ##  Invasion based on lambda.AB2 (w/ recombination)
 ##  for female beneficial allele (w/ selfing)
-inv.lAB2.domRev  <-  function(hf, hm, sm, rf, rm, C) {
+inv.lAB2.domRev  <-  function(hf, hm, sm, r, C) {
 	
-	(-12 - 8*C + 4*C^2 - 4*rf + 4*C^2*rf - 16*rm + 24*C*rm - 8*C^2*rm - 
-	   8*sm + 8*C^2*sm + 8*rm*sm - 16*C*rm*sm + 8*C^2*rm*sm + sm^2 + 
-	   6*C*sm^2 - 7*C^2*sm^2 - rm*sm^2 + 2*C*rm*sm^2 - 
-	   C^2*rm*sm^2 + sqrt((-12 - 4*rf - 16*rm - 8*sm + 8*rm*sm + sm^2 -
-	         rm*sm^2 + 
-	        C^2*(4 + 4*rf + 8*sm - 7*sm^2 - rm*(8 - 8*sm + sm^2)) + 
-	        2*C*(-4 + 3*sm^2 + rm*(12 - 8*sm + sm^2)))^2 + (-1 + 
-	         C)*(16*(1 + C)*rf - sm*(-8 + sm + C*(-8 + 7*sm)) + 
-	         rm*((-4 + sm)^2 + C*(16 + 8*sm - sm^2)))*(15 + rf + 16*rm + 
-	         8*sm - 8*rm*sm - sm^2 + rm*sm^2 - 
-	         C^2*(7 + rf + 8*sm - 7*sm^2 - rm*(14 - 8*sm + sm^2)) - 
-	         2*C*(-4 + 3*sm^2 + rm*(15 - 8*sm + sm^2)))))/(-15 - rf - 
-	   16*rm - 8*sm + 8*rm*sm + sm^2 - rm*sm^2 + 
-	   C^2*(7 + rf + 8*sm - 7*sm^2 - rm*(14 - 8*sm + sm^2)) + 
-	   2*C*(-4 + 3*sm^2 + rm*(15 - 8*sm + sm^2)))
+	(12 + 20*r + 8*sm - 8*r*sm - sm^2 + r*sm^2 + 
+		C^2*(-4 - 8*sm + 7*sm^2 + r*(4 - 8*sm + sm^2)) - 
+		2*C*(-4 + 3*sm^2 + 
+		r*(12 - 8*sm + sm^2)) - sqrt(-9*(-16 + r^2*(-4 + sm)^2 - 
+			8*sm - 2*r*(-8 + sm)*sm + sm^2) + 
+		2*C^2*(27*r^2*(-4 + sm)^2 + 8*(-2 - 5*sm + sm^2) + 
+			r*(128 + 176*sm + 5*sm^2)) + 
+		2*C*(96 + 32*sm - 31*sm^2 + r*(-256 - 32*sm + 31*sm^2)) + 
+		C^4*(16 + 27*r^2*(-4 + sm)^2 + 8*sm - 7*sm^2 + 
+			4*r*(-64 - 52*sm + 47*sm^2)) - 
+		2*C^3*(32 + 36*r^2*(-4 + sm)^2 + 32*sm - 31*sm^2 + 
+			r*(-256 - 32*sm + 139*sm^2)))) / 
+	(15 + 8*sm - sm^2 + r*(17 - 8*sm + sm^2) + 
+		C^2*(-7 - 8*sm + 7*sm^2 + r*(13 - 8*sm + sm^2)) - 
+		2*C*(-4 + 3*sm^2 + r*(15 - 8*sm + sm^2)))
 }
 
 ##  Invasion based on lambda.ab2 (w/ recombination)
 ##  for male beneficial allele (w/ selfing)
 
-inv.lab2.domRev  <-  function(hf, hm, sm, rf, rm, C) {
-	1/(1 - rf - 2*C*(-4 + rm) + 
-	  C^2*(7 + rf + 2*rm))*(4 + 8*C + 4*C^2 - 4*rf + 4*C^2*rf - 8*C*rm + 
-	   8*C^2*rm - 
-	   2*sqrt(1/((-2 + C)^2*(-1 + 
-	          sm)^2)*(-(-1 + rf)*(16 + rm*(-4 + sm)^2 - 56*sm + 31*sm^2) +
-	          C^4*(16 + 2*rm^2*(-4 + sm)^2 - 88*sm + 65*sm^2 + 
-	            rm*(-48 + 248*sm - 139*sm^2) + 
-	            rf*(-80 + rm*(-4 + sm)^2 + 152*sm - 73*sm^2)) - 
-	         2*C^3*(-32 + 3*rm^2*(-4 + sm)^2 - 16*sm + 17*sm^2 + 
-	            16*rm*(2 - 2*sm + sm^2) + 
-	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
-	         2*C*(32 - rm^2*(-4 + sm)^2 - 144*sm + 81*sm^2 - 
-	            4*rm*(-8 - 8*sm + 7*sm^2) + 
-	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
-	         2*C^2*(3*rm^2*(-4 + sm)^2 + 8*(6 - 7*sm + 2*sm^2) + 
-	            4*rf*(12 - 26*sm + 13*sm^2) + 
-	            rm*(16 - 184*sm + 113*sm^2)))) + 
-	   C*sqrt(1/((-2 + C)^2*(-1 + 
-	          sm)^2)*(-(-1 + rf)*(16 + rm*(-4 + sm)^2 - 56*sm + 31*sm^2) +
-	          C^4*(16 + 2*rm^2*(-4 + sm)^2 - 88*sm + 65*sm^2 + 
-	            rm*(-48 + 248*sm - 139*sm^2) + 
-	            rf*(-80 + rm*(-4 + sm)^2 + 152*sm - 73*sm^2)) - 
-	         2*C^3*(-32 + 3*rm^2*(-4 + sm)^2 - 16*sm + 17*sm^2 + 
-	            16*rm*(2 - 2*sm + sm^2) + 
-	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
-	         2*C*(32 - rm^2*(-4 + sm)^2 - 144*sm + 81*sm^2 - 
-	            4*rm*(-8 - 8*sm + 7*sm^2) + 
-	            rf*(32 + rm*(-4 + sm)^2 - 80*sm + 43*sm^2)) + 
-	         2*C^2*(3*rm^2*(-4 + sm)^2 + 8*(6 - 7*sm + 2*sm^2) + 
-	            4*rf*(12 - 26*sm + 13*sm^2) + 
-	            rm*(16 - 184*sm + 113*sm^2)))))
+inv.lab2.domRev  <-  function(hf, hm, sm, r, C) {
+
+	1 / (1 - 2*C*(-4 + r) - r + 
+		C^2*(7 + 3*r))*(4 + 8*C + 4*C^2 - 4*r - 8*C*r + 12*C^2*r - 
+		2*sqrt(1 / ((-2 + C)^2*(-1 + sm)^2)*(16 - r^2*(-4 + sm)^2 - 
+			56*sm + 31*sm^2 - 6*r*sm*(-8 + 5*sm) + 
+			2*C*(32 - 144*sm + 81*sm^2 + r*(64 - 48*sm + 15*sm^2)) + 
+			C^4*(16 + 3*r^2*(-4 + sm)^2 - 88*sm + 65*sm^2 - 
+				4*r*(32 - 100*sm + 53*sm^2)) - 
+			2*C^3*(-32 + 4*r^2*(-4 + sm)^2 - 16*sm + 17*sm^2 + 
+				r*(64 - 112*sm + 59*sm^2)) + 
+			2*C^2*(3*r^2*(-4 + sm)^2 + 8*(6 - 7*sm + 2*sm^2) + 
+				r*(64 - 288*sm + 165*sm^2)))) + 
+		C*sqrt(1 / ((-2 + C)^2*(-1 + sm)^2)*(16 - r^2*(-4 + sm)^2 - 
+			56*sm + 31*sm^2 - 6*r*sm*(-8 + 5*sm) + 
+			2*C*(32 - 144*sm + 81*sm^2 + r*(64 - 48*sm + 15*sm^2)) + 
+			C^4*(16 + 3*r^2*(-4 + sm)^2 - 88*sm + 65*sm^2 - 
+				4*r*(32 - 100*sm + 53*sm^2)) - 
+			2*C^3*(-32 + 4*r^2*(-4 + sm)^2 - 16*sm + 17*sm^2 + 
+				r*(64 - 112*sm + 59*sm^2)) + 
+			2*C^2*(3*r^2*(-4 + sm)^2 + 8*(6 - 7*sm + 2*sm^2) + 
+				r*(64 - 288*sm + 165*sm^2)))))
 }
 
 
@@ -496,8 +478,7 @@ inv.lab2.domRev  <-  function(hf, hm, sm, rf, rm, C) {
 #'				   sf   =  0.7,
 #'				   hm   =  0.5,
 #'				   hf   =  0.5,
-#'				   rm   =  0.5,
-#'				   rf   =  0.5
+#'				   r    =  0.5
 #'				   )
 #' @return Returns a list with each of the candidate leading eigenvalues calculated at the boundaries p,q = 0 and p,q = 1, 
 #' as well as a coded categorical results indicating the outcome of the invasion analysis where
@@ -514,7 +495,7 @@ inv.lab2.domRev  <-  function(hf, hm, sm, rf, rm, C) {
 eigenInvAnalysis  <-  function(par.list) {
 
 	##  Warnings
-	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
+	if(any(par.list[2:7] < 0) | any(par.list[2:7] > 1) | par.list[7] > 0.5)
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
 	if(par.list$hf  !=  par.list$hm)
@@ -609,8 +590,7 @@ eigenInvAnalysis  <-  function(par.list) {
 #'				   sf   =  0.7,
 #'				   hm   =  0.5,
 #'				   hf   =  0.5,
-#'				   rm   =  0.5,
-#'				   rf   =  0.5
+#'				   r    =  0.5
 #'				   )
 #' @param Fii.init A vector of initial genotypic frequencies (must have length = 10).
 #' c(0.99,0,0,0,0,0,0,0,0,0.01) for invasion of aabb into population 'fixed' for AABB.
@@ -625,7 +605,7 @@ eigenInvAnalysis  <-  function(par.list) {
 recursionFwdSim  <-  function(par.list, threshold = 1e-6) {
 
 	##  Warnings
-	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | any(par.list[7:8] > 0.5))
+	if(any(par.list[2:7] < 0) | any(par.list[2:7] > 1) | par.list[7] > 0.5)
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
 	if(par.list$hf  !=  par.list$hm)
@@ -801,8 +781,7 @@ recursionFwdSimLoop  <-  function(n = 10000, gen = 5000, sRange = c(0,1), C = 0,
 								   sm   =  s.vals[j,2],
 								   hm   =  hm,
 								   hf   =  hf,
-								   rm   =  r.vals[i],
-								   rf   =  r.vals[i]
+								   r    =  r.vals[i]
 								  )
 				res      <-  recursionFwdSim(par.list = par.list, threshold = threshold)
 				Poly[(i-1)*nrow(s.vals) + j]     <-  res$Poly
@@ -947,8 +926,7 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), 
 						   sf   =  NA,
 						   hm   =  hm,
 						   hf   =  hf,
-						   rm   =  r.vals[i],
-						   rf   =  r.vals[i]
+						   r    =  r.vals[i]
 						  )
 
 		poly  <-  apply(s.vals, 1,  fastInv, par.list=par.list)
