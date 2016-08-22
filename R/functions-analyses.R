@@ -953,7 +953,7 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), 
 		sel  <-  "_weak"
 	else 
 		sel  <-  ""
-	filename  <-  paste("./output/data/Fig2Data/TESTpropPrp.out", sel, "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
+	filename  <-  paste("./output/data/Fig2Data/propPrp.out", sel, "_C", C, "_hf", hf, "_hm", hm, "_n", n, ".txt", sep="")
 	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
 
 	#  Return results.df in case user wants it
