@@ -974,13 +974,14 @@ Fig.2  <- function() {
 #    COLS  <-  c("#000000", "#252525", "#525252", "#737373", "#969696")
 
     # Set plot layout
-    layout.mat <- matrix(c(1,2,3,4), nrow=2, ncol=2, byrow=TRUE)
-    layout <- layout(layout.mat,respect=TRUE)
+#    layout.mat <- matrix(c(1,2,3,4), nrow=2, ncol=2, byrow=TRUE)
+#    layout <- layout(layout.mat,respect=TRUE)
+#    par(mfrow=c(2, 2), omi=c(0.5, 0.4, 0.4, 0.2)+0.1, mai=c(0.6732, 0.5412, 0.8412, 0.2772))
 
     ####################
     ##  ADDITIVE EFFECTS
     ##  Panel 1:  Proportion of parameter space resulting in Protected Polymorphism
-        par(omi=rep(0.75, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        par(mfrow=c(2,2), omi=rep(0.75, 4), mar = c(4.1,4.1,0.5,0.5), bty='o', xaxt='s', yaxt='s')
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.2,0.55), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
@@ -998,10 +999,10 @@ Fig.2  <- function() {
         lines(C0.9.h.5$PrP ~ C0.9.h.5$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(0.5, 1.15, 'Protected polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.25, 0.5, expression(paste("Proportion parameters space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, 1.2, 'Protected polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste("Proportion parameters space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
         legend(
             x       =  usr[2]*0.6,
             y       =  usr[4],
@@ -1061,7 +1062,7 @@ Fig.2  <- function() {
 #        proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 
-    ##  Panel 3: Proportional increase in parameter space relative to single locus case
+    ##  Panel 2: Proportional increase in parameter space relative to single locus case
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(1,2.25), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
@@ -1079,13 +1080,14 @@ Fig.2  <- function() {
         lines(C0.9.h.5$PrP / C0.9.h.5$slPrP ~ C0.9.h.5$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(0.5, 1.15, 'Prop. increase in Poly.', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.2, 'Increase in Polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.25, 0.5, expression(paste("Relative increase in parameter space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
 
 
     ######################
     ##  DOMINANCE REVERSAL
-    ##  Panel 4:  Proportion of parameter space resulting in Protected Polymorphism
+    ##  Panel 3:  Proportion of parameter space resulting in Protected Polymorphism
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(0.2,0.8), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
@@ -1103,9 +1105,9 @@ Fig.2  <- function() {
         lines(C0.9.h.25$PrP ~ C0.9.h.25$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1)
         axis(2, las=1)
-        proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.25, 0.5, expression(paste("Proportion parameters space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.03, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste("Proportion parameters space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 #    ##  Panel 5: Increase in parameter space resulting in polymorphism due to recombination
@@ -1130,7 +1132,7 @@ Fig.2  <- function() {
 #        proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 
-    ##  Panel 6: Proportional increase in parameter space relative to single locus case
+    ##  Panel 4: Proportional increase in parameter space relative to single locus case
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.5), ylim = c(1,2.25), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='grey90', border=NA)
@@ -1148,7 +1150,8 @@ Fig.2  <- function() {
         lines(C0.9.h.25$PrP / C0.9.h.25$slPrP ~ C0.9.h.25$r, lwd=2, lty=1, col=COLS[10])
         axis(1, las=1)
         axis(2, las=1)
-        proportionalLabel(0.03, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.25, 0.5, expression(paste("Relative increase in parameter space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 }
@@ -1171,7 +1174,7 @@ Fig.2  <- function() {
 #'                recursion simulations and invasion analysis based on eigenvalues
 #' @export
 
-Fig.S1_add  <-  function() {
+recSimFig_add  <-  function() {
 
     ## Read data files for plotting
         C0.0.h.5   <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0_hf0.5_hm0.5_sMax1.txt', head=TRUE)
@@ -2126,7 +2129,7 @@ Fig.S1_add  <-  function() {
 #'                recursion simulations and invasion analysis based on eigenvalues
 #' @export
 
-Fig.S2_domRev  <-  function() {
+recSimFig_domRev  <-  function() {
 
     ## Read data files for plotting
         C0.0.h.25   <-  read.table('./output/data/simResults/recFwdSimLoop.out_C0_hf0.25_hm0.25_sMax1.txt', head=TRUE)

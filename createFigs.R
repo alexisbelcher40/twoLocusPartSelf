@@ -34,11 +34,11 @@ embed_fonts(figPath(name='Fig1wk.pdf'))
 toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig2.pdf'))
 
-toPdf(Fig.S1_add(), figPath(name='FigS1_add.pdf'), width=7, height=7)
-embed_fonts(figPath(name='FigS1_add.pdf'))
+toPdf(recSimFig_add(), figPath(name='recSimFig_add.pdf'), width=7, height=7)
+embed_fonts(figPath(name='recSimFig_add.pdf'))
 
-toPdf(Fig.S2_domRev(), figPath(name='FigS2_domRev.pdf'), width=7, height=7)
-embed_fonts(figPath(name='FigS2_domRev.pdf'))
+toPdf(recSimFig_domRev(), figPath(name='recSimFig_domRev.pdf'), width=7, height=7)
+embed_fonts(figPath(name='recSimFig_domRev.pdf'))
 
 #toPdf(fig5(), figPath(name='fig5.pdf'), width=9, height=3)
 #embed_fonts(figPath(name='fig5.pdf'))

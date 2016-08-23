@@ -27,7 +27,7 @@
 % New commands: fonts
 %\newcommand{\code}{\fontfamily{pcr}\selectfont}
 %\newcommand*\chem[1]{\ensuremath{\mathrm{#1}}}
-
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title Page
@@ -99,7 +99,7 @@
 
 \section*{Model}
 
-
+Consider a genetic system involving two diallelic autosomal loci $\mathbf{A}$ and $\mathbf{B}$ that recombine at a rate $r$. Both loci experience sexually antagonistic selection such that $A$ and $B$ represent female-beneficial alleles, and $a$ and $b$ represent female-beneficial alleles.
 
 \section*{Results}
 
@@ -112,31 +112,10 @@
 
 
 \section*{Acknowledgments}
-CO thanks C.~Venables for helpful discussions and patience. The ideas in this article were conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K. Abbott. CO gratefully acknowledges their encouragement and feedback in developing these ideas. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship to CO, and by the Monash University Centre for Geometric Biology.
+CO thanks C.~Venables for helpful discussions and patience. The idea for this article was conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K. Abbott. CO gratefully acknowledges their encouragement and feedback in developing it fully. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship to CO, and by the Monash University Centre for Geometric Biology.
 
 \newpage{}
 
-
-%%%%%%%%%%%%%%%%%%%%%
-% Bibliography
-%%%%%%%%%%%%%%%%%%%%%
-
-\begin{thebibliography}{}
-
-\bibitem[{Jordan and Connallon(2014)Jordan and Connallon}]{JordanConnallon2014}
-Jordan, C.~Y. and T. Connallon. 2014.
-\newblock Sexually antagonistic polymorphism in simultaneous hermaphrodites.
-\newblock Evolution 68:3555--3569.
-
-\bibitem[{Patten et~al.(2010)Patten et~al.}]{Patten2010}
-M.~M. Patten, D. Haig, and F. \'{U}beda. 2010.
-\newblock Fitness variation due to sexual antagonism and linkage disequilibrium.
-\newblock Evolution 64:3638--3642.
-
-
-\end{thebibliography}
-
-\newpage{}
 
 
 
@@ -177,7 +156,7 @@ $x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{./Fig2}
-\caption{The proportion of parameter space where sexually antagonistic polymorphism is maintained decreases with recombination and self-fertilization (panels A,C). The relative increase in sexually antagonistic polymorphism for the two-locus vs.~single-locus case also decreases with the recombination rate, but increases with the rate of self-fertilization (panels B,D). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalues for 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$.}
+\caption{The proportion of parameter space where sexually antagonistic polymorphism is maintained declines with increased recombination and self-fertilization (panels A,C). The increase in sexually antagonistic polymorphism in the two-locus model relative to the single-locus case also declines with the recombination rate, but increases with the rate of self-fertilization (panels B,D). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalues (calculated from Eqn.~\hl{X}) for 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$.}
 \label{Fig:Fig2.pdf}
 \end{figure}
 \newpage{}
@@ -186,25 +165,208 @@ $x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Supporting Information}
-\renewcommand{\thefigure}{A\arabic{figure}}
+\section*{Supporting Information}
+
+\subsection*{Appendix A: Quasi-equilibrium approximations of allele frequency change and development of the recursions}
+\renewcommand{\theequation}{A\arabic{equation}}
+
+
+
+
+
+ Adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes are denoted using $F_{ij}$, and the overall haplotype frequencies are
+
+\begin{align*}
+	q_1 &= F_{11} + F_{12}/2 + F_{13}/2 + F_{14}/2 \\
+	q_2 &= F_{22} + F_{12}/2 + F_{23}/2 + F_{24}/2 \\
+	q_3 &= F_{33} + F_{13}/2 + F_{23}/2 + F_{34}/2 \\
+	q_4 &= F_{44} + F_{14}/2 + F_{24}/2 + F_{34}/2. \numberthis \label{eqn}
+\end{align*} 
+
+Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequenices in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. 
+
+\begin{align*}
+	F'_{11} &= (1 - C) (x_1 y_1) + C \big(\phi_{11} w_{f,11}  \big)  \\
+	F'_{12} &= (1 - C) (x_1 y_2 + x_2 y_1) + C \big(  \big)  \\
+	F'_{13} &= (1 - C) (x_1 y_3 + x_3 y_1) + C \big(  \big)  \\
+	F'_{14} &= (1 - C) (x_1 y_4 + x_4 y_1) + C \big(  \big)  \\
+	F'_{22} &= (1 - C) (x_2 y_2) + C \big(  \big)  \\
+	F'_{23} &= (1 - C) (x_2 y_3 + x_3 y_2) + C \big(  \big)  \\
+	F'_{24} &= (1 - C) (x_2 y_4 + x_4 y_2) + C \big(  \big)  \\
+	F'_{33} &= (1 - C) (x_3 y_3) + C \big(  \big)  \\
+	F'_{34} &= (1 - C) (x_3 y_4 + x_4 y_3)+ C \big(  \big)  \\
+	F'_{44} &= (1 - C) (x_4 y_4) + C \big(  \big)  \numberthis
+\end{align*}
+
+
+
+We can approximate the evolutionary trajectories of haplotypes in a sexually antagonistic two-locus system under weak selection. If selection is assumed to be relatively weak, the rate of allele frequency change due to selection should be slow relative to the rate at which genotypes approach equilibirium in partially selfing populations \citep{Nagylaki1997}. Under these conditions, it may be appropriate to use a separation of timescales \citep{OttoDay2007}, and calculate the quasi-equilibrium (QE) genotypic frequencies in the absence of selection. We may then approximate the genotypic recursions of allele frequency change across generations by substituting into them these QE frequencies. This gives an approximation of allele frequency change predicted by the system of ten genotypic recursion using a reduced system of only four haplotype recursions, evaluated at QE genotypic frequencies. 
+
+After \citet{CaballeroHill1992}, the QE genotypic frequencies for a single locus, $\mathbf{A}$, are
+
+\begin{align*}
+	F_{AA}^* &= q^2 + \frac{C q(1 - q)}{(2 - C)} \\
+	F_{Aa}^* &= 2 q (1 - q) - \frac{2 C q(1 - q)}{(2 - C)} \\
+	F_{aa}^* &= (1 - q)^2 + \frac{C q(1 - q)}{2 - C}, \numberthis 
+\end{align*}
+
+\noindent{} where $q$ is the allele frequency and $C$ is the fixed proportion of self fertilization. We can extend these single-locus results for the two-locus model to calculate the QE adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes:
+
+\begin{align*}
+	\phi_{11} &= q_1^2 + C q_1 (1 - q_1) / (2-C)  \\
+	\phi_{12} &= 4 q_1 q_2 (1 - C) / (2-C)        \\
+	\phi_{13} &= 4 q_1 q_3 (1 - C) / (2-C)        \\
+	\phi_{14} &= 4 q_1 q_4 (1 - C) / (2-C)        \\
+	\phi_{22} &= q_2^2 + C q_2 (1 - q_2) / (2-C)  \\
+	\phi_{23} &= 4 q_2 q_3 (1 - C) / (2-C)        \\
+	\phi_{24} &= 4 q_2 q_4 (1 - C) / (2-C)        \\
+	\phi_{33} &= q_3^2 + C q_3 (1 - q_3) / (2-C)  \\
+	\phi_{34} &= 4 q_3 q_4 (1 - C) / (2-C)        \\
+	\phi_{44} &= q_4^2 + C q_4 (1 - q_4) / (2-C)  \numberthis
+\end{align*}
+
+
+Following standard two-locus theory for partially selfing populations \citep{Holden1979, OttoDay2007, JordanConnallon2014}, and substituting the QE genotypic frequencies, $\phi_{ij}$, the haplotype frequencies in the next generation are:
+
+\begin{align*}
+	x'_1 &= \frac{2 \phi_{11} w_{f11} + \phi_12 w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14}}{2 \overline{w}_f} -
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\
+	x'_2 &= \frac{2 \phi_{22} w_{f22} + \phi_12 w_{f12} + \phi_{23} w_{f23} + \phi_{24} w_{f24}}{2 \overline{w}_f} +
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\ 
+	x'_3 &= \frac{2 \phi_{33} w_{f33} + \phi_34 w_{f34} + \phi_{13} w_{f13} + \phi_{23} w_{f23}}{2 \overline{w}_f} +
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\
+	x'_4 &= \frac{2 \phi_{44} w_{f44} + \phi_34 w_{f34} + \phi_{13} w_{f13} + \phi_{24} w_{f24}}{2 \overline{w}_f} -
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \numberthis
+\end{align*}
+
+\noindent{} for female gametes, and 
+
+\begin{align*}
+	y'_1 &= \frac{2 \phi_{11} w_{m11} + \phi_12 w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14}}{2 \overline{w}_m} -
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
+	y'_2 &= \frac{2 \phi_{22} w_{m22} + \phi_12 w_{m12} + \phi_{23} w_{m23} + \phi_{24} w_{m24}}{2 \overline{w}_m} +
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
+	y'_3 &= \frac{2 \phi_{33} w_{m33} + \phi_34 w_{m34} + \phi_{13} w_{m13} + \phi_{23} w_{m23}}{2 \overline{w}_m} +
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
+	y'_4 &= \frac{2 \phi_{44} w_{m44} + \phi_34 w_{m34} + \phi_{13} w_{m13} + \phi_{24} w_{m24}}{2 \overline{w}_m} -
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \numberthis
+\end{align*}
+
+\noindent{} for male gametes, where ${w}_{ij}$ is the fitness of adults resulting from the union of the $i$th and $j$th haplotypes, and $\overline{w}_k$ is the population mean fitness through each sex function ($k \in [m,f]$), which are equal to 
+
+\begin{align*}
+	\overline{w}_f &= \phi_{11} w_{f11} + \phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14} + 
+						\phi_{22} w_{f22} + \phi_{23} w_{f23} + \phi_{24} w_{f24} + 
+							\phi_{33} w_{f33} + \phi_{34} w_{f34} + 
+								\phi_{44} w_{f44} \\
+	\overline{w}_m &= \phi_{11} w_{m11} + \phi_{12} w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14} + 
+						\phi_{22} w_{m22} + \phi_{23} w_{m23} + \phi_{24} w_{m24} + 
+							\phi_{33} w_{m33} + \phi_{34} w_{m34} + 
+								\phi_{44} w_{m44} \numberthis
+\end{align*}
+
+
+Substituting equations (\hl{X}) and (\hl{X}) into Eq(\hl{X}), the overall haplotype frequency recursions are
+
+\begin{align*}
+	q'_1 &= F'_{11} + \frac{F'_{12} + F'_{13} + F'_{14}}{2} \\
+	q'_2 &= F'_{22} + \frac{F'_{12} + F'_{23} + F'_{24}}{2} \\
+	q'_3 &= F'_{33} + \frac{F'_{13} + F'_{23} + F'_{34}}{2} \\
+	q'_4 &= F'_{44} + \frac{F'_{14} + F'_{24} + F'_{34}}{2} \numberthis
+\end{align*}
+
+which equals 
+\begin{align*}
+	q'_1 &= (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_2 &= (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_3 &= (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_4 &= (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \numberthis
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+\subsection*{Appendix B: }
+\renewcommand{\thefigure}{B\arabic{figure}}
 \setcounter{figure}{0}
 
+test
+
+
+
+
+
+\subsection*{Appendix C: Supplementary figures}
+\renewcommand{\thefigure}{C\arabic{figure}}
+\setcounter{figure}{0}
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{./Fig1wk}
-\caption{Under weak selection, the parameter space where sexually antagonistic polymorphism is maintained is only expanded beyond the single-locus case when there is very tight linkage between loci. Thus, there is little scope for self-fertilization to influence sexually antagonistic polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single-locus case; grey lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles under complete linkage ($r = 0$).}
+\caption{Under weak selection, the parameter space where sexually antagonistic polymorphism is maintained only expanded beyond the single-locus case when there is very tight linkage between loci. Thus, there is little scope for self-fertilization to influence sexually antagonistic polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single-locus case; grey lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles under complete linkage ($r = 0$).}
 \label{Fig:Fig1wk.pdf}
 \end{figure}
 \newpage{}
 
-%\begin{figure}[!ht]
-%\includegraphics[width=\textwidth]{./figA1}
-%\caption{....}
-%\label{FigA:figA1.pdf}
-%\end{figure}
-%\newpage{}
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{./recSimFig_add}
+\caption{....}
+\label{Fig:recSimFig_add.pdf}
+\end{figure}
+\newpage{}
 
 
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{./recSimFig_domRev}
+\caption{....}
+\label{Fig:recSimFig_domRev.pdf}
+\end{figure}
+\newpage{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{}
+
+\bibitem[{Caballero and Hill(1992)Caballero and Hill}]{CaballeroHill1992}
+Caballero, A. and W.~G. Hill. 1992.
+\newblock Effects of partial inbreeding on fixation rates and variation of mutant genes.
+\newblock Genetics 131:493--507.
+
+\bibitem[{Holden(1979)Holden}]{Holden1979}
+Holden, L.~R. 1979.
+\newblock New properties of the two-locus partial selfing model with selection.
+\newblock Genetics 93:217--236.
+
+\bibitem[{Jordan and Connallon(2014)Jordan and Connallon}]{JordanConnallon2014}
+Jordan, C.~Y. and T. Connallon. 2014.
+\newblock Sexually antagonistic polymorphism in simultaneous hermaphrodites.
+\newblock Evolution 68:3555--3569.
+
+\bibitem[{Nagylaki(1997)Nagylaki}]{Nagylaki1997}
+Nagylaki, T. 1997.
+\newblock The diffusion model for migration and selection in a plant population.
+\newblock Journal of Mathematical Biology 35:409--431.
+
+\bibitem[{Otto and Day(2007)Otto and Day}]{OttoDay2007}
+Otto, S.~P. and T. Day. 2007.
+\newblock A biologist's guide to mathematical modeling in ecology and evolution.
+\newblock Princeton University Press, Princeton, New Jersey, USA.
+
+\bibitem[{Patten et~al.(2010)Patten et~al.}]{Patten2010}
+M.~M. Patten, D. Haig, and F. \'{U}beda. 2010.
+\newblock Fitness variation due to sexual antagonism and linkage disequilibrium.
+\newblock Evolution 64:3638--3642.
+
+
+\end{thebibliography}
 
 \end{document}
