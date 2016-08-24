@@ -167,14 +167,10 @@ $x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Supporting Information}
 
-\subsection*{Appendix A: Quasi-equilibrium approximations of allele frequency change and development of the recursions}
+\subsection*{Appendix A: Development of recursions, and quasi-equilibrium approximations of allele frequency change}
 \renewcommand{\theequation}{A\arabic{equation}}
 
-
-
-
-
- Adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes are denoted using $F_{ij}$, and the overall haplotype frequencies are
+As described in the main text, consider a genetic system involving two diallelic autosomal loci $\mathbf{A}$ and $\mathbf{B}$ that recombine at a rate $r$ in a population of simultaneous hermaphrodites. Both loci experience sexually antagonistic selection such that $A$ and $B$ represent female-beneficial alleles, and $a$ and $b$ represent female-beneficial alleles. The rate of self-fertilization ($C$) in the population is fixed, and independent of the genotype at the sexually antagonistic loci. Generations are assumed to be discrete and non-overlapping, and selection occurs on diploid adults before mating. Adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes are denoted using $F_{ij}$, and the overall haplotype frequencies, $q_i$ are
 
 \begin{align*}
 	q_1 &= F_{11} + F_{12}/2 + F_{13}/2 + F_{14}/2 \\
@@ -183,20 +179,72 @@ $x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
 	q_4 &= F_{44} + F_{14}/2 + F_{24}/2 + F_{34}/2. \numberthis \label{eqn}
 \end{align*} 
 
-Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequenices in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. 
+Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequenices in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. The contribution of genotype $ij$ to the production of offspring in the next generation is equal to
+
+\begin{equation}
+	F^f_{ij} = \frac{F_{ij} w_{k,ij}}{\overline{w}_k}
+\end{equation}
+
+\noindent{} where $k \in [m,f]$, ${w}_{k,ij}$ is the fitness of adults resulting from the union of the $i$th and $j$th haplotypes, and $\overline{w}_k$ is the population mean fitness through each sex function. The average fitness through female and male function are 
 
 \begin{align*}
-	F'_{11} &= (1 - C) (x_1 y_1) + C \big(\phi_{11} w_{f,11}  \big)  \\
-	F'_{12} &= (1 - C) (x_1 y_2 + x_2 y_1) + C \big(  \big)  \\
-	F'_{13} &= (1 - C) (x_1 y_3 + x_3 y_1) + C \big(  \big)  \\
-	F'_{14} &= (1 - C) (x_1 y_4 + x_4 y_1) + C \big(  \big)  \\
-	F'_{22} &= (1 - C) (x_2 y_2) + C \big(  \big)  \\
-	F'_{23} &= (1 - C) (x_2 y_3 + x_3 y_2) + C \big(  \big)  \\
-	F'_{24} &= (1 - C) (x_2 y_4 + x_4 y_2) + C \big(  \big)  \\
-	F'_{33} &= (1 - C) (x_3 y_3) + C \big(  \big)  \\
-	F'_{34} &= (1 - C) (x_3 y_4 + x_4 y_3)+ C \big(  \big)  \\
-	F'_{44} &= (1 - C) (x_4 y_4) + C \big(  \big)  \numberthis
+	\overline{w}_f = F_{11} w_{f11} + &F_{12} w_{f12} + F_{13} w_{f13} + F_{14} w_{f14} + F_{22} w_{f22} + \\ 
+				     &F_{23} w_{f23} + F_{24} w_{f24} + F_{33} w_{f33} + F_{34} w_{f34} + F_{44} w_{f44} \numberthis \\
+	\overline{w}_m = F_{11} w_{m11} + &F_{12} w_{m12} + F_{13} w_{m13} + F_{14} w_{m14} + F_{22} w_{m22} + \\
+				     &F_{23} w_{m23} + F_{24} w_{m24} + F_{33} w_{m33} + F_{34} w_{m34} + F_{44} w_{m44}. \numberthis
 \end{align*}
+
+\noindent{} Given these conditions, the recursions giving the genotypic frequencies in the next generation are \citep{Holden1979, JordanConnallon2014}
+
+
+\begin{align*}
+	F'_{11} &= (1 - C) (x'_1 y'_1)           + C \bigg( F^f_{11} + \frac{F^f_{12} + F^f_{13} + F^f_{14}(1 - r)^2 + F^f_{23} r^2}{4} \bigg)  \\
+	F'_{12} &= (1 - C) (x'_1 y'_2 + x'_2 y'_1) + C \bigg( \frac{F^f_{12} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
+	F'_{13} &= (1 - C) (x'_1 y'_3 + x'_3 y'_1) + C \bigg( \frac{F^f_{13} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
+	F'_{14} &= (1 - C) (x'_1 y'_4 + x'_4 y'_1) + C \bigg( \frac{F^f_{14} (1-r)^2 + F^f_{23} r^2}{2} \bigg)  \\
+	F'_{22} &= (1 - C) (x'_2 y'_2)           + C \bigg( F^f_{22} + \frac{F^f_{12} + F^f_{14} r^2 + F^f_{23} (1-r)^2 + F^f_{24}}{4} \bigg)  \\
+	F'_{23} &= (1 - C) (x'_2 y'_3 + x'_3 y'_2) + C \bigg( \frac{F^f_{14} r^2 + F^f_{23} (1-r)^2}{2} \bigg)  \\
+	F'_{24} &= (1 - C) (x'_2 y'_4 + x'_4 y'_2) + C \bigg( \frac{F^f_{24} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
+	F'_{33} &= (1 - C) (x'_3 y'_3)           + C \bigg( F^f_{33} + \frac{F^f_{13} + F^f_{14} r^2 + F^f_{23} (1-r)^2 + F^f_{34}}{4} \bigg)  \\
+	F'_{34} &= (1 - C) (x'_3 y'_4 + x'_4 y'_3) + C \bigg( \frac{F^f_{14} r(1-r) + F^f_{23} r(1-r) + F^f_{34}}{2} \bigg)  \\
+	F'_{44} &= (1 - C) (x'_4 y'_4)           + C \bigg( F^f_{44} + \frac{F^f_{14} (1-r)^2 + F^f_{23} r^2 + F^f_{24} + F^f_{34}}{4} \bigg)  \numberthis
+\end{align*}
+
+\noindent{} where $x'_{i}$ are
+
+\begin{align*}
+	x'_1 &= \frac{2 F_{11} w_{f11} + F_{12} w_{f12} + F_{13} w_{f13} + F_{14} w_{f14}}{2 \overline{w}_f} - r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f14}}{2 \overline{w}_f} \bigg) \\
+	x'_2 &= \frac{2 F_{22} w_{f22} + F_{12} w_{f12} + F_{23} w_{f23} + F_{24} w_{f24}}{2 \overline{w}_f} + r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
+	x'_3 &= \frac{2 F_{33} w_{f33} + F_{34} w_{f34} + F_{13} w_{f13} + F_{23} w_{f23}}{2 \overline{w}_f} + r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
+	x'_4 &= \frac{2 F_{44} w_{f44} + F_{32} w_{f32} + F_{14} w_{f} + F_{24} w_{f}}{2 \overline{w}_f} - r \bigg( \frac{F_{14} w_{f} - F_{23} w_{f}}{2 \overline{w}_f} \bigg) \numberthis
+\end{align*}
+
+\noindent{} and $y'_{i}$ are
+
+\begin{align*}
+	y'_1 &= \frac{2 F_{11} w_{m11} + F_{12} w_{m12} + F_{13} w_{m13} + F_{14} w_{m14}}{2 \overline{w}_m} - r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m14}}{2 \overline{w}_m} \bigg) \\
+	y'_2 &= \frac{2 F_{22} w_{m22} + F_{12} w_{m12} + F_{23} w_{m23} + F_{24} w_{m24}}{2 \overline{w}_m} + r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg) \\
+	y'_3 &= \frac{2 F_{33} w_{m33} + F_{34} w_{m34} + F_{13} w_{m13} + F_{23} w_{m23}}{2 \overline{w}_m} + r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg) \\
+	y'_4 &= \frac{2 F_{44} w_{m44} + F_{32} w_{m32} + F_{14} w_{m} + F_{24} w_{m}}{2 \overline{w}_m} - r \bigg( \frac{F_{14} w_{m} - F_{23} w_{m}}{2 \overline{w}_m} \bigg) \numberthis
+\end{align*}
+
+
+Combining Eqns(A1), (A3), and (A5), the overall haplotype frequencies in the next generation are
+\begin{align*}
+	q'_1 &= F'_{11} + \frac{F'_{12} + F'_{13} + F'_{14}}{2} \\
+	q'_2 &= F'_{22} + \frac{F'_{12} + F'_{23} + F'_{24}}{2} \\
+	q'_3 &= F'_{33} + \frac{F'_{13} + F'_{23} + F'_{34}}{2} \\
+	q'_4 &= F'_{44} + \frac{F'_{14} + F'_{24} + F'_{34}}{2} \numberthis
+\end{align*}
+
+which equals 
+\begin{align*}
+	q'_1 &= (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_2 &= (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_3 &= (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_4 &= (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \numberthis
+\end{align*}
+
 
 
 
@@ -252,36 +300,8 @@ Following standard two-locus theory for partially selfing populations \citep{Hol
 				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \numberthis
 \end{align*}
 
-\noindent{} for male gametes, where ${w}_{ij}$ is the fitness of adults resulting from the union of the $i$th and $j$th haplotypes, and $\overline{w}_k$ is the population mean fitness through each sex function ($k \in [m,f]$), which are equal to 
+\noindent{} for male gametes, where ${w}_{ij}$ is the fitness of adults resulting from the union of the $i$th and $j$th haplotypes, and $\overline{w}_k$ is the population mean fitness through each sex function ($k \in [m,f]$)
 
-\begin{align*}
-	\overline{w}_f &= \phi_{11} w_{f11} + \phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14} + 
-						\phi_{22} w_{f22} + \phi_{23} w_{f23} + \phi_{24} w_{f24} + 
-							\phi_{33} w_{f33} + \phi_{34} w_{f34} + 
-								\phi_{44} w_{f44} \\
-	\overline{w}_m &= \phi_{11} w_{m11} + \phi_{12} w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14} + 
-						\phi_{22} w_{m22} + \phi_{23} w_{m23} + \phi_{24} w_{m24} + 
-							\phi_{33} w_{m33} + \phi_{34} w_{m34} + 
-								\phi_{44} w_{m44} \numberthis
-\end{align*}
-
-
-Substituting equations (\hl{X}) and (\hl{X}) into Eq(\hl{X}), the overall haplotype frequency recursions are
-
-\begin{align*}
-	q'_1 &= F'_{11} + \frac{F'_{12} + F'_{13} + F'_{14}}{2} \\
-	q'_2 &= F'_{22} + \frac{F'_{12} + F'_{23} + F'_{24}}{2} \\
-	q'_3 &= F'_{33} + \frac{F'_{13} + F'_{23} + F'_{34}}{2} \\
-	q'_4 &= F'_{44} + \frac{F'_{14} + F'_{24} + F'_{34}}{2} \numberthis
-\end{align*}
-
-which equals 
-\begin{align*}
-	q'_1 &= (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_2 &= (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_3 &= (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_4 &= (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \numberthis
-\end{align*}
 
 
 
