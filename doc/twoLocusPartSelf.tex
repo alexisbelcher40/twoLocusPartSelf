@@ -46,7 +46,7 @@
 
 \bigskip
 
-\noindent{} \textit{Keywords}: Balancing selection, intralocus sexual conflict, recombination, sexual dimorphism, two-locus model
+\noindent{} \textit{Keywords}: Balancing selection, genetic linkage, intralocus sexual conflict, recombination, sexual dimorphism, two-locus model
 
 \bigskip
 
@@ -74,35 +74,41 @@
 \section*{Introduction}
 
 \begin{enumerate}
-	\item Blah blah blah...
+	\item What are SA alleles...
 		\begin{enumerate}
-			\item Blah blah blah...
-			\item Blah blah blah...
+			\item Scope for SA selection to maintain polymorphism in a variety of contexts.
+			\item Trade-offs between the sex-specific fitness components of hermaphrodites are roughly analogous to SA trade-offs in dioecious species (Abbott 2011), and for simplicity, we retain the use of the term “SA” when referring to genetic variation that causes a fitness trade-off between the male and female functions of hermaphrodites
+			\item Previous emphasis on dioecious species in SA literature, yet fitness trade-offs between sex functions can also affect the evolution of hermaphrodite populations in which “male” and “female” sex functions jointly contribute to each individual’s total fitness (Lloyd and Webb 1986; Webb and Lloyd 1986; Barrett 2002; Abbott 2011)
 				\begin{enumerate}
+					\item Blah blah blah...
 					\item Blah blah blah...
 				\end{enumerate}
 		\end{enumerate}
 
-	\item 
+	\item In dioecious models, tight linkage between SA loci ($r < 0.2$) can maintain variants that are lost in single-locus models of SA selection, expanding the parameter space where SA polymorphism is maintained.
+
+	\item For partially-selfing hermaphrodites, single-locus models of SA predict that...
 		\begin{enumerate}
-			\item next point...
-			\item next point...
+			\item Increased selfing diminishes the opportunity for SA polymorphism to be maintained and...
+			\item decreases the sensitivity of SA polymorphism to dominanace and..
+			\item Skews the parameter space where SA polymorphism is predicted, increasing the opportunity for female-beneficial alleles to invade, while decreasing the opportunity for male-beneficial alleles to invade.
 		\end{enumerate}
 	
-	\item next point...
+	\item However, increased selfing also decreases the effective recombination rate among nearby loci, promoting selection on linked allelic combinations.
 		\begin{enumerate}
-			\item next point...
-			\item next point...
+			\item It is unclear which factor should be more important in determining whether SA polymorphism is maintained, or how their relative importance may change under different dominance conditions (i.e. additive vs. ``dominance-reversal'')
+			\item Under dominance reversal conditions (partially recessive SA costs), it is unclear whether linkage compensates for the otherwise reduced parameter space where balancing selection is predicted.
 		\end{enumerate}
 \end{enumerate}
 
+Here I investigate the joint influence of genetic linkage, partial selfing, and dominance on opportunities for maintaining SA polymorphism in simultaneous hermaphrodites. 
 
 
 \section*{Model}
 
-Consider a genetic system involving two diallelic autosomal loci $\mathbf{A}$ and $\mathbf{B}$ that recombine at a rate $r$ in an infinite population of simultaneous hermaphrodites. The rate of self-fertilization ($C$) in the population is independent of the genotype at the sexually antagonistic loci in question (a `fixed' selfing model \textit{sensu} \citealt{Holden1979,CaballeroHill1992, JordanConnallon2014}). Generations are assumed to be discrete and non-overlapping, with selection occuring on diploid adults before mating. Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AB, Ab, aB, ab]$ among male and female gametes respectively. Both loci are under sexually antagonistic selection such that $A$ and $B$ represent male-beneficial alleles, while $a$ and $b$ represent female-beneficial alleles. That is, the fitness of females with with genotypes $AA$, $Aa$, and $aa$ at the $\mathbf{A}$ locus are equal to $1 - s_f$, $1 - h_f s_f$, and $1$ (after \citealt{Kidwell1977}). Fitness at the $\mathbf{B}$ locus follows the same parameterization. The fitness of offspring formed by the union of the $i$th female and $j$th male gametic, $w_{k,ij}$ (where $k \in [m,f]$), haplotypes is assumed to be equal to the product of the fitnesses at $\mathbf{A}$ and $\mathbf{B}$ (Table~\ref{Table:Fitness}). Following convention for SA models (e.g.~\citealt{Kidwell1977}), sex-specific selection coefficients are constrained to be $0 < s_k < 1$.
+Consider a genetic system involving two diallelic autosomal loci $\mathbf{A}$ and $\mathbf{B}$ that recombine at a rate $r$ in an infinite population of simultaneous hermaphrodites. The rate of self-fertilization ($C$) in the population is independent of the genotype at the loci in question (a `fixed' selfing model \textit{sensu} \citealt{Holden1979,CaballeroHill1992, JordanConnallon2014}). Generations are assumed to be discrete and non-overlapping, with selection occuring on diploid adults before mating. Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AB, Ab, aB, ab]$ among male and female gametes respectively. Both loci are under sexually antagonistic selection such that $A$ and $B$ represent male-beneficial alleles, while $a$ and $b$ represent female-beneficial alleles. That is, the fitness of females with with genotypes $AA$, $Aa$, and $aa$ at the $\mathbf{A}$ locus are equal to $1 - s_f$, $1 - h_f s_f$, and $1$ (after \citealt{Kidwell1977}). Fitness at the $\mathbf{B}$ locus follows the same parameterization. The fitness of offspring formed by the union of the $i$th female and $j$th male gametic, $w_{k,ij}$ (where $k \in [m,f]$), haplotypes is assumed to be equal to the product of the fitnesses at $\mathbf{A}$ and $\mathbf{B}$ (Table~\ref{Table:Fitness}). Following convention for SA models (e.g.~\citealt{Kidwell1977}), sex-specific selection coefficients are constrained to be $0 < s_k < 1$.
 
-Genotype frequencies in the next generation are given by a system of ten recursion equations \citep{Holden1979, JordanConnallon2014}. However, it is possible to approximate the evolutionary trajectories of haplotypes in a sexually antagonistic two-locus system under weak selection (See Appendix A in Supplementary Information). If selection is assumed to be relatively weak, the rate of allele frequency change due to selection should be slow relative to the rate at which genotypes approach equilibirium in partially selfing populations \citep{Nagylaki1997}. Under these conditions, it may be appropriate to use a separation of timescales \citep{OttoDay2007}, and calculate the quasi-equilibrium (QE) genotypic frequencies in the absence of selection. The genotypic recursions of allele frequency change across generations can then be approximated by substituting into them the QE frequencies, yielding a reduced system of only four haplotype recursions, evaluated at QE genotypic frequencies. Using this approach, I model the evolution of the four-haplotype system $q_i = [AA, Ab, aB, ab]$, where the QE adult genotypic frequencies are denoted by $\phi_{ij}$. The recursions giving the haplotype frequencies in the next generation are then
+Genotype frequencies in the next generation are given by a system of ten recursion equations (\citealt{Holden1979, JordanConnallon2014}). However, it is possible to approximate the evolutionary trajectories of haplotypes in a sexually antagonistic two-locus system under weak selection (See Appendix A in Supplementary Information). If selection is assumed to be relatively weak, the rate of allele frequency change due to selection should be slow relative to the rate at which genotypes approach equilibirium in partially selfing populations (\citealt{Nagylaki1997}). Under these conditions, it may be appropriate to use a separation of timescales (\citealt{OttoDay2007}), and calculate the quasi-equilibrium (QE) genotypic frequencies in the absence of selection. The genotypic recursions of allele frequency change across generations can then be approximated by substituting into them the QE frequencies, yielding a reduced system of only four haplotype recursions. Using this approach, I model the evolution of the four-haplotype system $q_i = [AA, Ab, aB, ab]$, where the QE adult genotypic frequencies are denoted by $\phi_{ij}$. The recursions giving the haplotype frequencies in the next generation are then
 
 \begin{align*} \label{eq:QEhapRec}
 	q'_1 &\approx (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(\phi{14} - \phi{23})}{2 \overline{w}_f} \bigg) \\
@@ -113,7 +119,8 @@ Genotype frequencies in the next generation are given by a system of ten recursi
 
 \noindent{} where $x_i$ and $y_i$ are functions $f(C, s_f, s_m, \phi_{ij})$, and $\overline{w}_f$ is the population average fitness through female function (Appendix A in Supplementary Information).
 
-To identify the parameter conditions under which SA polymorphism is predicted to be maintained, I evaluated the leading eigenvalue, $\lambda$, of the Jacobian, $\mathbf{J}$, of the system Eq(\ref{eq:QEhapRec}) for populations initially fixed for the $[AB]$ or $[ab]$ haplotypes respectively \citep{Prout1968, OttoDay2007}. Under these conditions, one of two eigenvalues was always the leading eigenvalue of $\mathbf{J}$. The first of these, $\lambda_1$, describes the rate of change of the system when invasion occurs at a single locus, and yields identical invasion criteria to an equivalent single-locus SA model with four alleles. $\lambda_2$ involves the recombination rate $r$, and identifies the regions of parameter space where invasion of the rare allele is influenced by linkage. General invasion criteria were found by solving for the conditions where $\lambda > 1$ using relevant values for other population genetic parameters. In particular, I focus on representative dominance conditions corresponding to additive allelic effects ($h_f = h_m = 1/2$), and partially recessive allelic effects yielding a ``dominance reversal'' ($h_f = h_m = 1/4$; \citealt{Kidwell1977, Prout2000, Fry2010, JordanConnallon2014})
+To identify the parameter conditions under which SA polymorphism is predicted to be maintained, I evaluated the leading eigenvalue, $\lambda$, of the Jacobian, $\mathbf{J}$, of the system Eq(\ref{eq:QEhapRec}) for populations initially fixed for the $[AB]$ or $[ab]$ haplotypes respectively (\citealt{Prout1968, OttoDay2007}). Under these conditions, one of two eigenvalues was always the leading eigenvalue of $\mathbf{J}$. The first, $\lambda_1$, describes the rate of change of the system when invasion occurs at a single locus, and yields identical invasion criteria to an equivalent single-locus SA model with four alleles. $\lambda_2$ involves the recombination rate $r$, and identifies the regions of parameter space where invasion of the rare allele is influenced by linkage. General invasion criteria were found by solving for the conditions where $\lambda > 1$ using relevant values for other population genetic parameters. In particular, I focus on representative dominance conditions corresponding to additive allelic effects ($h_f = h_m = 1/2$), and partially recessive allelic effects yielding a ``dominance reversal'' ($h_f = h_m = 1/4$) (\citealt{Kidwell1977, Prout2000, Fry2010, JordanConnallon2014}).
+
 
 
 
@@ -129,7 +136,7 @@ To identify the parameter conditions under which SA polymorphism is predicted to
 
 
 \section*{Acknowledgments}
-CO thanks C.~Venables for helpful discussions and patience. The idea for this article was conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K. Abbott. CO gratefully acknowledges their encouragement and feedback in developing it fully. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship to CO, and by the Monash University Centre for Geometric Biology.
+CO thanks J.~Cally, C.~Venables, and T.~Connallon for helpful discussions. The idea for this article was conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K. Abbott, and CO gratefully acknowledges their encouragement and feedback in developing it fully. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship to CO, and by the Monash University Centre for Geometric Biology.
 
 \newpage{}
 
@@ -200,7 +207,7 @@ Consider the genetic system described in the main text. Adult genotypic frequenc
 	q_4 &= F_{44} + \frac{F_{14} + F_{24} + F_{34}}{2}. \numberthis \label{eqn}
 \end{align*} 
 
-Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequencies in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. The contribution of genotype $ij$ to the production of offspring in the next generation is denoted by $F^f_{ij}$. Given these conditions, the recursion equations for the genotypic frequencies in the next generation are \citep{Holden1979, JordanConnallon2014}
+Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequencies in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. The contribution of genotype $ij$ to the production of offspring in the next generation is denoted by $F^f_{ij}$. Given these conditions, the recursion equations for the genotypic frequencies in the next generation are (\citealt{Holden1979, JordanConnallon2014})
 
 \begin{align*} \label{eq:genRec}
 	F'_{11} &= (1 - C) (x_1 y_1)           + C \bigg( F^f_{11} + \frac{F^f_{12} + F^f_{13} + F^f_{14}(1 - r)^2 + F^f_{23} r^2}{4} \bigg)  \\
@@ -278,18 +285,7 @@ After \citet{CaballeroHill1992}, the QE genotypic frequencies for a single locus
 	\phi_{44} &= q_4^2 + C q_4 (1 - q_4) / (2-C)  \numberthis
 \end{align*}
 
-Following standard two-locus theory for partially selfing populations \citep{Holden1979, OttoDay2007, JordanConnallon2014}, and substituting the QE genotypic frequencies, $\phi_{ij}$, the haplotype recursions, evaluated at the QE frequencies are:
-
-
-\begin{align*}
-	q'_1 &\approx (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(\phi{14} - \phi{23})}{2 \overline{w}_f} \bigg) \\
-	q'_2 &\approx (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(\phi{14} - \phi{23})}{2 \overline{w}_f} \bigg) \\
-	q'_3 &\approx (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(\phi{14} - \phi{23})}{2 \overline{w}_f} \bigg) \\
-	q'_4 &\approx (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(\phi{14} - \phi{23})}{2 \overline{w}_f} \bigg). \numberthis
-\end{align*}
-
-\noindent{} where $x_{i}$ are
-
+Following standard two-locus theory for partially selfing populations (\citealt{Holden1979, OttoDay2007, JordanConnallon2014}), and substituting the QE genotypic frequencies, $\phi_{ij}$, yields the haplotype recursions given in Eqn(\ref{eq:QEhapRec}), where $x_{i}$ are
 
 \begin{align*}
 	x_1 &= \frac{2 \phi_{11} w_{f11} + \phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14}}{2 \overline{w}_f} -
@@ -362,7 +358,7 @@ test
 \newpage{}
 
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \includegraphics[scale=0.7]{./recSimFig_domRev}
 \caption{Haplotype recursions evaluated at QE, and the resulting invasion conditions, approximate the evolutionary trajectory of the full genotypic recursions very well under allelic effects resulting in dominance reversal, even under strong selection. Predicted regions of SA polymorphism based on deterministic simulations using the genotypic recursions Eqns(\ref{eq:genRec}) are compared against the outcome of the invasion analysis for the haplotype recursions using the QE approximation (Eqns~\ref{eq:QEhapRec}) across a gradient of selfing ($C$) and recombination ($r$) rates. Green points indicate parameter conditions where the genotypic recursions and the QE haplotype approximations both predicted polymorphism. Red points indicate regions where the genotypic recursions predicted polymorphism but the QE haplotype recursions did not; and blue points indicate the opposite. The proportion of each outcome is shown in the upper left corner of each panel. Black solid lines show the invasion conditions based on the haplotype recursions using the QE approximation for the given values of $C$ and $r$, with lines drawn for both the two-locus and single-locus invasion conditions when $r > 0$.}
 \label{Fig:recSimFig_domRev.pdf}
