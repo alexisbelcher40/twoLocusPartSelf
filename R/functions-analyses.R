@@ -905,7 +905,7 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), 
 
 	#  initialize selection coeficients and storage structures
 	if(weakSel == TRUE)
-		r.vals      <-  c(0,0.5)
+		r.vals      <-  seq(0, 0.01, by=0.0005)
 	else 
 		r.vals      <-  seq(0, 0.5, by=0.01)
 	PrP     <-  c()

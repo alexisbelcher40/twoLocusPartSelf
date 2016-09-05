@@ -17,6 +17,9 @@ rm(list=ls())
 source('R/functions-analyses.R')
 
 
+
+######################################
+## Arbitrary Selection (0 < s_k < 1)
 ######################################
 #  Additive effects (hf = hm = 0.5)
 
@@ -45,3 +48,36 @@ propPrPFast(n = 30000, C = 0.6, hf = 0.25, hm = 0.25); print("7/10 for Dom. Rev.
 propPrPFast(n = 30000, C = 0.7, hf = 0.25, hm = 0.25); print("8/10 for Dom. Rev. Eff.");
 propPrPFast(n = 30000, C = 0.8, hf = 0.25, hm = 0.25); print("9/10 for Dom. Rev. Eff.");
 propPrPFast(n = 30000, C = 0.9, hf = 0.25, hm = 0.25); print("10/10 for Dom. Rev. Eff.");
+
+
+
+######################################
+## Weak Selection (0 < s_k < 0.1)
+######################################
+#  Additive effects (hf = hm = 0.5)
+
+propPrPFast(n = 30000, C = 0.0, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("1/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.1, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("2/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.2, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("3/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.3, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("4/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.4, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("5/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.5, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("6/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.6, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("7/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.7, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("8/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.8, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("9/10 for Add. Eff.");
+propPrPFast(n = 30000, C = 0.9, hf = 0.5, hm = 0.5, sRange = c(0,0.1), weakSel = TRUE); print("10/10 for Add. Eff.");
+
+
+######################################
+#  Dominance reversal (hf = hm = 0.25)
+
+propPrPFast(n = 30000, C = 0.0, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("1/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.1, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("2/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.2, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("3/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.3, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("4/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.4, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("5/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.5, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("6/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.6, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("7/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.7, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("8/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.8, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("9/10 for Dom. Rev. Eff.");
+propPrPFast(n = 30000, C = 0.9, hf = 0.25, hm = 0.25, sRange = c(0,0.1), weakSel = TRUE); print("10/10 for Dom. Rev. Eff.");

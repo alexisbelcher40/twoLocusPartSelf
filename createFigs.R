@@ -34,6 +34,9 @@ embed_fonts(figPath(name='Fig1wk.pdf'))
 toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig2.pdf'))
 
+toPdf(Fig.2wk(), figPath(name='Fig2wk.pdf'), width=7, height=7)
+embed_fonts(figPath(name='Fig2wk.pdf'))
+
 toPdf(recSimFig_add(), figPath(name='recSimFig_add.pdf'), width=7, height=7)
 embed_fonts(figPath(name='recSimFig_add.pdf'))
 
