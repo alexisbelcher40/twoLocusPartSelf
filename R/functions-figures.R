@@ -216,7 +216,7 @@ layout <- layout(layout.mat,respect=TRUE)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi.obOut)
@@ -294,7 +294,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi)
@@ -373,7 +373,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         legend(
             x       =  usr[2]*0.39,
             y       =  usr[4],
@@ -476,7 +476,7 @@ layout <- layout(layout.mat,respect=TRUE)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi.obOut)
@@ -551,7 +551,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi)
@@ -630,7 +630,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi)
@@ -701,10 +701,10 @@ layout <- layout(layout.mat,respect=TRUE)
         lines(twoLoc.Lo.obOut ~ sm, lwd=2, col='black')
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi.obOut)
@@ -743,7 +743,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi)
@@ -781,7 +781,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         legend(
             x       =  usr[2]*0.39,
             y       =  usr[4],
@@ -838,10 +838,10 @@ layout <- layout(layout.mat,respect=TRUE)
         lines(twoLoc.Lo.obOut ~ sm, lwd=2, col='black')
         axis(1, las=1)
         axis(2, las=1)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi.obOut)
@@ -878,7 +878,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi)
@@ -917,7 +917,7 @@ layout <- layout(layout.mat,respect=TRUE)
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.03, 1.05, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.03, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
         # Garbage collection
         rm(twoLoc.Hi)
@@ -1002,7 +1002,7 @@ Fig.2  <- function() {
         proportionalLabel(0.5, 1.2, 'Protected polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.3, 0.5, expression(paste("Proportion parameters space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste("Proportion of parameter space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
         legend(
             x       =  usr[2]*0.6,
             y       =  usr[4],
@@ -1086,7 +1086,7 @@ Fig.2  <- function() {
         axis(2, las=1)
         proportionalLabel(0.03, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.3, 0.5, expression(paste("Proportion parameters space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste("Proportion of parameter space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 
@@ -1192,7 +1192,7 @@ Fig.2wk  <- function() {
         proportionalLabel(0.5, 1.2, 'Protected polymorphism', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.03, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.3, 0.5, expression(paste("Proportion parameters space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste("Proportion of parameter space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
 
 
     ##  Panel 2: Proportional increase in parameter space relative to single locus case
@@ -1263,7 +1263,7 @@ Fig.2wk  <- function() {
         axis(2, las=1)
         proportionalLabel(0.03, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.45, 0.5, expression(paste(italic(h), " = 1/4")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.3, 0.5, expression(paste("Proportion parameters space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.3, 0.5, expression(paste("Proportion of parameter space")), cex=1, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.25, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 
