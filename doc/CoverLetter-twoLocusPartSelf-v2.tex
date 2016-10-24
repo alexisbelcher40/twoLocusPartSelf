@@ -1,0 +1,180 @@
+%===========================================
+% Preamble
+
+\documentclass[11pt]{article}
+
+
+%**********
+%Dependencies
+
+%**********
+%Dependencies
+%\usepackage[left]{lineno}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage[utf8]{inputenc}
+\usepackage{color,soul}
+\usepackage[sc]{mathpazo} %Like Palatino with extensive math support
+\usepackage{fullpage}
+\usepackage[authoryear,sectionbib,sort]{natbib}
+\linespread{1}
+\usepackage[utf8]{inputenc}
+\usepackage{lineno}
+\usepackage[hidelinks]{hyperref}
+
+
+% New commands: fonts
+\newcommand{\code}{\fontfamily{pcr}\selectfont}
+\newcommand*\chem[1]{\ensuremath{\mathrm{#1}}}
+
+
+%===========================================
+% Title page
+
+
+% \title{Cover Letter}
+% \author{Colin Olito}
+% \date{\today}
+
+
+\begin{document}
+%\maketitle
+%\newpage{}
+
+
+%===========================================
+% Document
+
+
+\section*{}
+\noindent To the Editor,
+\bigskip
+
+%Please consider this submission “Consequences of genetic linkage for the maintenance of sexually anatagonistic polymorphism in hermaphrodites” for publication as a Brief Communication article in Evolution.
+\bigskip
+
+%Although there is a rich body of theory regarding sexually antagonistic (SA) selection for dioecious species, genetic trade-offs between sex functions represent analogous constraints on fitness for hermaphrodites. Indeed, for hermaphrodites, both sex functions must be accommodated by a single phenotype, and there is ample scope for traits with a shared genetic basis to constrain fitness through each sex function. Recent theory based on single-locus models suggests that the maintenance of SA genetic variation should be greatly reduced in partially selfing populations. However, linkage between SA loci has been shown to expand the opportunity for balancing selection in dioecious species. Furthermore, selfing reduces the effective rate of recombination, which should strengthen this effect in selfing populations. However, the consequences of linkage for the maintenance of SA polymorphism in hermaphroditic populations has yet to be explored. Here I develop a two-locus model of SA selection in simultaneous hermaphrodites, and explore the joint influence of linkage, self-fertilization, and dominance on the maintainance of SA polymorphism. 
+\bigskip
+
+%I find that the reduction in effective recombination rate caused by selfing significantly expands the parameter space where SA polymorphism can be maintained. In particular, linkage facilitates the invasion of male-beneficial alleles, partially compensating for a ``female-bias'' in the net direction of selection created by selfing. This study extends previous theory on SA selection in hermaphrodites by considering the the consequences of SA selection for hermaphrodites in a multi-locus context. Accounting for linkage among SA loci has important implications for not only the maintenance of SA genetic variation, but the evolution of mixed mating systems in hermaphrodites; both of which are long-standing and active questions in evolutionary biology, and will therefore be of interest to a broad readership.
+\bigskip
+
+%Below, I list some potential Editors and referees, contact details, and a brief summary of their areas of expertise. Please do not hesitate to contact me if you have any questions.
+\bigskip
+
+\noindent Thank you for your consideration. \\
+\noindent Sincerely,
+\bigskip
+
+\noindent Colin Olito \\
+\noindent Centre for Geometric Biology, \\
+\noindent School of Biological Sciences \\
+\noindent Monash University \\
+\noindent Melbourne, VIC, 3800 \\
+\noindent Australia \\
+\noindent colin.olito@gmail.edu \\
+
+\bigskip
+\noindent \rule{\textwidth}{0.4pt}
+\bigskip
+
+\newpage{}
+
+\section*{Responses to Editor and Reviewer Comments}
+
+
+Associate Editor
+
+\noindent Comments to the Author:
+\bigskip 
+
+The manuscript explores the scope for the evolution of SA loci in selfing species by considering a 2 locus model and comparing it to predictions made previously using single locus theory and hence ignoring the effect of linkage. The manuscript is concisely and clearly written. Importantly, it also provides enough supplementary material to allow interested readers to look through the derivation of the results obtained.  I think it is a perfect contribution for the "brief communication section". I would encourage the author to produce a final version that takes into consideration the careful comments made by Reviewer 2.
+
+	\begin{quote}
+		...
+	\end{quote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\noindent \rule{8cm}{0.4pt}
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent Reviewer(s)' Comments to Author:
+\bigskip
+
+\noindent Reviewer: 1
+\bigskip
+
+\noindent Comments
+\bigskip
+
+\noindent One major comment: this is an outstanding paper. For context, this is a field I work in and know well, and I am typically not shy with my criticisms of manuscripts that I think can be improved. Kudos to the author.
+
+	\begin{quote}
+		Much appreciated. I am glad the reviewer enjoyed reading it.
+	\end{quote}
+
+\noindent One minor comment: I think the '14' and '23' in equation (1) want to be subscripted.
+
+	\begin{quote}
+		Thank you for catching this mistake in the recursions. I have now subscripted the indexes for $\phi_{ij}$.
+	\end{quote}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\noindent \rule{8cm}{0.4pt}
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\noindent Reviewer: 2
+\bigskip
+
+\noindent Comments to the Author
+\bigskip
+
+\noindent 1 - Eq.2: is it equivalent to the result obained by Jordan \& Connallon when $C > 0$ ?
+
+	\begin{quote}
+		Yes, Eq(2) is equivalent to Eq(8) from Jordan \& Connallon (although they solve for $s_m$ rather than $s_f$). I have changed my wording to make this explicit (\textbf{L.124--127}).
+	\end{quote}
+
+\noindent 2 - lines 132 - 134: isn't it possible to find a simple condition for the maintenance of polymorphism when $r=0$, since the system becomes equivalent to a single locus?
+
+	\begin{quote}
+		This is a good question, and I have made two changes in order to address it (one to the main text on \textbf{L.132-135}, one to Appendix C). The simple but maybe unsatisfying answer to this question is no. Even assuming complete linkage and additive fitness effects, I couldn't find a way to present the invasion criteria from the third candidate leading eigenvalue in a way that I felt would clarify the results for readers. However, I agree that it is somewhat unsatisfying to just call it complicated and move on, so I have made two changes to the manuscript. First, I have added a brief digression in Appendix C that (1) shows the invasion criteria under complete linkage and additive fitness effects ($r=0$, $h_f=h_m=1/2$); (2) shows the invasion criteria under the added assumption of obligate outcrossing ($C=0$); and (3) highlights that under this second set of assumptions, the invasion criteria are algebraically identical to those given by Eq(11) in Patten \& Haig (2010). Second, I have altered the main text to explain that under the above assumptions, the results of Patten \& Haig (2010) can be recovered, and reference Appendix C so that interested readers may explore these results.
+	\end{quote}
+
+\noindent 3 - lines 183 - 185: it doesn't seem obvious to me that SA genes should be more tightly clustered in the genomes of more highly selfing species: I guess one could make the opposite argument that because effective recombination rates are reduced, between-locus interactions can allow the maintenance of polymorphism at more distant loci
+
+	\begin{quote}
+		...
+	\end{quote}
+
+\noindent 4 - lines 198 - 201: I don't think that SA selection needs to be invoked to explain the maintenance of traits promoting male gamete performance, as these traits will be selected as long as selfing is not complete.
+
+	\begin{quote}
+		...
+	\end{quote}
+
+\noindent 5 - line 89: AA $\rightarrow$ AB
+
+	\begin{quote}
+		Thanks for catching this. I have now corrected to read $AB$.
+	\end{quote}
+
+\noindent 6 - line 95: deterministic
+
+	\begin{quote}
+		Thanks again. I have corrected the typo.
+	\end{quote}
+
+
+
+\end{document}
