@@ -102,3 +102,9 @@ vignettes/*.pdf
 # Untracked Folders #
 #####################
 output/*
+doc/notes/*
+# Untracked Files for public repo #
+###################################
+*CoverLetter*.tex
+*50wordBlurb.tex
+*twoLocusPartSelf-v2-Highlighted.tex
