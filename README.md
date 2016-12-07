@@ -12,7 +12,7 @@ Olito, C. 2016. Consequences of genetic linkage for the maintenance of sexually 
 
 ## Reproducing the manuscript
 
-The easiest way to reproduce the manuscript is to simply clone the repo, run createFigs.R, and then compile the manuscript file `doc/twoLocusPartSelf-v2-Clean.tex` using whatever default LaTeX editor/engine you have. 
+The easiest way to reproduce the manuscript is to simply clone the repo, run `createFigs.R`, and then compile the manuscript file `doc/twoLocusPartSelf-v2-Clean.tex` using whatever default LaTeX editor/engine you have. 
 
 
 ## Contact & bug reporting
