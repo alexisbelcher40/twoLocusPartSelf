@@ -4,10 +4,13 @@
 #  Functions to generate Figures for: 
 #    Article title goes here...
 #  
-#  Authors: Colin Olito, Crispin Jordan, Tim Connallon
+#  Author: Colin Olito
 #
 #
-#  NOTES:  
+#  NOTES: Run this file, either from terminal using Rscript,
+#		  or interactively in R. This should create all the 
+#		  figures needed to correctly compile the mansucript
+#		  LaTeX file.  
 #          
 
 rm(list=ls())
@@ -43,17 +46,3 @@ embed_fonts(figPath(name='recSimFig_add.pdf'))
 toPdf(recSimFig_domRev(), figPath(name='recSimFig_domRev.pdf'), width=7, height=7)
 embed_fonts(figPath(name='recSimFig_domRev.pdf'))
 
-#toPdf(fig5(), figPath(name='fig5.pdf'), width=9, height=3)
-#embed_fonts(figPath(name='fig5.pdf'))
-
-##################
-# APPENDIX FIGURES
-##################
-#toPdf(figA1(), figPath(name='figA1.pdf'), width=8, height=8)
-#embed_fonts(figPath(name='figA1.pdf'))
-
-#toPdf(figA2(), figPath(name='figA2.pdf'), width=9, height=3)
-#embed_fonts(figPath(name='figA2.pdf'))
-
-#toPdf(figA3(), figPath(name='figA3.pdf'), width=9, height=3.5)
-#embed_fonts(figPath(name='figA3.pdf'))
