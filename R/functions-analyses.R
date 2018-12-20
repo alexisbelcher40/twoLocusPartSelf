@@ -106,7 +106,7 @@ F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	y3  <-  y3(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
 	y1  <-  y1(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...)
-	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*((Fii[3]*Wf.mat[1,3]/2 + Fii[4]*W`f.mat[1,4]*par.list$r*(1 - par.list$r)/2 + Fii[6]*Wf.mat[2,3]*par.list$r*(1 - par.list$r)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
+	(1 - par.list$C)*(x1*y3 + x3*y1) + par.list$C*((Fii[3]*Wf.mat[1,3]/2 + Fii[4]*Wf.mat[1,4]*par.list$r*(1 - par.list$r)/2 + Fii[6]*Wf.mat[2,3]*par.list$r*(1 - par.list$r)/2)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
 
 F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {

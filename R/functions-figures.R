@@ -3160,3 +3160,97 @@ recSimFig_domRev  <-  function() {
 
 
 }
+
+
+
+singleLocFig  <-  function() {
+
+# Color scheme
+    colfunc <- colorRampPalette(c("#252525", "grey70"))
+    COLS  <-  colfunc(6)
+#    COLS  <-  c("black", "#525252", "#737373", "#bdbdbd")
+
+#  Create vector of male selection coefficiets for invasion functions
+sm  <-  seq(0,1,by=0.0001)
+
+# Set plot layout
+layout.mat <- matrix(c(1,2,3), nrow=1, ncol=3, byrow=TRUE)
+layout <- layout(layout.mat,respect=TRUE)
+
+##  Row 1: Additive allelic effects
+    ##  Panel One: C = 0
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi.obOut   <-  inv.lab1.add.obOut(hf=0.5, hm=0.5, sm=sm)
+        twoLoc.Hi.obOut[twoLoc.Hi.obOut > 1]  <-  1.00000001
+        twoLoc.Hi.obOut[10001]  <-  1.00000001
+        twoLoc.Lo.obOut  <-  inv.lAB1.add.obOut(hf=0.5, hm=0.5, sm=sm)
+
+        # Make the plot
+        par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Using only first eigenvalue (ignoring recombination)
+        polygon(c(sm,rev(sm)), c(twoLoc.Hi.obOut, rev(twoLoc.Lo.obOut)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi.obOut[twoLoc.Hi.obOut <= 1] ~ sm[twoLoc.Hi.obOut <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo.obOut ~ sm, lwd=2, col='black')
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(-0.4, 0.5, expression(paste(italic(h), " = 1/2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.25, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ', 0)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.03, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+    ##  Panel Two: C = 0.25
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
+        twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
+        twoLoc.Hi[10001]  <-  1.00000001
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.25)
+          # Make the plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        #  w/ recombination
+        # Using only first eigenvalue (ignoring recombination)
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo ~ sm, lwd=2, col='black')
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.25)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.03, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        # Garbage collection
+
+    ##  Panel Three: C = 0.5
+        
+        # Calculate plotting lines for solutions not involving recombination
+        twoLoc.Hi   <-  inv.lab1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
+        twoLoc.Hi[twoLoc.Hi > 1]  <-  1.00000001
+        twoLoc.Hi[10001]  <-  1.00000001
+        twoLoc.Lo  <-  inv.lAB1.add(hf=0.5, hm=0.5, sm=sm, C=0.5)
+
+        # Make the plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Using only first eigenvalue (ignoring recombination)
+        polygon(c(sm,rev(sm)),c(twoLoc.Hi,rev(twoLoc.Lo)), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(twoLoc.Hi[twoLoc.Hi <= 1] ~ sm[twoLoc.Hi <= 1], lwd=2, col='black')
+        lines(twoLoc.Lo ~ sm, lwd=2, col='black')
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(0.5, 1.15, expression(paste(italic(C), ' = ',0.5)), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.03, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.25, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+}

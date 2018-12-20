@@ -46,3 +46,11 @@ embed_fonts(figPath(name='recSimFig_add.pdf'))
 toPdf(recSimFig_domRev(), figPath(name='recSimFig_domRev.pdf'), width=7, height=7)
 embed_fonts(figPath(name='recSimFig_domRev.pdf'))
 
+
+###############
+# OTHER FIGURES
+###############
+
+toPdf(singleLocFig(), figPath(name='singleLocFig.pdf'), width=7, height=3.5)
+embed_fonts(figPath(name='singleLocFig.pdf'))
+
