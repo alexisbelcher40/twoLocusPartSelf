@@ -963,4 +963,5 @@ propPrPFast  <-  function(n = 1000, C = 0, hf = 0.5, hm = 0.5, sRange = c(0,1), 
 
 
 
-
+Bottom line they really are a hermaphrodite and only the pussy works facts and true now  give me my money back fbi can see all this 
+give my money back
